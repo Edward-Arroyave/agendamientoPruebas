@@ -1,0 +1,70 @@
+<div class="container">
+  <h3 class="title-form">{{ idElement ? 'Editar' : 'Agregar' }} Elemento</h3>
+
+  <form [formGroup]="formElementos" class="form">
+
+    <!-- Input para caracteristica -->
+    <app-basic-input [dataSelect]="caracteristica" [valueId]="'idCharacteristic'"
+      [valueDescription]="'characteristicName'" [typeInput]="'select'" [leftIcon]="'categoria'"
+      [rightIcon]="'arrow_drop_down'" [form]="formElementos" [nameControlform]="'idCharacteristic'"
+      [textLabel]="'Característica'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar caracteristica'">
+    </app-basic-input>
+
+    <!-- Input para elemento -->
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formElementos"
+      [nameControlform]="'elementName'" [textLabel]="'Nombre del elemento'" [maxlength]="200">
+    </app-basic-input>
+
+    @if(this.examenesLaboratorioFlag){
+    <app-basic-input [dataSelect]="examenes" [valueId]="'idExam'" [valueDescription]="'examName'" [typeInput]="'select'"
+      [leftIcon]="'tipoAtencion'" [form]="formElementos" [nameControlform]="'listIdExamArr'" [textLabel]="'Exámenes'"
+      [flagCheck]="true" [searchFlag]="true" [placeholderText]="'Buscar exámenes'">
+    </app-basic-input>
+    }
+
+    @if(tiempoObligatorio){
+    <!-- Input para tiempo particular -->
+    <app-basic-input [typeInput]="'time'" [leftIcon]="'tiempo'" [form]="formElementos"
+      [nameControlform]="'particularTime'" [textLabel]="'Tiempo particular'">
+    </app-basic-input>
+    }
+
+    @if(!this.examenesLaboratorioFlag){
+
+    <app-basic-input [dataSelect]="listExamsCups" [valueId]="'code'" [valueDescription]="'codename'"
+      [typeInput]="'select'" [leftIcon]="'numeral'" [rightIcon]="'arrow_drop_down'" [form]="formElementos"
+      [nameControlform]="'cups'" [textLabel]="'Código CUPS'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar...'">
+    </app-basic-input>
+
+    <app-basic-input [dataSelect]="listInstCode" [valueId]="'instServiceCode'" [valueDescription]="'fullValue'"
+      [typeInput]="'select'" [leftIcon]="'numeral'" [rightIcon]="'arrow_drop_down'" [form]="formElementos"
+      [nameControlform]="'internalCode'" [textLabel]="'Código interno'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar...'">
+    </app-basic-input>
+    }
+
+
+    <!-- Input para Descripción -->
+    <app-basic-input [dataSelect]="CondicionEspecial" [valueId]="'idSpecialCondition'"
+      [valueDescription]="'specialConditionName'" [typeInput]="'select'" [leftIcon]="'cuidad'"
+      [rightIcon]="'arrow_drop_down'" [form]="formElementos" [nameControlform]="'idSpecialCondition'"
+      [textLabel]="'Condición especial'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar condición especial'">
+    </app-basic-input>
+
+
+    <app-basic-input class="full-width1" [typeInput]="'textarea'" [leftIcon]="'Agenda'" [form]="formElementos"
+      [nameControlform]="'observations'" [textLabel]="'Observaciones'">
+    </app-basic-input>
+
+    <!-- Botones de Acción -->
+    <div class="controls_two_buttons absolute_boton">
+      <button type="button" class="btn-01" (click)="cancelar()">Cancelar</button>
+      <button type="button" class="btn-02" (click)="save()">{{ idElement ?
+        'Actualizar' : 'Guardar' }}</button>
+    </div>
+  </form>
+
+</div>

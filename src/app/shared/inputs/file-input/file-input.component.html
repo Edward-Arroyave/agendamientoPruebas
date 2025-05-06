@@ -1,0 +1,18 @@
+@if(tipo === 'button'){
+    <button class="btnIcon-01" (click)="onFile()" type="button">
+        <div><span>Cargar archivo</span></div>
+        <input (change)="onChageFile($event)" type="file" id="fileInput" style="display: none;" #btnFile/>
+        @if(flagData){
+            <mat-icon>check</mat-icon> 
+        }@else {<mat-icon>upload</mat-icon>}
+    </button>
+}@else{
+    <button #btnFile [title]="'Arrastre / Suelte '+ mensaje" type="button" (dragover)="onDragOver($event)"  (drop)="onDrop($event)" 
+            style="overflow: hidden; height: 76px; width: 100%; border-radius: 10px;border: 1px solid var(--gray-01); background: white;" 
+            class="shadow" (click)="onFile()">
+        <div style="color: var(--gray-02); display: flex;justify-content: center; align-items: center;flex-wrap: wrap;gap: 0em .5em;">
+            <mat-icon style="width: auto; height: auto;font-size: 48px;">image</mat-icon>
+             <span style="font-size: 10px;">Arrastre / Suelte {{mensaje}}</span>
+        </div>
+    </button>
+}

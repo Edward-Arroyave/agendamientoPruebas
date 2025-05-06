@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30 30">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+
+      .cls-2 {
+        fill: currentColor;
+      }
+
+      .cls-3 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-1" x="2.38" y="2.5" width="25.24" height="25"/>
+    </clipPath>
+  </defs>
+  <g class="cls-3">
+    <g id="Grupo_35641">
+      <path id="Trazado_19569" class="cls-2" d="M18.78,24.12h-7.56c-1.87,0-3.38,1.51-3.39,3.38h0s14.33,0,14.33,0c0-1.87-1.51-3.38-3.38-3.38"/>
+      <rect id="Rectángulo_18917" class="cls-2" x="12.8" y="20.84" width="4.41" height="2.56"/>
+      <path id="Trazado_19570" class="cls-2" d="M26.98,2.5H3.02c-.35,0-.64.29-.64.64v16.24c0,.35.29.64.64.64h23.96c.35,0,.64-.29.64-.64V3.14c0-.35-.29-.64-.64-.64M25.17,16.92c0,.36-.3.64-.65.64H5.48c-.36,0-.65-.28-.65-.64V5.6c0-.36.3-.64.65-.64h19.03c.36,0,.65.28.65.64v11.32Z"/>
+    </g>
+  </g>
+</svg>

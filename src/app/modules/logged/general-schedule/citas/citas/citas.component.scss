@@ -1,0 +1,161 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.form-search {
+  margin-top: 2em;
+  padding: 0px !important;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1em;
+}
+
+.inputs-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1em;
+}
+
+.buttons-container {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 1em;
+}
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.contenedor-tabla {
+  overflow: auto;
+  padding-right: 1em;
+}
+
+
+
+.btnIcon-01 {
+  margin-left: 0px !important;
+}
+
+/* No data */
+.no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.8em;
+  width: 100%;
+  height: 14em;
+}
+
+.no-data__img {
+  width: 4em;
+  filter: grayscale(1);
+}
+
+.no-data__span {
+  text-align: center;
+  color: #a3a2a2;
+}
+
+.orange {
+  color: var(--advertencia);
+  font-weight: bold;
+}
+
+.green {
+  color: var(--exito);
+  font-weight: bold;
+}
+
+.red {
+  color: var(--error);
+  font-weight: bold;
+}
+
+.solicitud {
+  background: #E87724;
+  border-radius: 4px;
+
+  &:hover {
+    background: var(--error-light);
+  }
+}
+
+.respuesta {
+  background: var(--color-01);
+  border-radius: 4px;
+
+  &:hover {
+    background: var(--color-02);
+  }
+}
+
+.iconTable {
+  width: 14px !important;
+
+}
+.disable{
+  background: var(--gray-02);
+  color: white;
+}
+/////////////////////Estilos del modal///////////////////////
+.content-modal {
+  width: 95%;
+  margin: auto;
+  border-left: var(--color-04) 2px solid;
+  border-right: var(--color-04) 2px solid;
+  display: flex;
+  flex-direction: column;
+}
+
+.detalle-content {
+  margin: auto;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin-bottom: 1em;
+  overflow: auto;
+  max-height: 300px;
+}
+
+.degrade {
+  background: linear-gradient(180deg,
+      rgba(235, 235, 235, 1) 63%,
+      rgba(255, 255, 255, 1) 92%);
+  border-radius: 10px;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.arrows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  font-size: 0.5rem; /* Ajustable */
+  margin-top: 2px; /* Opcional */
+  cursor: pointer;
+}
+
+@media (max-width: 1240px) {
+  .form-search {
+    width: 100%;
+    overflow-x: auto;
+    align-items: center;
+    height: 70px;
+    margin-top: 1em;
+  }
+
+  .inputs-container {
+    width: 1800px;
+  }
+}

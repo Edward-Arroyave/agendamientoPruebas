@@ -1,0 +1,260 @@
+<div style="margin: 2em 0; width: 100%;">
+  <div class="infoPaciente">
+    <div style="display: flex; align-items: end; height: 100%;">
+      <p style="margin: 0;">
+        Por favor ingrese el nombre del procedimiento que desea agendar:
+      </p>
+    </div>
+    <div style="border-bottom: 1px solid var(--color-01); height: 39px;margin: 0 1em;"></div>
+    <div class="tapInformacion shadow">
+      <div>Paciente : <strong>{{fullName}}</strong></div>
+      <!-- <div>Entidad remitente : <strong>Compensar </strong> </div> -->
+    </div>
+  </div>
+  @if(!flagNext()){
+
+  <form class="grid-form-paso-3">
+
+    <app-basic-input [dataSelect]="departamentos" [valueId]="'idDepartment'" [valueDescription]="'department'"
+      [typeInput]="'select'" [leftIcon]="'departamento'" [form]="formProcedimiento" [nameControlform]="'idDepartment'"
+      [textLabel]="'Departamento'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar departamento'">
+    </app-basic-input>
+
+    <app-basic-input [dataSelect]="cuidades" [valueId]="'idCity'" [valueDescription]="'city'" [typeInput]="'select'"
+      [leftIcon]="'cuidad'" [rightIcon]="'arrow_drop_down'" [form]="formProcedimiento" [nameControlform]="'idCity'"
+      [textLabel]="'Ciudad'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar cuidad'">
+    </app-basic-input>
+
+    <app-basic-input [dataSelect]="sedes" [valueId]="'idAttentionCenter'" [valueDescription]="'attentionCenterName'"
+      [typeInput]="'select'" [leftIcon]="'sede'" [rightIcon]="'arrow_drop_down'" [form]="formProcedimiento"
+      [nameControlform]="'idAttentionCenter'" [textLabel]="'Sede'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar cuidad'">
+    </app-basic-input>
+
+    <app-basic-input [dataSelect]="categorias" [valueId]="'idCategory'" [valueDescription]="'categoryName'"
+      [typeInput]="'select'" [leftIcon]="'categoria'" [rightIcon]="'arrow_drop_down'" [form]="formProcedimiento"
+      [nameControlform]="'idCategory'" [textLabel]="'Categoria'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar categoria'">
+    </app-basic-input>
+
+    @if(this.flagExamenDeLabotorio()){
+
+    <app-basic-input style="grid-column: span 2;" [dataSelect]="listaExamenes" [valueId]="'idExam'"
+      [valueDescription]="'examName'" [typeInput]="'select'" [leftIcon]="'categoria'" [rightIcon]="'arrow_drop_down'"
+      [form]="formProcedimiento" [nameControlform]="'listIdExamens'" [textLabel]="'Exámenes de laboratorio'"
+      [flagCheck]="true" [searchFlag]="true" [placeholderText]="'Buscar examen'">
+    </app-basic-input>
+    }@else {
+    <app-basic-input style="grid-column: span 2;" [typeInput]="'text'" [rightIcon]="'search'"
+      [leftIcon]="'buscar-tuerca'" [form]="formProcedimiento" [nameControlform]="'search'"
+      [textLabel]="'Buscar procedimiento'" [ariaRequired]="false">
+    </app-basic-input>
+    }
+
+    @if(pacienteParticularFlag){
+    <div class="radio-companion">
+      <span style="font-size: 14px;">
+        ¿El paciente que esta agendando requiere de un acompañante?
+      </span>
+
+      <mat-radio-group style="font-size: 14px; display: flex;" (change)="openModalCompanion(dataCompanion, $event)"  [formControl]="formButtonCompanion">
+        <mat-radio-button [value]="true" >Sí</mat-radio-button>
+        <mat-radio-button [value]="false">No</mat-radio-button>
+      </mat-radio-group>
+
+    </div>
+    }
+
+
+
+  </form>
+  }
+  @if(flagNext()){
+  <app-basic-input [typeInput]="'textarea'" [leftIcon]="'Documentos'" [form]="formSearch" [nameControlform]="'search'"
+    [textLabel]="'Buscar'"></app-basic-input>
+  }
+  @if(columnsBody().length !== 0 && flagNext()){
+
+
+  <div style="overflow-x: auto;">
+    <table class="myTable " style="width: 100%;">
+      <thead class="commonTable">
+        <tr>
+          <th>Sede</th>
+          <th>Categoria</th>
+          <th>Especialidad</th>
+          <th>Caracteristica</th>
+          <th>CUPS</th>
+          <th>Elemento</th>
+          <th>Condición especial</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of columnsBody() | paginate: { id:'paginador', itemsPerPage: paginadorNumber(),
+        currentPage: p, totalItems: columnsBody().length }; track item; let j = $index) {
+        <tr class="shadow">
+          <td>
+            <div [matTooltip]="item.attentionCenterName" appTooltipIfTruncated="{{ item.attentionCenterName }}"
+              class="text-truncate" style="width: 100%;">
+              {{item.attentionCenterName}}
+            </div>
+          </td>
+          <td>
+            <div [matTooltip]="item.categoryName" appTooltipIfTruncated="{{ item.categoryName }}" class="text-truncate"
+              style="width: 100%;">
+              {{item.categoryName}}
+            </div>
+          </td>
+          <td>
+            <div [matTooltip]="item.specialtiesName" appTooltipIfTruncated="{{ item.specialtiesName }}"
+              class="text-truncate" style="width: 100%;">
+              {{item.specialtiesName}}
+            </div>
+          </td>
+          <td [ngClass]="{'textNext':item.characteristicName!==null}"
+            (click)="siguiente(item.characteristicName !== null ? item : null)">
+            <div [matTooltip]="item.characteristicName" appTooltipIfTruncated="{{ item.characteristicName }}"
+              class="text-truncate" style="width: 100%;">
+              {{item.characteristicName? item.characteristicName:'-'}}
+            </div>
+          </td>
+          <td >
+            <div [matTooltip]="item.cups"
+              class="text-truncate" style="width: 100%;">
+              {{item.cups}}
+            </div>
+          </td>
+          <td [ngClass]="{'textNext':item.elementName!==null}">
+            @if(item.requireElements || item.associatedExam){
+            <div (click)="siguiente(item.elementName !== null ? item : null)" [matTooltip]="item.internalCode+' - '+item.elementName" class="text-truncate" style="width: 100%;">
+              {{item.internalCode? item.internalCode:'-'}} - {{item.elementName?item.elementName:'-'}}
+            </div>
+            }@else {
+            -
+            }
+          </td>
+          <td>
+            <div [matTooltip]="item.specialConditionName" appTooltipIfTruncated="{{ item.specialConditionName }}"
+              class="text-truncate" style="width: 100%;">
+              {{item.specialConditionName}}
+            </div>
+          </td>
+
+        </tr>
+        }
+      </tbody>
+    </table>
+    <pagination-controls id="paginador" previousLabel="" nextLabel="" [responsive]="true"
+      (pageChange)="handlePageChange($event)"></pagination-controls>
+  </div>
+  }
+</div>
+
+<ng-template #ExamenesPorElemento>
+  <div class="selection-container">
+    <h1 style="margin: 7px 0;">Selección de elementos</h1>
+    <p class="selection-subtitle">Por favor seleccione los exámenes y el elemento necesarios para continuar (solo puede
+      elegir un elemento, si un elemento no contiene todos los examenes debe realizar otra reserva con los exámenes
+      restantes) :</p>
+
+    <div class="selection-content">
+      <div class="selection-column">
+        <form class="checkbox-list">
+          @for (item of this.listaExamenes2(); track $index) {
+          <label class="checkbox-item">
+            @if(noContieneExamen(item.idExam)){
+            <mat-checkbox [id]="item.idExam+'check'" #checkeds [checked]="item.checked"
+              (change)="checkExamenesModal($event.checked,item.idExam)">
+            </mat-checkbox>
+            <span
+              [style]="listaIdExamenesSelected().includes(item.idExam)?'color: var(--color-05);':''">{{item.examName}}</span>
+            }@else{
+            <mat-icon style="color: var(--error);">
+              close
+            </mat-icon>
+            <span style="color:var(--error);"
+              title="No se encontró el examen en ningún elemento">{{item.examName}}</span>
+            }
+          </label>
+          }
+        </form>
+      </div>
+
+      <div class="selection-column">
+        <div class="element-selector">
+          <mat-radio-group aria-label="Select an option">
+            @for (item of listaExamenesPorElementos; track $index) {
+            <div class="element-group">
+              <label style="border-bottom: 1px solid var(--color-06);padding: 10px;">
+                <mat-radio-button [value]="item.idElement" (change)="listaExamenesPorElementosSelected = item">
+                  {{item.elementName}} #{{$index+1}} <br>
+                  @if (item.containAllExam) {
+                  <span style="color: var(--color-01);">Este elemento tiene todos los examenes seleccionados</span>
+                  }
+                </mat-radio-button>
+              </label>
+              <div style="overflow: auto; height: 70px;">
+                @for (item2 of item.listExamDetail; track $index) {
+                <div
+                  [style]="listaIdExamenesSelected().includes(item2.idExam)?'color: var(--color-03);font-weight: bold;':''">
+                  - {{item2.examName}}</div>
+                }
+              </div>
+            </div>
+            }
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+
+<ng-template #dataCompanion>
+
+  <div class="content-modal">
+    <h1 class="title">Datos del acompañante</h1>
+
+    <span style="margin: 0px 0px 1em 1em; font-size: 14px;">Por favor ingrese los datos del acompañante para el paciente
+      particular:</span>
+    <div class="form-companion">
+
+      <app-basic-input [dataSelect]="listaDocumentos" [valueId]="'idDocumentType'" [valueDescription]="'documentType'"
+        [typeInput]="'select'" [leftIcon]="'tipodocumento'" [rightIcon]="'arrow_drop_down'" [form]="formCompanion"
+        [nameControlform]="'idIdentificationType'" [textLabel]="'Tipo de documento'" [flagCheck]="false"
+        [searchFlag]="true" [placeholderText]="'Buscar documento'">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'numeral'" [form]="formCompanion"  [restriction]="'NumbersLetters'" [maxlength]="20"
+        [nameControlform]="'identificationNumber'" [textLabel]="'Número de identificación'" [ariaRequired]="false">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [rightIcon]="'search'" [leftIcon]="'usuario'" [form]="formCompanion"
+        [nameControlform]="'name'" [textLabel]="'Nombre completo'" [ariaRequired]="false">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'Casa'" [form]="formCompanion" [nameControlform]="'adress'"
+        [textLabel]="'Dirección'" [ariaRequired]="false">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'telefono'" [form]="formCompanion" [restriction]="'Numbers'"
+        [nameControlform]="'telephone'" [textLabel]="'Teléfono'" [ariaRequired]="false">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'email'" [rightIcon]="'search'" [leftIcon]="'correoelectronico'"
+        [form]="formCompanion" [nameControlform]="'email'" [textLabel]="'Correo electrónico'" [ariaRequired]="false">
+      </app-basic-input>
+
+      <app-basic-input [dataSelect]="relationship" [valueId]="'idRelationship'" [valueDescription]="'relationship'"
+        [typeInput]="'select'" [leftIcon]="'usuario'" [rightIcon]="'arrow_drop_down'" [form]="formCompanion"
+        [nameControlform]="'idRelationShip'" [textLabel]="'Parentesco'" [flagCheck]="false" [searchFlag]="false"
+        [placeholderText]="'Buscar documento'">
+      </app-basic-input>
+
+
+
+
+    </div>
+  </div>
+</ng-template>

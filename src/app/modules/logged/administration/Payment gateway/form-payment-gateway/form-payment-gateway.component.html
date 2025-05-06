@@ -1,0 +1,43 @@
+<div class="container">
+  <span class="title-form">{{!isEdit? 'Agregar': 'Editar'}} paserela de pagos</span>
+
+  <div class="form-cont">
+    <form class="form-gateway">
+<!--
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'localizacion'" [form]="formulario"
+        [nameControlform]="'urlService'" [textLabel]="'Url del servicio'"></app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formulario" [nameControlform]="'userName'"
+        [textLabel]="'Nombre de usuario'"></app-basic-input>
+
+      @if(passwordLoad){
+        <app-basic-input [typeInput]="'password'" [form]="formulario" [nameControlform]="'password'"
+        [textLabel]="'Contraseña'"></app-basic-input>
+      } -->
+
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'reloj'" [form]="formulario" [nameControlform]="'amountOfTime'"
+        [textLabel]="'Cantidad de tiempo'"></app-basic-input>
+
+      <app-basic-input [dataSelect]="times" [valueId]="'idUnitOfTime'" [valueDescription]="'unitOfTime'" [typeInput]="'select'"
+        [rightIcon]="'arrow_drop_down'" [leftIcon]="'reloj'" [form]="formulario" [nameControlform]="'idUnitOfTime'"
+        [textLabel]="'Unidad de tiempo'" [flagCheck]="false" [searchFlag]="false"
+        [placeholderText]="'Seleccione una opción'">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'numeral'" [form]="formulario" [nameControlform]="'particularContractCode'" [maxlength]="20"
+        [textLabel]="'Código tarifario'"></app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'Pasarela'" [form]="formulario" [nameControlform]="'nameParticularContract'" [maxlength]="10"
+        [textLabel]="'Nombre tarifario'"></app-basic-input>
+
+
+    </form>
+  </div>
+
+  <div class="controls_two_buttons absolute_boton">
+    <button class="btn-01" (click)="cancel()">Cancelar</button>
+    <button class="btn-02" (click)="createOrEdit()">{{!isEdit? 'Guardar': 'Actualizar'}}</button>
+  </div>
+
+</div>

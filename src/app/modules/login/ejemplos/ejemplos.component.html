@@ -1,0 +1,139 @@
+<h1>Botones</h1>
+<h2>Sub título</h2>
+<div style="display: flex; gap: 1em; padding: 10px;">
+  <button class="btn-01">Boton 1</button>
+  <button class="btn-02">Boton 2</button>
+  <button class="btn-03">Boton 3</button>
+
+  <button class="btnIcon-01">
+    <div><span>Boton icon</span></div>
+    <mat-icon>search</mat-icon>
+  </button>
+  <select name="Prueba" id="" (change)="setTheme(select.value)" #select>
+    <option value="blue">theme-bluesh-green</option>
+    <option value="red">theme-red</option>
+    <option value="bluesh-red">theme-bluesh-red</option>
+    <option value="purple">theme-purple</option>
+    <option value="bluesh-green-invert">bluesh-green-invert</option>
+  </select>
+</div>
+<hr>
+<h1>Tabla común</h1>
+<h2>Sub título</h2>
+
+<div style="padding: 10px;">
+  <!-- matener el ordden entre cabero e infotabla, ejemplo item1 debe ser la informacion de prueba-->
+  <app-tabla-comun
+    [cabeceros]="['Prueba','Permisos','Niveles','Requisitos', 'Descripcion','Detalle','Confirmar','Reprogramar' ,'Estado','Editar','Eliminar']"
+    [info-tabla]="[
+                        {item1:'ejemplo1',item2:'icono2',item3:'icono3',item4:'icono4',item5:'icono5',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo2',item2:'S',item3:'O',item4:'C',item5:'O',item6:'R',item7:'R',item8:'O',item9:'icono' ,item10:'s',item11:'a'},
+                        {item1:'ejemplo3',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo4',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo5',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo6',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo7',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo8',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo9',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo10',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo11',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo12',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo13',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo14',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo15',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo16',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo17',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo18',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo19',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo20',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo21',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo22',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo23',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+                        {item1:'ejemplo24',item2:'icono',item3:'icono',item4:'icono',item5:'icono',item6:'icono',item7:'icono',item8:'icono',item9:'icono',item10:'s',item11:'a'},
+
+                     ]" [paginadorNumber]="5">
+  </app-tabla-comun>
+</div>
+
+<hr>
+<h1>Inputs básicos</h1>
+<h2>Sub título</h2>
+
+<div style="padding-top: 1em;"></div>
+
+<div style="display: grid; grid-template-columns: repeat(3,32%); gap: 2em  1em; margin: 0 20px;" [formGroup]="form">
+  <app-basic-input [typeInput]="'password'" [form]="form" [nameControlform]="'prueba1'" [leftIcon]="'usuario'"
+    [textLabel]="'password'"></app-basic-input>
+  <app-basic-input [typeInput]="'text'" [rightIcon]="'account_box'" [leftIcon]="'timeline'" [form]="form"
+    [nameControlform]="'prueba2'" [textLabel]="'text Input'"></app-basic-input>
+  <app-basic-input [typeInput]="'date'" [rightIcon]="'camera_enhance'" [leftIcon]="'description'" [form]="form"
+    [nameControlform]="'prueba3'" [textLabel]="'Prueba Label 3'"></app-basic-input>
+
+  <app-basic-input [dataSelect]="datax" [valueId]="'quesoId'" [valueDescription]="'descripQueso'" [typeInput]="'select'"
+    [rightIcon]="'camera_enhance'" [leftIcon]="'description'" [form]="form" [nameControlform]="'select1'"
+    [textLabel]="'select 1'" [flagCheck]="true" [searchFlag]="true" [placeholderText]="'Buscar prueba4'">
+  </app-basic-input>
+
+  <app-basic-input [dataSelect]="datax" [valueId]="'quesoId'" [valueDescription]="'descripQueso'" [typeInput]="'select'"
+    [rightIcon]="'camera_enhance'" [leftIcon]="'description'" [form]="form" [nameControlform]="'select2'"
+    [textLabel]="'select 2'" [flagCheck]="true">
+  </app-basic-input>
+
+  <app-basic-input [dataSelect]="datax" [valueId]="'quesoId'" [valueDescription]="'descripQueso'" [typeInput]="'select'"
+    [rightIcon]="'camera_enhance'" [leftIcon]="'description'" [form]="form" [nameControlform]="'select3'"
+    [textLabel]="'select 3'">
+  </app-basic-input>
+
+  <app-basic-input [typeInput]="'time'" [leftIcon]="'tiempo'" [form]="form" [nameControlform]="'Tiempo'"
+    [textLabel]="'Tiempo particular'">
+  </app-basic-input>
+
+  <app-basic-input [typeInput]="'file'" [rightIcon]="'camera_enhance'" [leftIcon]="'description'" [form]="form"
+    [nameControlform]="'file'" [extensionesPermitidas]="['docx','pdf']"
+    [textLabel]="'Prueba Label 3'"></app-basic-input>
+  <!-- <button class="btn-02" (click)="ejemploDatos()">Formulario on</button> -->
+</div>
+<div style="padding-bottom: 1em;"></div>
+<hr>
+<h1>Modales básicos</h1>
+<h2>Sub título</h2>
+<div style="display: flex; gap: 1em; padding: 10px;">
+  <button (click)="openModalStatus('Aceptar','Hola todo es correcto','1')" class="btn-01">Open modal check</button>
+  <button (click)="openModalStatus('Estoy seguro','¿Esta seguro?','2')" class="btn-02">Open modal question</button>
+  <button (click)="openModalStatus('Ok','¡¡ Recuerda que ... !!','3')" class="btn-01">Open modal warning/error</button>
+  <button (click)="openModalStatus('Volver','¡¡ Ocurrio un error !!','4')" class="btn-02">Open modal
+    warning/error</button>
+  <button (click)="openModalCustomed(custom,'')" class="btn-02">Open modal customed</button>
+</div>
+
+<ng-template #custom>
+  <h1>Toggle</h1>
+  <h2>Sub título</h2>
+  <div>
+  </div>
+  <!-- <app-toggle [flag]="true" (onChange)="onChangeToggle($event)"></app-toggle> -->
+</ng-template>
+
+<hr>
+
+<h1>Input,button load y espacio load</h1>
+<h2>Sub título</h2>
+
+<!--  -->
+<div style="display:  flex; gap: 1em;align-items: center;padding: 20px;">
+  <!-- <app-file-input (onEmitBase64)="onBase64($event)" [extensionesPermitidas]="['png']"
+    [tipo]="'button'"></app-file-input> -->
+  <!-- <app-file-input (onEmitBase64)="onBase64($event)" [extensionesPermitidas]="['png']" [tipo]="'load'"></app-file-input> -->
+</div>
+
+<div style="padding-top: 1em;"></div>
+
+
+<div>
+    <button (click)="mostrarVistaPrevia()">Mostrar Vista Previa</button>
+    <button (click)="enviarCorreo()" style="margin-left: 10px;">Enviar Correo</button>
+    <button (click)="enviarCorreo()" style="margin-left: 10px;">Enviar Correo</button>
+  </div>
+
+  <div *ngIf="correoHTML" class="vista-previa" [innerHTML]="correoHTML"></div>
+

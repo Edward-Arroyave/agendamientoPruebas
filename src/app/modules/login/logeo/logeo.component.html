@@ -1,0 +1,163 @@
+<div id="fondo" [ngClass]="{'admin-background': isAdmin, 'patient-background': !isAdmin}">
+
+  <div class="login_container">
+
+    <div class="content-login-card ">
+      <div class="header degrade-option"> </div>
+      <div class="option-tab float-01" [ngClass]="{'color-01': !isAdmin, 'color-02': isAdmin}"
+        (click)="cambiarTab(1)">
+        <mat-icon svgIcon="paciente"></mat-icon>
+
+
+        <span>Paciente</span>
+      </div>
+
+      <div class="option-tab float-02" [ngClass]="{'color-02': !isAdmin, 'color-01': isAdmin}"
+      (click)="cambiarTab(2)">
+        <mat-icon svgIcon="administrativo"></mat-icon>
+        <span>Administrativo</span>
+      </div>
+      <div class="logo">
+        <img src="../../../../assets/images/logos/logo.png" alt="logo imagen">
+      </div>
+
+      @if(currentLogin == 'login'){
+      <form [formGroup]="login" class="form_login">
+        <div class="basics">
+          <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="login" [nameControlform]="'userName'"
+            [textLabel]="'Usuario'"></app-basic-input>
+          <app-basic-input [typeInput]="'password'" [form]="login" [nameControlform]="'password'"
+            [textLabel]="'Contraseña'"></app-basic-input>
+        </div>
+
+        <div class="seconds">
+          <mat-checkbox formControlName="remember" class="example-margin">Recordar datos</mat-checkbox>
+
+          <span class="underline" (click)="changeTab('recuperar')">Olvidé mi contraseña</span>
+          @if (!isAdmin) {
+          <span>¿No tiene una cuenta creada? <span class="underline" [routerLink]="['/login/registro']"> Regístrese aquí</span></span>
+          }
+        </div>
+
+        <div class="content_recaptcha">
+          <div>
+            <re-captcha (resolved)="resolved($event)"></re-captcha>
+            @if(this.login.get('recaptcha')?.invalid && this.login.get('recaptcha')?.touched){
+            <div class="contAlerta">
+                <p style="margin: 0;font-size: 12px; color: --var(--red-01);">
+                  CAPTCHA inválido</p>
+            </div>
+            }
+          </div>
+        </div>
+
+        <button class="btn-04 center" (click)="ingresar()">Ingreso</button>
+
+      </form>
+
+      }@if(currentLogin == 'recuperar'){
+      <form [formGroup]="recuperar" class="form-recuperar">
+        <span>Ingrese el correo electrónico asociado a su cuenta y le enviaremos un email para recuperar su
+          contraseña.</span>
+        <div style="width: 50%; display: grid; grid-template-columns: 1fr; gap: 2em 0; ">
+          <!-- <app-basic-input [typeInput]="'email'" [leftIcon]="'correo'" [form]="recuperar"
+            [nameControlform]="'correoElectronico'" [textLabel]="'Correo electrónico'"></app-basic-input> -->
+
+          <app-basic-input [dataSelect]="documentsTypes" [valueId]="'idDocumentType'"
+            [valueDescription]="'documentType'" [typeInput]="'select'"
+            [leftIcon]="'tipodocumento'" [form]="recuperar" [nameControlform]="'identificationType'"
+            [textLabel]="'Tipo de documento'" [flagCheck]="false" [searchFlag]="true"
+            [placeholderText]="'Buscar documento'">
+          </app-basic-input>
+
+          <app-basic-input [typeInput]="'documento'" [leftIcon]="'tipodocumento'" [form]="recuperar"  [restriction]="'NumbersLetters'" [maxlength]="20"
+            [nameControlform]="'identificationNumber'" [textLabel]="'Documento'"></app-basic-input>
+        </div>
+
+        <div class="btns-options">
+          <button class="btn-04 center" (click)="cancelar()">Cancelar</button>
+          <button class="btn-04 center" (click)="recuperarConEmail('')">Recuperar</button>
+        </div>
+      </form>
+
+
+      }@if(currentLogin == 'cambiar'){
+      <form [formGroup]="cambiar" class="form-cambiar">
+        @if(recuperar.get('code')?.value ){
+        <span>Por favor escriba la nueva contraseña con su respectiva confirmación</span>
+        }@else{
+        <span>Por favor ingrese la contraseña actual y la nueva contraseña para ingresar al sistema</span>
+        }
+        <div class="inputs-recuperar">
+          @if(!recuperar.get('code')?.value ){
+          <div>
+            <app-basic-input [typeInput]="'password'" [form]="cambiar" [nameControlform]="'actual'"
+              [textLabel]="'Contraseña actual'"></app-basic-input>
+          </div>
+
+          }
+          <div>
+            <app-basic-input [typeInput]="'password'" [form]="cambiar" [nameControlform]="'nueva'"
+              [textLabel]="'Nueva contraseña'"></app-basic-input>
+          </div>
+
+          <div>
+            <app-basic-input [typeInput]="'password'" [form]="cambiar" [nameControlform]="'confirma'"
+              [textLabel]="'Confirmar contraseña'"></app-basic-input>
+          </div>
+
+        </div>
+
+
+        <div class="btns-options">
+          <button class="btn-04 center" (click)="cancelar()">Cancelar</button>
+          <button class="btn-04 center" (click)="actualizarContrasena()">Actualizar</button>
+        </div>
+
+      </form>
+
+
+
+
+      }@if(currentLogin == 'codigo'){
+
+      <form class="form-recuperar">
+        <span>Se ha enviado un código de confirmación al registrado. Por favor ingrese el código para continuar.</span>
+        <div style="width: 50%;">
+          <app-basic-input [typeInput]="'text'" [leftIcon]="'candado'" [form]="recuperar" [nameControlform]="'code'"
+            [textLabel]="'Código'"></app-basic-input>
+        </div>
+        <div class="contador-box">
+          <span>
+            ¿No recibió el código?
+          </span>
+          @if(contadorReenvio > 0){
+          <span>Reenviar el código en <span class="contador">{{contadorReenvio}}</span></span>
+          }@else {
+          <span (click)="reiniciarContador() ; recuperarConEmail('')" class="contador">Reenviar el código</span>
+          }
+
+        </div>
+
+
+        <div class="btns-options">
+          <button class="btn-04 center" (click)="cancelar()">Cancelar</button>
+          <button class="btn-04 center" (click)=" confirmarCodigo()">Confirmar</button>
+        </div>
+
+      </form>
+      }
+    </div>
+
+  </div>
+</div>
+
+
+<ng-template #expirar>
+  <div style="display: flex; flex-direction: column; text-align: center; margin: 1em auto;">
+    <span>Es necesario cambiar la contraseña actual, ya que esta próxima a espirar.</span>
+    <span>¿Desea actualizarla ahora?</span>
+  </div>
+
+
+</ng-template>

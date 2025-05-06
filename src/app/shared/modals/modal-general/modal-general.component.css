@@ -1,0 +1,23 @@
+.linea{
+    border-radius: 10px;
+    width: 3px;
+}
+
+.linea1{
+    height: 25%;
+}
+.linea2{
+    height: 50%;
+}
+.linea3{
+    height: 70%;
+}
+
+.size-icon{
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.btn-exito{
+    background: transparent linear-gradient(180deg, var(--color-01) 0%, var(--color-02) 70%) 0% 0% no-repeat padding-box;
+}

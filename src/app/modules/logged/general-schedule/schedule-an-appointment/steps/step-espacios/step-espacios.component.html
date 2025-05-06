@@ -1,0 +1,158 @@
+@if(dataGeneral.paises.length > 0){
+
+@defer(when !!formulario ){
+<form style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr));gap: 2em; margin: 1em 0;">
+
+  <div class="fondoTransparente">
+    <div class="transparente"></div>
+    <app-basic-input [dataSelect]="dataGeneral.paises" [valueId]="'idCountry'" [valueDescription]="'country'"
+      [typeInput]="'select'" [leftIcon]="'pais'" [form]="formulario" [nameControlform]="'idCountry'"
+      [textLabel]="'País'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar país'">
+    </app-basic-input>
+  </div>
+
+  <div class="fondoTransparente">
+    <div class="transparente"></div>
+    <app-basic-input [dataSelect]="dataGeneral.departamentos" [valueId]="'idDepartment'"
+      [valueDescription]="'department'" [typeInput]="'select'" [leftIcon]="'departamento'" [form]="formulario"
+      [nameControlform]="'idDepartment'" [textLabel]="'Departamento'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar departamento'">
+    </app-basic-input>
+  </div>
+
+  <div class="fondoTransparente">
+    <div class="transparente"></div>
+    <app-basic-input [dataSelect]="dataGeneral.cuidades" [valueId]="'idCity'" [valueDescription]="'city'"
+      [typeInput]="'select'" [leftIcon]="'cuidad'" [form]="formulario" [nameControlform]="'idCity'"
+      [textLabel]="'Ciudad'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar cuidad'">
+    </app-basic-input>
+  </div>
+
+  <div class="fondoTransparente">
+    <div class="transparente"></div>
+    <app-basic-input [dataSelect]="dataGeneral.tiposAtencion" [valueId]="'id'" [valueDescription]="'name'"
+      [typeInput]="'select'" [leftIcon]="'tipoAtencion'" [form]="formulario" [nameControlform]="'idTypeAttention'"
+      [textLabel]="'Tipo de atención'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Tipo de atención'">
+    </app-basic-input>
+  </div>
+
+  <div class="fondoTransparente">
+    <div class="transparente"></div>
+    <app-basic-input [dataSelect]="dataGeneral.categorias" [valueId]="'idCategory'" [valueDescription]="'categoryName'"
+      [typeInput]="'select'" [leftIcon]="'categoria'" [form]="formulario" [nameControlform]="'idCategory'"
+      [textLabel]="'Categoria'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar categoria'">
+    </app-basic-input>
+  </div>
+
+  <div class="fondoTransparente">
+    <div class="transparente"></div>
+    <app-basic-input [dataSelect]="dataGeneral.especialidades" [valueId]="'idSpecialties'"
+      [valueDescription]="'specialtiesName'" [typeInput]="'select'" [leftIcon]="'especialidad'" [form]="formulario"
+      [nameControlform]="'idSpecialties'" [textLabel]="'Especialidad'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar especialidad'">
+    </app-basic-input>
+  </div>
+
+  <div class="fondoTransparente">
+    <div class="transparente"></div>
+    <app-basic-input [dataSelect]="dataGeneral.caracteristicas" [valueId]="'idCharacteristic'"
+      [valueDescription]="'characteristicName'" [typeInput]="'select'" [leftIcon]="'caracteristica'" [form]="formulario"
+      [nameControlform]="'idCharacteristic'" [textLabel]="'Caracteristicas'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar caracteristicas'">
+    </app-basic-input>
+  </div>
+
+  <div class="fondoTransparente">
+    <div class="transparente"></div>
+    <app-basic-input [dataSelect]="dataGeneral.elementos" [valueId]="'idElement'" [valueDescription]="'elementName'"
+      [typeInput]="'select'" [leftIcon]="'elemento'" [form]="formulario" [nameControlform]="'idElement'"
+      [textLabel]="'Elementos'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar elementos'">
+    </app-basic-input>
+  </div>
+
+  <div class="fondoTransparente">
+    <div class="transparente"></div>
+    <app-basic-input [typeInput]="'date'" [rightIcon]="'fecha-mini'" [leftIcon]="'fecha-normal'" [form]="formulario"
+      [nameControlform]="'desiredDate'" [textLabel]="'Fecha deseada'"
+      [placeholderText]="'Seleccione una fecha'"></app-basic-input>
+  </div>
+
+  @if(calculoCreatinina?.specialConditionName == "Contrastado"){
+  <app-basic-input [typeInput]="'date'" [leftIcon]="'Calendario'" [form]="formulario" [maxDate]="maxDate"
+    [nameControlform]="'creatinineResultDate'" [textLabel]="'Fecha de resultado de creatinina'" [ariaRequired]="false">
+  </app-basic-input>
+
+  <app-basic-input [typeInput]="'number'" [leftIcon]="'numeral'" [form]="formulario"
+    [nameControlform]="'creatinineResult'" [textLabel]="'Número de resultado de creatinina'" [ariaRequired]="false">
+  </app-basic-input>
+  }
+
+  @if(pacienteParticularFlag){
+  <div class="radio-companion">
+    <span style="font-size: 14px;">
+      ¿El paciente que esta agendando requiere de un acompañante?
+    </span>
+
+    <mat-radio-group style="font-size: 14px; display: flex;" (change)="openModalCompanion(dataCompanion, $event)"
+      [formControl]="formButtonCompanion">
+      <mat-radio-button [value]="true" [disabled]="">Sí</mat-radio-button>
+      <mat-radio-button [value]="false" [disabled]="">No</mat-radio-button>
+    </mat-radio-group>
+
+  </div>
+  }
+
+
+</form>
+
+}
+}
+
+
+<ng-template #dataCompanion>
+
+  <div class="content-modal">
+    <h1 class="title">Datos del acompañante</h1>
+
+    <span style="margin: 0px 0px 1em 1em; font-size: 14px;">Por favor ingrese los datos del acompañante para el paciente
+      particular:</span>
+    <div class="form-companion">
+
+      <app-basic-input [dataSelect]="listaDocumentos" [valueId]="'idDocumentType'" [valueDescription]="'documentType'"
+        [typeInput]="'select'" [leftIcon]="'tipodocumento'" [rightIcon]="'arrow_drop_down'" [form]="formCompanion"
+        [nameControlform]="'idIdentificationType'" [textLabel]="'Tipo de documento'" [flagCheck]="false"
+        [searchFlag]="true" [placeholderText]="'Buscar documento'">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'numeral'" [form]="formCompanion"  [restriction]="'NumbersLetters'" [maxlength]="20"
+        [nameControlform]="'identificationNumber'" [textLabel]="'Número de identificación'" [ariaRequired]="false">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [rightIcon]="'search'" [leftIcon]="'usuario'" [form]="formCompanion"
+        [nameControlform]="'name'" [textLabel]="'Nombre completo'" [ariaRequired]="false">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'Casa'" [form]="formCompanion" [nameControlform]="'adress'"
+        [textLabel]="'Dirección'" [ariaRequired]="false">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'telefono'" [form]="formCompanion" [restriction]="'Numbers'"
+        [nameControlform]="'telephone'" [textLabel]="'Teléfono'" [ariaRequired]="false">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'email'" [rightIcon]="'search'" [leftIcon]="'correoelectronico'"
+        [form]="formCompanion" [nameControlform]="'email'" [textLabel]="'Correo electrónico'" [ariaRequired]="false">
+      </app-basic-input>
+
+      <app-basic-input [dataSelect]="relationship" [valueId]="'idRelationship'" [valueDescription]="'relationship'"
+        [typeInput]="'select'" [leftIcon]="'usuario'" [rightIcon]="'arrow_drop_down'" [form]="formCompanion"
+        [nameControlform]="'idRelationShip'" [textLabel]="'Parentesco'" [flagCheck]="false" [searchFlag]="false"
+        [placeholderText]="'Buscar documento'">
+      </app-basic-input>
+
+
+
+
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,161 @@
+<div class="container">
+<span class="titulo">Preparaciones</span>
+<div class="tabla-responsive">
+  <div class="tabs-container">
+  <div class="contenedor1">
+
+    <form [formGroup]="formSearch" class="form-search  form-inline">
+      <div class="input-container">
+      <app-basic-input [typeInput]="'text'" [rightIcon]="'search'" [leftIcon]="'timeline'" [form]="formSearch"
+        [nameControlform]="'search'" [textLabel]="'Buscar por código de preparación'"
+        [ariaRequired]="false"></app-basic-input>
+      </div>
+      
+      @if(permisosDelModulo.Crear){
+        <button class="btnIcon-01" routerLink="create">
+          <div><span>Agregar</span></div>
+          <mat-icon>add</mat-icon>
+        </button>
+      }
+    </form>
+
+  </div>
+</div>
+
+  <!-- tabla categorias -->
+
+  <div class="content-tab">
+    <table class="myTable " style="width: 100%;">
+      <thead class="commonTable">
+        <tr>
+          @for (item of cabeceros; track $index) {
+          <th>{{item}}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of pagedData | paginate: { id:'paginador', itemsPerPage: paginadorNumber, currentPage: p,
+        totalItems:
+        PreFiltradas.length }; track item; let j = $index) {
+        <tr class="shadow">
+          <td>{{item.item1}}</td>
+          <td>{{item.item2}}</td>
+          <td>
+            <div class="iconContainer shadow" (click)="abrirModalNiveles(item, Niveles)">
+              <mat-icon class="iconTable confirmar" >layers</mat-icon>
+            </div>
+          </td>
+          <td>
+            <div class="iconContainer shadow" (click)="abrirModalDetalle(item, Preindicaciones)">
+              <mat-icon class="iconTable yellow">library_books</mat-icon>
+            </div>
+          </td>
+          <td>
+            <div class="iconContainer shadow" >
+              <app-toggle [flag]="item.item5.active" (onChange)="cambiarEstadoPre(item, $event)"></app-toggle>
+            </div>
+          </td>
+          <td>
+            <div class="iconContainer shadow" (click)="editarPreparations(item.item6)">
+              <mat-icon class="iconTable editar">edit</mat-icon>
+            </div>
+          </td>
+          <td>
+            <div class="iconContainer shadow" (click)="eliminarPre(item.item7)">
+              <mat-icon class="iconTable eliminar">close</mat-icon>
+            </div>
+          </td>
+
+        </tr>
+        }
+      </tbody>
+    </table>
+    <pagination-controls id="paginador" previousLabel="" nextLabel="" [responsive]="true"
+      (pageChange)="handlePageChange($event)"></pagination-controls>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- modal Preindicaciones -->
+<ng-template #Niveles>
+  <div class="cont-modal">
+    <span class="title">Detalle de niveles</span>
+
+    <div class="cont-detalle shadow">
+      <div class="valores1">
+        <div class="grid-container">
+          <!-- Categoría -->
+          <div class="elemento">
+            <mat-icon class="title1" svgIcon="categoria"></mat-icon>
+            <div class="container">
+              <span class="subT1">Categoría:</span>
+              <span class="textS1">{{detailNivel.categoryName}}</span>
+            </div>
+          </div>
+
+          <!-- Especialidad -->
+          <div class="elemento">
+            <mat-icon class="title1" svgIcon="especialidad"></mat-icon>
+            <div class="container">
+              <span class="subT1">Especialidad:</span>
+              <span class="textS1">{{detailNivel.specialtiesName}}</span>
+            </div>
+          </div>
+
+          <!-- Característica -->
+          <div class="elemento">
+            <mat-icon class="title1" svgIcon="caracteristica"></mat-icon>
+            <div class="container">
+              <span class="subT1">Características:</span>
+              <span class="textS1">{{detailNivel.characteristicName}}</span>
+            </div>
+          </div>
+
+          <!-- Elementos -->
+          <div class="elemento cont4">
+            <mat-icon class="title1" svgIcon="elemento"></mat-icon>
+            <div class="container">
+              <span class="subT1">Elementos:</span>
+              <span >{{ elementosFormateados }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ng-template>
+
+<!-- modal Preindicaciones -->
+<ng-template #Preindicaciones>
+  <div class="cont-modal">
+    <span class="title">Detalle de la preparación</span>
+<div class="contPre">
+    <div class="cont-detalle shadow">
+      <div class="valores">
+        <span class="subT">Preindicaciones:</span>
+        <span class="textS">{{detailRequisito.preconditions}}</span>
+      </div>
+    </div>
+    <div class="cont-detalle shadow">
+      <div class="valores">
+        <span class="subT">Indicaciones:</span>
+        <span class="textS">{{detailRequisito.indications}}</span>
+      </div>
+    </div>
+    <div class="cont-detalle shadow conten">
+      <div class="valores">
+        <span class="subT">Requisitos:</span>
+        <span class="textS">
+          <span *ngFor="let req of detailRequisito.listRequeriments; let i = index">
+            <span class="numero">{{ i + 1 }}.</span> {{ req.requirements }}
+            <span *ngIf="i !== detailRequisito.listRequeriments.length - 1">, </span>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+  </div>
+</ng-template>

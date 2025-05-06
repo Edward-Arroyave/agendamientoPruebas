@@ -1,0 +1,86 @@
+<div class="container">
+  <h3 class="title-form">{{ idPatient ? 'Editar' : 'Agregar' }} datos del paciente</h3>
+
+  <form [formGroup]="formRegister" class="form">
+    <app-basic-input [dataSelect]="documentsTypes" [valueId]="'idDocumentType'" [valueDescription]="'documentType'"
+      [typeInput]="'select'" [leftIcon]="'tipodocumento'" [form]="formRegister"
+      [nameControlform]="'idIdentificationType'" [textLabel]="'Tipo de documento'" [flagCheck]="false"
+      [searchFlag]="true" [placeholderText]="'Buscar documento'">
+    </app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegister" [restriction]="'NumbersLetters'"
+      [maxlength]="20" [nameControlform]="'identificationNumber'" [textLabel]="'Número de documento'">
+    </app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegister" [nameControlform]="'name'"
+      [textLabel]="'Nombre'">
+    </app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegister" [nameControlform]="'secondname'"
+      [textLabel]="'Segundo nombre'"></app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegister" [nameControlform]="'lastName'"
+      [textLabel]="'Apellido'">
+    </app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegister"
+      [nameControlform]="'secondLastName'" [textLabel]="'segundo apellido'"></app-basic-input>
+
+    <app-basic-input [dataSelect]="paises" [valueId]="'idCountry'" [valueDescription]="'country'" [typeInput]="'select'"
+      [leftIcon]="'pais'" [form]="formRegister" [nameControlform]="'idCountry'" [textLabel]="'País'" [flagCheck]="false"
+      [searchFlag]="true" [placeholderText]="'Buscar país'">
+    </app-basic-input>
+
+
+    <app-basic-input [dataSelect]="departamentos" [valueId]="'idDepartment'" [valueDescription]="'department'"
+      [typeInput]="'select'" [leftIcon]="'departamento'" [form]="formRegister" [nameControlform]="'idDepartment'"
+      [textLabel]="'Departamento'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar departamento'">
+    </app-basic-input>
+
+    <!-- Input para seleccionar Ciudad -->
+    <app-basic-input [dataSelect]="cuidades" [valueId]="'idCity'" [valueDescription]="'city'" [typeInput]="'select'"
+      [leftIcon]="'cuidad'" [rightIcon]="'arrow_drop_down'" [form]="formRegister" [nameControlform]="'idCity'"
+      [textLabel]="'Ciudad'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar cuidad'">
+    </app-basic-input>
+
+    <app-basic-input [typeInput]="'date'" [leftIcon]="'fechanacimiento'" [form]="formRegister"
+      [nameControlform]="'birthDate'" [textLabel]="'Fecha de nacimiento'"></app-basic-input>
+
+    <!-- <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formElementos"
+            [nameControlform]="'address'" [textLabel]="'Direccion de residencia'">
+        </app-basic-input> -->
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'direccion'" [form]="formRegister" [nameControlform]="'address'"
+      [textLabel]="'Dirección de residencia'"></app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegister" [nameControlform]="'email'"
+      [textLabel]="'Correo electrónico'">
+    </app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegister"
+      [nameControlform]="'confirmEmail'" [textLabel]="'Confirmación del correo electrónico'">
+    </app-basic-input>
+
+    <app-basic-input [dataSelect]="biologicalSexList" [valueId]="'id'" [valueDescription]="'name'"
+      [typeInput]="'select'" [leftIcon]="'sexobiologico'" [form]="formRegister" [nameControlform]="'idBiologicalSex'"
+      [textLabel]="'Sexo biologico'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar sexo biologico'">
+    </app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegister" [maxlength]="20"
+      [nameControlform]="'telephone'" [textLabel]="'Teléfono principal'">
+    </app-basic-input>
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegister" [maxlength]="20"
+      [nameControlform]="'telephone2'" [textLabel]="'Teléfono auxiliar'">
+    </app-basic-input>
+
+
+    <!-- Botones de Acción -->
+    <div class="controls_two_buttons absolute_boton">
+      <button *ngIf="!isPatient" type="button" class="btn-01" (click)="cancelar()">Cancelar</button>
+      <button type="button" class="btn-02" (click)="save()" [disabled]="formRegister.invalid">{{ idPatient ?
+        'Actualizar' : 'Guardar' }}</button>
+    </div>
+  </form>
+
+
+</div>

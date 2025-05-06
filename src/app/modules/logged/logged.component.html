@@ -1,0 +1,67 @@
+<header class="header">
+  <div class="header-left" routerLink="/inicio">
+    <!-- <h1 class="title">Agendamiento</h1> -->
+    <!-- <img class="title" src="../../../../assets/images/logos/logo.png" alt="logo imagen"> -->
+    @if (headLogoFlag) {
+    <div class="logo">
+      <img class="title" [src]="headLogoImage" alt="logo imagen">
+    </div>
+
+    }@else {
+    <mat-icon class="title" [svgIcon]="'logoA'"></mat-icon>
+    }
+
+  </div>
+  <div class="header-center">
+    <div #patientIconsContainer class="patient-icons-container">
+      <div class="patient-info-container">
+        <span class="patient-info">{{isPatient ? 'Paciente:' : 'Usuario:'}} {{actualUsuario}}</span>
+        <div class="v-line"></div>
+      </div>
+      <div class="menu-container">
+        <!-- Menú -->
+        <app-menu *ngIf="isMenuOpen" (menuClosed)="onMenuClosed()"></app-menu>
+
+      </div>
+      <div class="iconos-container">
+        <!-- Icono del usuario -->
+        <div class="icon-container">
+          <button #userButton class="icon-button user-button"  matTooltip="Menú" (click)="toggleMenu()">
+            <mat-icon class="icon-svg" [svgIcon]="'menu-user'"></mat-icon>
+          </button>
+          <i class="fa-solid fa-caret-left arrow"></i>
+          <i class="fa-solid fa-caret-down down"></i>
+        </div>
+        <!-- Botón de logout -->
+        <button class="icon-button user-button" (click)="logout()">
+          <mat-icon class="icon-svg" [svgIcon]="'menu-logout'"></mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="cont_card" cdkScrollable>
+  <router-outlet></router-outlet>
+</section>
+
+<footer>
+  <div class="footer2">
+    @if (FooterLogoFlag) {
+
+    <div class="logo-footer">
+      <img class="" [src]="FooterLogoImage" alt="Logo">
+    </div>
+
+    }@else {
+    <img class="footerTitlle" src="assets/images/logos/ItHealth.svg" alt="Logo">
+    }
+
+  </div>
+  <div class="footer">
+    <p>2025 HealthBook. Todos los derechos reservados. V 1.0</p>
+  </div>
+</footer>
+
+
+<ng-template #inactividadModal></ng-template>

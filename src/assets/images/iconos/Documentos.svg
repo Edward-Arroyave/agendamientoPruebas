@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M22.73,5.45v20.58h-14.18v1.47h15.47V5.45h-1.29Z"/>
+  <path class="cls-1" d="M9.84,2.94l-3.49,3.98h3.49v-3.98Z"/>
+  <path class="cls-1" d="M21.44,2.5h-10.31v5.88h-5.16v16.17h15.47V2.5ZM8.56,11.32h1.29v1.47h-1.29v-1.47ZM8.56,14.26h1.29v1.47h-1.29v-1.47ZM18.87,21.61h-10.31v-1.47h10.31v1.47ZM18.87,18.68h-10.31v-1.47h10.31v1.47ZM18.87,15.74h-7.73v-1.47h7.73v1.47ZM18.87,12.8h-7.73v-1.47h7.73v1.47ZM18.87,9.86h-5.16v-1.47h5.16v1.47Z"/>
+</svg>

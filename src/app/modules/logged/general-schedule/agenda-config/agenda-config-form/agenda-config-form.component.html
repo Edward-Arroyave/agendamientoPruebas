@@ -1,0 +1,539 @@
+<div class="container">
+
+  <h1 class="title">{{isEdit? 'Editar' :'Agregar'}} agenda</h1>
+
+  <div class="content-form">
+    <form [formGroup]="formulario" class="form">
+
+      <app-basic-input [dataSelect]="paises" [valueId]="'idCountry'" [valueDescription]="'country'"
+        [typeInput]="'select'" [leftIcon]="'pais'" [form]="formulario" [nameControlform]="'idCountry'"
+        [textLabel]="'País'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar país'">
+      </app-basic-input>
+
+      <app-basic-input [dataSelect]="departamentos" [valueId]="'idDepartment'" [valueDescription]="'department'"
+        [typeInput]="'select'" [leftIcon]="'departamento'" [form]="formulario" [nameControlform]="'idDepartment'"
+        [textLabel]="'Departamento'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar departamento'">
+      </app-basic-input>
+
+      <app-basic-input [dataSelect]="cuidades" [valueId]="'idCity'" [valueDescription]="'city'" [typeInput]="'select'"
+        [leftIcon]="'cuidad'" [form]="formulario" [nameControlform]="'idCity'" [textLabel]="'Ciudad'"
+        [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar cuidad'">
+      </app-basic-input>
+
+      <app-basic-input [dataSelect]="sedes" [valueId]="'idAttentionCenter'" [valueDescription]="'attentionCenterName'"
+        [typeInput]="'select'" [leftIcon]="'sede'" [form]="formulario" [nameControlform]="'idAttentionCenter'"
+        [textLabel]="'Sede'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar sede'">
+      </app-basic-input>
+
+      <app-basic-input [dataSelect]="categorias" [valueId]="'idCategory'" [valueDescription]="'categoryName'"
+        [typeInput]="'select'" [leftIcon]="'categoria'" [form]="formulario" [nameControlform]="'idCategory'"
+        [textLabel]="'Categoria'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar categoria'">
+      </app-basic-input>
+
+      <app-basic-input [dataSelect]="espacialidades" [valueId]="'idSpecialties'" [valueDescription]="'specialtiesName'"
+        [typeInput]="'select'" [leftIcon]="'especialidad'" [form]="formulario" [nameControlform]="'idSpecialties'"
+        [textLabel]="'Especialidad'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar especialidad'">
+      </app-basic-input>
+
+      <app-basic-input [dataSelect]="caracteristicas" [valueId]="'idCharacteristic'"
+        [valueDescription]="'characteristicName'" [typeInput]="'select'" [leftIcon]="'caracteristica'"
+        [form]="formulario" [nameControlform]="'idCharacteristic'" [textLabel]="'Caracteristicas'" [flagCheck]="false"
+        [searchFlag]="true" [placeholderText]="'Buscar caracteristicas'">
+      </app-basic-input>
+      @if(showElements){
+      <app-basic-input [dataSelect]="elementos" [valueId]="'idElement'" [valueDescription]="'elementName'"
+        [typeInput]="'select'" [leftIcon]="'elemento'" [form]="formulario" [nameControlform]="'idElement'"
+        [textLabel]="'Elementos'" [flagCheck]="!flagContentExams" [searchFlag]="true"
+        [placeholderText]="'Buscar elementos'">
+      </app-basic-input>
+      }
+
+
+      <app-basic-input [dataSelect]="tiposAtencion" [valueId]="'id'" [valueDescription]="'name'" [typeInput]="'select'"
+        [leftIcon]="'tipoAtencion'" [form]="formulario" [nameControlform]="'idTypeAttention'"
+        [textLabel]="'Tipo de atención'" [flagCheck]="true" [searchFlag]="true" [placeholderText]="'Tipo de atención'">
+      </app-basic-input>
+
+      <!-- <div class="toggle-input-text">
+        <app-toggle [flag]="formulario.get('creatinineRequest')?.value ?? false"
+          (onChange)="cambiarEstado($event)"></app-toggle>
+        <span>Solicitud de creatinina para la agenda</span>
+      </div> -->
+    </form>
+  </div>
+
+  <div class="tabs">
+
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" preserveContent [disableRipple]="true"
+      [selectedIndex]="selectedTabIndex" class="custom-tab-group" (selectedIndexChange)="siguiente($event)">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          Horario de atención
+          @if(horarioAtencionForm.valid){
+          <mat-icon class="tab-icon">check</mat-icon>
+          }
+        </ng-template>
+        <div class="content-tabs shadow">
+          <form [formGroup]="horarioAtencionForm" class="form-tab1">
+            <div class="forms-container-tab">
+              <div class="contiene-title">
+                <span class="title-tab">
+                  Seleccione el rango de fecha para la agenda
+                </span>
+
+                <div class="form-one">
+
+                  <app-basic-input [typeInput]="'date'" [leftIcon]="'fecha-normal'" [form]="horarioAtencionForm"
+                    [disabled]="tieneProximasAgendas" [minDate]="fechaMinima" [nameControlform]="'startDate'"
+                    [textLabel]="'Fecha inicial'"></app-basic-input>
+
+                  <app-basic-input [typeInput]="'date'" [leftIcon]="'fecha-normal'" [form]="horarioAtencionForm"
+                    [minDate]="fechaMinima" [nameControlform]="'endDate'" [textLabel]="'Fecha final'"
+                    [disabled]="tieneProximasAgendas"></app-basic-input>
+                </div>
+
+              </div>
+
+              <div class="contiene-title">
+
+                <span class="title-tab">
+                  Seleccione el rango de horario para la agenda
+                </span>
+
+                <div class="form-two">
+                  <app-basic-input [typeInput]="'hour'" [leftIcon]="'reloj'" [form]="horarioAtencionForm"
+                    [nameControlform]="'startTime'" [textLabel]="'Desde'"
+                    [disabled]="tieneProximasAgendas"></app-basic-input>
+
+                  <app-basic-input [typeInput]="'hour'" [leftIcon]="'reloj'" [form]="horarioAtencionForm"
+                    [nameControlform]="'endTime'" [textLabel]="'Hasta'"
+                    [disabled]="tieneProximasAgendas"></app-basic-input>
+
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="form-tab1-s1">
+
+              <div class="contiene-title">
+                <span class="title-tab">
+                  Seleccione los días para aplicar la agenda
+                </span>
+
+                <div class="form-dias">
+                  <mat-checkbox formControlName="todos" class="example-margin" (change)="todosDias($event)">
+                    Todos
+                  </mat-checkbox>
+                  <mat-checkbox formControlName="lunes" class="example-margin"
+                    (change)="seleccionarUnDia('lunes', $event)">
+                    Lunes
+                  </mat-checkbox>
+                  <mat-checkbox formControlName="martes" class="example-margin"
+                    (change)="seleccionarUnDia('martes', $event)">
+                    Martes
+                  </mat-checkbox>
+                  <mat-checkbox formControlName="miercoles" class="example-margin"
+                    (change)="seleccionarUnDia('miercoles', $event)">
+                    Miércoles
+                  </mat-checkbox>
+                  <mat-checkbox formControlName="jueves" class="example-margin"
+                    (change)="seleccionarUnDia('jueves', $event)">
+                    Jueves
+                  </mat-checkbox>
+                  <mat-checkbox formControlName="viernes" class="example-margin"
+                    (change)="seleccionarUnDia('viernes', $event)">
+                    Viernes
+                  </mat-checkbox>
+                </div>
+
+              </div>
+
+              <div class="contiene-title">
+                <span class="title-tab">
+                  Hora de intermedio/ pausa / almuerzo
+                </span>
+
+                <div class="form-one">
+                  <div>
+                    <span>
+                      ¿Desea agregar un intermedio?
+                    </span>
+
+
+                    <mat-radio-group formControlName="intermediate">
+                      <mat-radio-button [value]="true" [disabled]="tieneProximasAgendas">Si</mat-radio-button>
+                      <mat-radio-button [value]="false" [disabled]="tieneProximasAgendas">No</mat-radio-button>
+                    </mat-radio-group>
+
+                  </div>
+                  @if (fv1.intermediate) {
+                  <div class="intermedio-form">
+                    <app-basic-input [typeInput]="'hour'" [leftIcon]="'reloj'" [form]="horarioAtencionForm" [disabled]="tieneProximasAgendas"
+                      [nameControlform]="'fromInter'" [textLabel]="'Desde'"></app-basic-input>
+
+                    <app-basic-input [typeInput]="'hour'" [leftIcon]="'reloj'" [form]="horarioAtencionForm" [disabled]="tieneProximasAgendas"
+                      [nameControlform]="'untilInter'" [textLabel]="'Hasta'"></app-basic-input>
+                  </div>
+                  }
+
+                </div>
+
+              </div>
+            </div>
+          </form>
+
+
+        </div>
+      </mat-tab>
+
+      <mat-tab [disabled]="!horarioAtencionForm.valid">
+        <ng-template mat-tab-label>
+          Horario de bloqueo
+          @if(arregloFechasBloqueadas && arregloFechasBloqueadas.length > 0){
+          <mat-icon class="tab-icon">check</mat-icon>
+          }
+
+        </ng-template>
+
+        <div class="content-tabs segundo-tab shadow">
+          <div class="contiene-title">
+            <span class="title-tab">
+              Seleccione el tipo de bloqueo que desea para la fecha
+            </span>
+
+
+
+            <form class="form-tab-2" [formGroup]="horarioBloqueoform">
+
+              <app-basic-input [typeInput]="'date'" [leftIcon]="'fecha-normal'" [form]="horarioBloqueoform"
+                [minDate]="fechaMinimaFinal" [maxDate]="fechaMaxima1" [nameControlform]="'blockDate'"
+                [textLabel]="'Fecha a bloquear'"></app-basic-input>
+
+
+              <div style="display: flex;gap: 1em;justify-content: center; align-items: center;">
+                <mat-radio-group formControlName="blockType">
+                  <mat-radio-button value="1">Bloquear todo el día</mat-radio-button>
+                  <mat-radio-button value="2">Bloqueo por horas</mat-radio-button>
+
+                </mat-radio-group>
+                @if (fv2.blockType && fv2.blockType == '1') {
+                <div class="add-btn-block" (click)="agregarHorarioBloqueo()">
+                  <mat-icon>add</mat-icon>
+                </div> }
+              </div>
+
+
+              @if (fv2.blockType && fv2.blockType == '2') {
+              <div class="hours-block">
+
+                <app-basic-input [typeInput]="'hour'" [leftIcon]="'reloj'" [form]="horarioBloqueoform"
+                  [nameControlform]="'startTime'" [textLabel]="'Desde'"></app-basic-input>
+
+                <app-basic-input [typeInput]="'hour'" [leftIcon]="'reloj'" [form]="horarioBloqueoform"
+                  [nameControlform]="'endTime'" [textLabel]="'Hasta'"></app-basic-input>
+
+                <div class="add-btn-block" (click)="agregarHorarioBloqueo()">
+                  <mat-icon>add</mat-icon>
+                </div>
+
+              </div>
+              }
+
+
+
+
+
+              @if(dataBlockTable.length != 0 ){
+              <div class="scroll-table-range">
+                <table>
+                  <thead class="commonTable">
+                    <tr>
+                      <th>Rango</th>
+                      <th>Editar</th>
+                      <th>Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (item of dataBlockTable ; track item; let j = $index) {
+                    <tr class="shadow">
+
+                      <td>{{item.type == 2? item.startTime?.slice(0, -3) + '-' : 'Todo el día'}} {{item.type ==2?
+                        item.endTime.slice(0,
+                        -3) : ''}}</td>
+                      <td>
+                        <div class="iconContainer shadow" (click)="editarHorarioBloqueo(item.id)">
+
+                          <mat-icon class="iconTable editar">edit</mat-icon>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="iconContainer shadow" [class]="item" (click)="eliminarHorarioBloqueo(item.id)">
+                          <mat-icon class="iconTable eliminar" svgIcon="Basura"></mat-icon>
+                        </div>
+                      </td>
+
+                    </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              }
+
+            </form>
+
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab [disabled]="!horarioAtencionForm.valid">
+        <ng-template mat-tab-label>
+          Bloqueos V.I.P.
+          @if(fechasVIPTodas && fechasVIPTodas.length > 0){
+          <mat-icon class="tab-icon">check</mat-icon>
+          }
+        </ng-template>
+        <div class="content-tabs tercer-tab shadow">
+          <div class="contiene-title">
+            <span class="title-tab">
+              Seleccione los rangos de fechas y horas que desea asignar para los bloqueos V.I.P.
+            </span>
+
+            <div class="container-form-3">
+
+              <form class="form-tab-3" [formGroup]="horarioVipform">
+
+                @if(selectedTabIndex == 2){
+                <app-basic-input [dataSelect]="procedencias" [valueId]="'IdOriginEntity'"
+                  [valueDescription]="'OriginEntity'" [typeInput]="'select'" [leftIcon]="'entidad'"
+                  [rightIcon]="'arrow_drop_down'" [form]="horarioVipform" [nameControlform]="'procedencia'"
+                  [textLabel]="'Procedencia'" [flagCheck]="false" [searchFlag]="true"
+                  [placeholderText]="'Seleccione una opción'">
+                </app-basic-input>
+                }
+
+
+
+                <div class="fechas-3">
+
+                  <app-basic-input [typeInput]="'date'" [leftIcon]="'fecha-normal'" [form]="horarioVipform"
+                  [minDate]="fechaMinimaFinal" [maxDate]="fechaMaxima1" [nameControlform]="'startDate'"
+                    [textLabel]="'Fecha inicial'"></app-basic-input>
+
+                  <app-basic-input [typeInput]="'date'" [leftIcon]="'fecha-normal'" [form]="horarioVipform"
+                  [minDate]="fechaMinimaVip" [maxDate]="fechaMaxima1" [nameControlform]="'endDate'"
+                    [textLabel]="'Fecha final'"></app-basic-input>
+
+                </div>
+                <div class="horas-3">
+
+                  <app-basic-input [typeInput]="'hour'" [leftIcon]="'reloj'" [form]="horarioVipform"
+                    [nameControlform]="'startTime'" [textLabel]="'Desde'"></app-basic-input>
+
+                  <app-basic-input [typeInput]="'hour'" [leftIcon]="'reloj'" [form]="horarioVipform"
+                    [nameControlform]="'endTime'" [textLabel]="'Hasta'"></app-basic-input>
+
+                  <div class="add-btn-block" (click)="agregarVIPBloqueo()">
+                    <mat-icon>add</mat-icon>
+                  </div>
+
+                </div>
+
+
+
+
+              </form>
+              @if(fechasVIPSoloVisual.length){
+              <div class="scroll-table-range">
+                <table>
+                  <thead class="commonTable">
+                    <tr>
+                      <th>Rango de fecha</th>
+                      <th>Rango de hora</th>
+                      <th>Editar</th>
+                      <th>Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (item of fechasVIPSoloVisual ; track item; let j = $index) {
+                    <tr class="shadow">
+                      <td>{{item.startDate}} - {{item.endDate}}</td>
+                      <td>{{item.startTime?.slice(0, -3) }} - {{item.endTime.slice(0,-3)}}</td>
+                      <td>
+                        <div class="iconContainer shadow" (click)="editarHorarioVip(item.id)">
+                          <mat-icon class="iconTable editar">edit</mat-icon>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="iconContainer shadow" [class]="item" (click)="eliminarHorarioVip(item.id)">
+                          <mat-icon class="iconTable eliminar" svgIcon="Basura"></mat-icon>
+                        </div>
+                      </td>
+
+                    </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              }
+
+
+            </div>
+
+
+
+
+          </div>
+
+
+        </div>
+      </mat-tab>
+
+      <mat-tab [disabled]="!horarioAtencionForm.valid">
+        <ng-template mat-tab-label>
+          Horarios especiales
+          @if(horariosEspeciales && horariosEspeciales.length > 0){
+          <mat-icon class="tab-icon">check</mat-icon>
+          }
+        </ng-template>
+        <div class="content-tabs cuarto-tab shadow">
+          <div class="contiene-title">
+            @if(!specialHourElementEdit){
+            <span class="title-tab">
+              Seleccione los días y los rangos de hora que desea asignar para los horarios especiales
+            </span>
+            }@else {
+            <span class="title-tab">
+              Editar horario especial
+            </span>
+            }
+
+            <div class="container-form-3">
+
+              <form style="display: flex; flex-direction: column; gap: 1em;" [formGroup]="horarioEspecialForm">
+                <div class="hours-special-add">
+                  @if(selectedTabIndex == 3){
+                  <app-basic-input [dataSelect]="specialsHoursList" [valueId]="'idSpecialDay'"
+                    [valueDescription]="'specialDay'" [typeInput]="'select'" [leftIcon]="'Calendario'"
+                    [rightIcon]="'arrow_drop_down'" [form]="horarioEspecialForm" [nameControlform]="'specialHour'"
+                    [textLabel]="'Horario especial'" [flagCheck]="true" [searchFlag]="false"
+                    [placeholderText]="'Seleccione una opción'">
+                  </app-basic-input>
+                  }
+                  <app-basic-input [typeInput]="'hour'" [leftIcon]="'reloj'" [form]="horarioEspecialForm"
+                    [nameControlform]="'startTime'" [textLabel]="'Desde'"></app-basic-input>
+
+                  <app-basic-input [typeInput]="'hour'" [leftIcon]="'reloj'" [form]="horarioEspecialForm"
+                    [nameControlform]="'endTime'" [textLabel]="'Hasta'"></app-basic-input>
+                </div>
+
+
+                <div class="contiene-title">
+                  <!-- <span class="title-tab">
+                    Hora de intermedio/ pausa / almuerzo
+                  </span> -->
+
+                  <div class="intermedial-hour-special">
+                    <div style="display:flex; flex-direction: column; max-width: 250px;">
+                      <span>
+                        ¿Desea agregar un intermedio?
+                      </span>
+
+
+                      <mat-radio-group formControlName="hasIntermedial">
+                        <mat-radio-button [value]="true">Si</mat-radio-button>
+                        <mat-radio-button [value]="false">No</mat-radio-button>
+                      </mat-radio-group>
+
+                    </div>
+                    @if (fv4.hasIntermedial == true) {
+                    <div class="intermedio-form">
+                      <app-basic-input [typeInput]="'hour'" [leftIcon]="'reloj'" [form]="horarioEspecialForm"
+                        [nameControlform]="'fromInter'" [textLabel]="'Desde'"></app-basic-input>
+
+                      <app-basic-input [typeInput]="'hour'" [leftIcon]="'reloj'" [form]="horarioEspecialForm"
+                        [nameControlform]="'endInter'" [textLabel]="'Hasta'"></app-basic-input>
+                    </div>
+                    }
+                    <div class="add-btn-block" (click)="addSpecialHour()">
+                      <mat-icon>add</mat-icon>
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+              </form>
+              @if(horariosEspeciales.length){
+              <div>
+                <table>
+                  <thead class="commonTable">
+                    <tr>
+                      <th>Horario especial</th>
+                      <th>Rango de hora</th>
+                      <th>Intermedio</th>
+                      <th>Editar</th>
+                      <th>Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (item of horariosEspeciales ; track item; let j = $index) {
+                    <tr class="shadow">
+                      <td>{{item.specialHour}}</td>
+                      <td>{{item.startTime }} - {{item.endTime}}</td>
+                      <td>{{item.fromInter ? item.fromInter + ' - ' + item.endInter : 'Sin intermedio' }}</td>
+                      <td>
+                        <div class="iconContainer shadow" (click)="editSpecialHours(item.idspecialHour)">
+                          <mat-icon class="iconTable editar">edit</mat-icon>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="iconContainer shadow" [class]="item"
+                          (click)="deleteSpecialHours(item.idspecialHour)">
+                          <mat-icon class="iconTable eliminar" svgIcon="Basura"></mat-icon>
+                        </div>
+                      </td>
+
+                    </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              }
+
+
+            </div>
+
+
+
+
+          </div>
+
+
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+  </div>
+  <div class="controls_two_buttons absolute_boton">
+    @if(selectedTabIndex == 1 || selectedTabIndex == 2 || selectedTabIndex == 3){
+    <button class="btn-01" (click)="anterior()">Anterior</button>
+    }
+
+    @if(selectedTabIndex == 0){
+    <button class="btn-01" (click)="cancelar()">Cancelar</button>
+
+    }
+    @if(selectedTabIndex == 0 || selectedTabIndex == 1 || selectedTabIndex == 2){
+    <button class="btn-02" (click)="siguiente(selectedTabIndex + 1)">Siguiente</button>
+
+    }
+    @if(selectedTabIndex == 3){
+    <button class="btn-02" (click)="guardar()">{{this.isEdit? 'Actualizar' : 'Guardar'}}</button>
+    }
+
+
+
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="container">
+  <span class="titulo">Pasarela de pagos</span>
+
+  @if(!paymentConfiguration){
+  <div class="shadow content-payment agregate" (click)="add()">
+    <div class=" gateway icon-disable">
+      <mat-icon [svgIcon]="'Agregar'"></mat-icon>
+    </div>
+
+    <div class="no-content">
+      <div>
+        <span>
+        </span>
+      </div>
+    </div>
+
+  </div>
+  }@else {
+  <div class="shadow content-payment">
+    <div class="gateway icon-enable">
+      <mat-icon [svgIcon]="'Pasarela'"></mat-icon>
+    </div>
+
+    <div class="info-gateway">
+
+      <div class="information">
+        <div class="info-cont">
+          <span class="title-info">Nombre de tarifario:</span>
+          <span class="sub-info" [matTooltip]="paymentConfiguration.userName">{{paymentConfiguration.nameParticularContract}}</span>
+        </div>
+        <div class="info-cont">
+          <span class="title-info">Código de tarifario:</span>
+          <span class="sub-info" [matTooltip]="paymentConfiguration.userName">{{paymentConfiguration.particularContractCode}}</span>
+        </div>
+        <!-- <div class="info-cont">
+          <span class="title-info">Nombre de usuario:</span>
+          <span class="sub-info" [matTooltip]="paymentConfiguration.userName">{{paymentConfiguration.userName}}</span>
+        </div> -->
+
+        <div class="info-cont">
+          <span class="title-info">Tiempo:</span>
+          <span class="sub-info" [matTooltip]="paymentConfiguration.amountOfTime.toString()">{{paymentConfiguration.amountOfTime + ' ' + paymentConfiguration.idUnitOfTime}}</span>
+        </div>
+
+        <!-- <div class="info-cont">
+          <span class="title-info">URL de servicio:</span>
+          <span class="sub-info url" [matTooltip]="paymentConfiguration.urlService">{{paymentConfiguration.urlService}}</span>
+        </div> -->
+
+      </div>
+
+      <div class="cont-icon-edit">
+        <mat-icon class="iconTable editar" (click)="edit(paymentConfiguration.idPaymentGateway)">edit</mat-icon>
+      </div>
+
+    </div>
+
+  </div>
+  }
+
+
+
+
+
+
+</div>

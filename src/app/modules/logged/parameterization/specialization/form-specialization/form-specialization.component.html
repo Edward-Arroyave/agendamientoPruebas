@@ -1,0 +1,155 @@
+<div class="container">
+  <h3 class="title-form">{{ idSpecialties ? 'Editar' : 'Agregar' }} especialidad</h3>
+
+  <form [formGroup]="formEspecialidades" class="form">
+    <div class="cont1">
+      <!-- Input para seleccionar Ciudad -->
+      <app-basic-input [dataSelect]="categorias" [valueId]="'idCategory'" [valueDescription]="'categoryName'"
+        [typeInput]="'select'" [leftIcon]="'categoria'" [rightIcon]="'arrow_drop_down'" [form]="formEspecialidades"
+        [nameControlform]="'idCategory'" [textLabel]="'Categoria'" [flagCheck]="false" [searchFlag]="true"
+        [placeholderText]="'Buscar categorias'">
+      </app-basic-input>
+
+      <!--  Nombre de la especialidad -->
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formEspecialidades"
+        [nameControlform]="'specialtiesName'" [textLabel]="'Nombre de la especialidad '">
+      </app-basic-input>
+
+      <!-- Input para Icono -->
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'picture'" [rightIcon]="'upload'" [form]="formEspecialidades"
+        [nameControlform]="'iconName'" (click)="openModalCustomed(iconSelection,'')" [textLabel]="'Icono'">
+      </app-basic-input>
+
+
+    </div>
+    @if(!isAssociatedExam){
+      <div class="text-togle">
+        <h1>Nefroprotección:</h1>
+        <app-toggle style="padding-left: 1rem;" [flag]="nephroprotection" (onChange)="setNefroproteccion($event)">
+        </app-toggle>
+      </div>
+
+      <div *ngIf="nefropro">
+        <div class="linear"></div>
+        <div class="containerf">
+          <!-- Mínimo -->
+          <div class="section min">
+
+            <div class="subTittle">
+              <h1 style="color: #D12B2B;">Valor bloqueante para agendar</h1>
+              <div class="iconContainer1 shadow" matTooltip=Limpiar matTooltipPosition="left" (click)="limpiarMinimo()">
+                <mat-icon class="iconTable eliminar" svgIcon="limpiar"></mat-icon>
+              </div>
+
+            </div>
+            <div style="min-width: 240px; width: 100%; padding: 1em; box-sizing: border-box;">
+              <!-- <app-basic-input [dataSelect]="operadores" [valueId]="'idOperatorType'" [valueDescription]="'operatorType'"
+            [typeInput]="'select'" [leftIcon]="'usuario'" [rightIcon]="'arrow_drop_down'" [form]="formEspecialidades"
+            [nameControlform]="'idOperatorMin'" [textLabel]="'Operador'" [flagCheck]="false" [searchFlag]="true"
+            [placeholderText]="'Seleccione una opción'">
+          </app-basic-input> -->
+              <app-basic-input (blurInput)="habilitarCampos($event)" [typeInput]="'number'" [leftIcon]="'numeral'" [form]="formEspecialidades"
+                [nameControlform]="'valuesMin'" [textLabel]="'Valor'">
+              </app-basic-input>
+            </div>
+          </div>
+
+          <!-- Intermedio -->
+          <div class="section intermediate">
+
+            <div class="subTittle">
+              <h1 style="color: #E2C423;">Valores intermedios para agendar</h1>
+              <div class="iconContainer1 shadow" matTooltip=Limpiar matTooltipPosition="left"
+                (click)="limpiarIntermedio()">
+                <mat-icon class="iconTable eliminar" svgIcon="limpiar"></mat-icon>
+              </div>
+            </div>
+
+            <div class="grid-valores-nefroproteccion">
+              <!-- <app-basic-input [dataSelect]="operadoresIntermedio" [valueId]="'idOperatorType'" [valueDescription]="'operatorType'"
+            [typeInput]="'select'" [leftIcon]="'usuario'" [rightIcon]="'arrow_drop_down'" [form]="formEspecialidades"
+            [nameControlform]="'idOperatorInter'" [textLabel]="'Operador'" [flagCheck]="false" [searchFlag]="true"
+            [placeholderText]="'Seleccione una opción'">
+          </app-basic-input> -->
+              <app-basic-input (blurInput)="toggleIntermediateValidators($event)" [typeInput]="'number'" [leftIcon]="'numeral'" [form]="formEspecialidades"
+                [nameControlform]="'valuesInter1'" [textLabel]="'Valor 1'">
+              </app-basic-input>
+              <app-basic-input (blurInput)="valorMinimoParaMaximo()" [typeInput]="'number'" [leftIcon]="'numeral'" [form]="formEspecialidades"
+                [nameControlform]="'valuesInter2'" [textLabel]="'Valor 2'">
+              </app-basic-input>
+            </div>
+          </div>
+
+          <!-- Máximo -->
+          <div class="section max">
+            <div class="subTittle">
+              <h1 style="color: #28BA9E;">Valor viable</h1>
+              <div class="iconContainer1 shadow" matTooltip=Limpiar matTooltipPosition="left" (click)="limpiarMaximo()">
+                <mat-icon class="iconTable eliminar" svgIcon="limpiar"></mat-icon>
+              </div>
+            </div>
+            <div style="min-width: 240px; width: 100%; padding: 1em; box-sizing: border-box;">
+              <!-- <app-basic-input [dataSelect]="operadores" [valueId]="'idOperatorType'" [valueDescription]="'operatorType'"
+            [typeInput]="'select'" [leftIcon]="'usuario'" [rightIcon]="'arrow_drop_down'" [form]="formEspecialidades"
+            [nameControlform]="'idOperatorMax'" [textLabel]="'Operador'" [flagCheck]="false" [searchFlag]="true"
+            [placeholderText]="'Seleccione una opción'">
+          </app-basic-input> -->
+              <app-basic-input (blurInput)="this.formEspecialidades.get('idOperatorMax')?.setValue(3)" [typeInput]="'number'" [leftIcon]="'numeral'" [form]="formEspecialidades"
+                [nameControlform]="'valuesMax'" [textLabel]="'Valor'">
+              </app-basic-input>
+            </div>
+          </div>
+        </div>
+
+        <div class="linear"></div>
+        <div style="width: 100%;margin-bottom: 1em;">
+          <div class="cont3">
+            <app-basic-input [typeInput]="'number'" [leftIcon]="'tiempo'" [form]="formEspecialidades"
+              [nameControlform]="'maximumTime'" [textLabel]="'Tiempo particular en días'">
+            </app-basic-input>
+
+            <app-basic-input [typeInput]="'textarea'" [leftIcon]="'usuario'" [form]="formEspecialidades"
+              [nameControlform]="'observations'" [textLabel]="'Observaciones'">
+            </app-basic-input>
+          </div>
+        </div>
+      </div>
+
+    }
+
+
+  </form>
+
+
+  <ng-template #iconSelection let-data="data">
+
+    <div class="cont-modal">
+      <h1 class="title">Seleccione un icono para la especialidad</h1>
+      <div class="icon-selector-container shadow">
+        <form [formGroup]="formSearch" class="form-search">
+          <app-basic-input [typeInput]="'text'" [rightIcon]="'search'" [leftIcon]="'search'" [form]="formSearch"
+            [nameControlform]="'search'" [textLabel]="'Buscar icono'" [ariaRequired]="false"
+            (input)="filtrarIconos(formSearch.get('search')?.value)">
+          </app-basic-input>
+        </form>
+
+        <div class="icon-grid">
+          <div *ngFor="let icono of iconosFiltrados" class="icon-item" (click)="seleccionarIcono(icono)">
+            <mat-icon svgIcon="{{ icono.iconName }}" class="icon-svg"></mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+
+
+
+
+  <!-- Botones de Acción -->
+  <div class="controls_two_buttons absolute_boton">
+    <button type="button" class="btn-01" (click)="cancelar()">Cancelar</button>
+    <button type="button" class="btn-02" (click)="save()">{{ idSpecialties ?
+      'Actualizar' : 'Guardar' }}</button>
+  </div>
+</div>

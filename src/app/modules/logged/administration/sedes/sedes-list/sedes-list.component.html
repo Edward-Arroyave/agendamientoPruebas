@@ -1,0 +1,33 @@
+<div class="container">
+  <span class="titulo">Sedes </span>
+  <div class="tabla-responsive">
+    <div class="contenedor1">
+
+      <form [formGroup]="formSearch" class="form-search form-inline">
+        <div class="input-container">
+        <app-basic-input [typeInput]="'text'" [rightIcon]="'search'" [leftIcon]="'buscar-tuerca'" [form]="formSearch"
+          [nameControlform]="'search'" [textLabel]="'Buscar sede'" [ariaRequired]="false"></app-basic-input>
+        </div>
+
+        @if(permisosDelModulo.Crear){
+          <button class="btnIcon-01" routerLink="form">
+            <div><span>Agregar</span></div>
+            <mat-icon>add</mat-icon>
+          </button>
+        }
+      </form>
+    </div>
+
+    <div class="table-cont">
+      @defer (when sedes.length !==0) {
+      <app-tabla-comun [cabeceros]="cabeceros" [info-tabla]="sedes" (onEdit)="editSede($event)" (onChangeStatus)="cambiarEstado($event)"
+        (onDelete)="eliminarSede($event)" [paginadorNumber]="paginadorNumber" >
+      </app-tabla-comun>
+
+      }
+    </div>
+
+  </div>
+
+</div>
+

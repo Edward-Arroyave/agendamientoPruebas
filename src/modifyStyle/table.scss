@@ -1,0 +1,179 @@
+// Tables
+.commonTable{
+    
+    background: linear-gradient(var(--color-01), var(--color-02) ) !important;
+    border-radius: 10px !important;
+    transition: .5s ease-out;
+}
+
+
+th:first-of-type, th:first-of-type, th:first-of-type {
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+}
+td:first-of-type, td:first-of-type, td:first-of-type {
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    text-align: center;
+}
+td:last-of-type, td:last-of-type, td:last-of-type {
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+th:last-of-type, th:last-of-type, th:last-of-type {
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    overflow: hidden;
+    border-radius: 10px;
+    padding: 0px 5px 0 5px;
+}
+
+
+
+
+
+
+.mat-mdc-table thead{
+    background: linear-gradient(var(--color-01), var(--color-02) ) !important;
+    border-radius: 10px !important;
+}
+
+.mat-mdc-header-row{
+    height: auto !important;
+}
+
+thead th{
+    padding: 7px 20px !important;
+}
+
+tbody td{
+    padding: 7px 20px !important;
+    text-align: center;
+}
+
+.mat-sort-header-container{
+    justify-content: center !important;
+}
+.mdc-data-table__row .mat-mdc-cell{
+    text-align: center;
+}
+
+th.mat-mdc-header-cell:first-of-type, td.mat-mdc-cell:first-of-type, td.mat-mdc-footer-cell:first-of-type {
+    border-top-left-radius: 9px;
+}
+th.mat-mdc-header-cell:last-of-type, td.mat-mdc-cell:last-of-type, td.mat-mdc-footer-cell:last-of-type {
+    border-top-right-radius: 9px;
+}
+.mat-mdc-row{
+    height: 35px !important;
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+.mat-row.custom-row {
+    display: block;
+    margin-bottom: 16px !important; /* Espacio entre filas */
+    border-radius: 4px; /* Opcional: para bordes redondeados en las filas */
+}
+.mat-mdc-table{
+    border-spacing: 0 4px !important;
+}
+.mat-mdc-cell{
+    border: none !important;
+}
+
+td.mat-mdc-header-cell:first-of-type, td.mat-mdc-cell:first-of-type, td.mat-mdc-footer-cell:first-of-type {
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+}
+td.mat-mdc-header-cell:last-of-type, td.mat-mdc-cell:last-of-type, td.mat-mdc-footer-cell:last-of-type {
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+
+.mat-mdc-table{
+    padding: 5px;
+}
+
+tr{
+    border-radius: 5px !important;
+}
+
+
+
+.ngx-pagination{
+    display: flex;
+    gap: .2em !important;
+    justify-content: end;
+    // padding-right: 70px;
+    position: absolute;
+    bottom: 120px;
+    right: 60px;
+    z-index: 1;
+    align-items: center;
+}
+
+.ngx-pagination a:hover{
+    background: none !important;
+}
+
+.ngx-pagination .disabled{
+    padding: 0 !important;
+}
+
+.ngx-pagination .current{
+    background: var(--color-04) !important;
+    border-radius: 5px;
+}
+.pagination-previous{
+    background: white !important;
+    position: relative !important;
+    width: 28px;
+    height: 24px;
+    background: var(--color-01) !important;
+}
+.pagination-next{
+    background: white !important;
+    position: relative !important;
+    width: 28px;
+    height: 24px;
+    background: var(--color-01) !important;
+}
+
+.ngx-pagination li{
+    background: var(--color-02);
+    border-radius: 5px !important;
+    gap: 1em !important;
+}
+
+.ngx-pagination .pagination-previous a:before, .ngx-pagination .pagination-previous.disabled:before{
+    color: var(--color-01);
+    font-size: 18px;
+    height: 20px;
+    width: 20px;
+}
+.ngx-pagination .pagination-previous a:before, .ngx-pagination .pagination-previous.disabled:before{
+    color: var(--color-01);
+}
+
+.ngx-pagination .pagination-previous a:before, .ngx-pagination .pagination-previous.disabled:before{
+    content:"\27a4" !important;
+    position: absolute;
+    top: 5px;
+    left: 2px;
+    transform: rotate(180deg);
+    color: white;
+}
+
+.ngx-pagination .pagination-next a:after, .ngx-pagination .pagination-next.disabled:after{
+    content:"\27a4" !important;
+    position: absolute;
+    top: 1px;
+    left: 0px;
+    color: white;
+}
+// Tables

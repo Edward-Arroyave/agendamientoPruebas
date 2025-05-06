@@ -1,0 +1,45 @@
+<div class="container">
+  <h3 class="titulo">{{ idDataDictionary ? 'Editar' : 'Agregar' }} diccionario de datos</h3>
+
+  <div class="cont-form">
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'numeral'" [form]="formDictionary" [maxlength]="10"
+      [nameControlform]="'dictionaryCode'" [textLabel]="'Código'"></app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'Diccionario'" [form]="formDictionary" [maxlength]="30"
+      [nameControlform]="'dictionaryName'" [textLabel]="'Nombre del diccionario'"></app-basic-input>
+
+    <mat-checkbox [checked]="isTableRequired" class="example-margin" (change)="isTable($event)">
+      Tabla
+    </mat-checkbox>
+
+    @if(isTableRequired){
+    <app-basic-input [dataSelect]="listOfTables" [valueId]="'idListOfTables'" [valueDescription]="'tableName'"
+      [typeInput]="'select'" [leftIcon]="'Tabla'" [rightIcon]="'arrow_drop_down'" [form]="formDictionary"
+      [nameControlform]="'idListOfTables'" [textLabel]="'Tabla'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Seleccione una opción'">
+    </app-basic-input>
+
+    <app-basic-input [dataSelect]="listOfIds" [valueId]="'dato'" [valueDescription]="'dato'"
+      [typeInput]="'select'" [leftIcon]="'IDIcon'" [rightIcon]="'arrow_drop_down'" [form]="formDictionary"
+      [nameControlform]="'idTable'" [textLabel]="'ID'" [flagCheck]="false" [searchFlag]="false"
+      [placeholderText]="'Seleccione una opción'">
+    </app-basic-input>
+
+    <app-basic-input [dataSelect]="listOfDescriptions" [valueId]="'dato'" [valueDescription]="'dato'"
+      [typeInput]="'select'" [leftIcon]="'Documento'" [rightIcon]="'arrow_drop_down'" [form]="formDictionary"
+      [nameControlform]="'descriptionTable'" [textLabel]="'Descripción'" [flagCheck]="false" [searchFlag]="false"
+      [placeholderText]="'Seleccione una opción'">
+    </app-basic-input>
+    }
+
+  </div>
+
+
+  <div class="controls_two_buttons absolute_boton">
+    <button type="button" class="btn-01" (click)="cancel()">Cancelar</button>
+    <button type="button" class="btn-02" (click)="saveOrUpdate()">{{ idDataDictionary ? 'Actualizar' : 'Guardar' }}</button>
+  </div>
+
+
+</div>

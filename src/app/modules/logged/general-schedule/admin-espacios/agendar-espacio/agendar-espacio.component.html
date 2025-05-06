@@ -1,0 +1,203 @@
+<div class="container-agendamiento">
+  <h1 class="title">Administración de espacios</h1>
+
+  <section id="prueba_scr" class="contiene-agenda">
+
+    <div cdkScrollable id="scrolllTop"
+      style="overflow: auto;padding: 10px;">
+      <!-- style="z-index: 99; background: white; height: 80px; position: sticky;top: -12px;" -->
+      <div class="tabs-container">
+        @for (item of tabs; track $index) {
+        <div class="tab ">
+          <div class="tab-number shadow">
+            @if(item.completed){
+            <mat-icon>check</mat-icon>
+            }@else {
+            <span> {{item.number}}</span>
+            }
+
+          </div>
+          <div class="name-tab no-completed" [ngClass]="{'completed': currentTabId == item.id || item.completed}">
+            <span [matTooltip]="item.name"> {{item.name}}</span>
+          </div>
+        </div>
+        }
+        <div class="line-separator"></div>
+      </div>
+      <div class="contenido-tab">
+        <ng-container [ngSwitch]="currentTabId">
+          <ng-container *ngSwitchCase="1" [ngTemplateOutlet]="paso_01"></ng-container>
+          <ng-container *ngSwitchCase="2" [ngTemplateOutlet]="paso_02"></ng-container>
+          <ng-container *ngSwitchCase="3" [ngTemplateOutlet]="paso_03"></ng-container>
+          <ng-container *ngSwitchCase="4" [ngTemplateOutlet]="paso_04"></ng-container>
+          <ng-container *ngSwitchDefault [ngTemplateOutlet]="paso_01"></ng-container>
+        </ng-container>
+      </div>
+
+    </div>
+
+    <div class="controls_two_buttons absolute_boton">
+      @if(currentTabId == 1){
+      <button (click)="cancelar()" class="btn-01">Cancelar</button>
+      }
+      @if(currentTabId !== 1){
+      <button (click)="anterior()" class="btn-01">Anterior</button>
+      }
+      @if(currentTabId === 1 || currentTabId === 3){
+      <button (click)="siguiente()" class="btn-02">Siguiente</button>
+      }
+      @if(currentTabId === 2 && this.espaciosRemitidoFlag){
+      <button (click)="siguienteRemitido()" class="btn-02">Siguiente</button>
+      }
+      @if(!verPacienteParticular && currentTabId === 2){
+      <button (click)="siguienteRemitido()" class="btn-02">Siguiente</button>
+      }
+      @if(currentTabId === 4){
+      <button (click)="modalAgendar(agendar)" class="btn-02">Agendar</button>
+      }
+    </div>
+  </section>
+
+
+
+
+  <ng-template #paso_01>
+    <app-step-1 [form]="form" [formParametros]="formParametros" [paciente]="paciente"
+      (onPaciente)="paciente = $event"></app-step-1>
+  </ng-template>
+
+
+  <ng-template #paso_02>
+    <app-step-2 [formRemitido]="formRemitido" (onVerParticular)="verPacienteParticular = $event" 
+      [pacienteParticularFlag]="pacienteRemitidoFlag" (onParticularFlag)="pacienteRemitidoFlag = $event"
+      [currentTabId]="currentTabId" (onCurrentTabId)="currentTabId = $event" [tabs]="tabs" (onTaps)="tabs = $event"
+      [paciente]="paciente" [espaciosRemitidoFlag]="espaciosRemitidoFlag" [espaciosIdOriginEntity]="infoConsulta.getRawValue().idOriginEntity" [espaciosPlan]="infoConsulta.getRawValue().plan">
+    </app-step-2>
+  </ng-template>
+
+  <ng-template #paso_03>
+    <!-- (oa)=""  (onInfoPaso_4)=""  (onObservations)="" -->
+    <app-step-espacios [formulario]="infoConsulta" [formRemitido]="formRemitido" [listaAgendaSeleccionada]="itemAgenda"
+      [dataGeneral]="dataGeneral" [paciente]="paciente" [pacienteParticularFlag]="pacienteRemitidoFlag"
+      [idAgenda]="itemAgenda.idAgenda" [calculoCreatinina]="itemAgenda[0].creatinina"
+      (onCrearReserva)="reserva = $event" (onInfoPaso_4)="informacionPaso4 = $event"
+      (onInfoPaso_4)="observaciones = $event" [formCompanion]="formCompanion" [formButtonCompanion]="formButtonCompanion"
+      ></app-step-espacios>
+  </ng-template>
+  <ng-template #paso_04>
+    <app-step-6 [listaRequerimientosConfimacion]="informacionPaso4" [listaAgendaSeleccionada]="itemAgenda"
+      [idTypeAttention]="itemAgenda.idTypeAttention" [fullName]="fullName" [observaciones]="observacionesText"
+      [procedimientoPorAgendamiento]="procedimientoAgendamiento" [associatedExam]="associatedExam" (onPreparaciones)="listaDePreparaciones = $event"
+      ></app-step-6>
+  </ng-template>
+</div>
+
+
+
+<ng-template #requisitos>
+  <div
+      style="border-left: 2px solid var(--color-04);border-right: 2px solid var(--color-04); width: 95%;margin: 0 auto 0;padding: .5em 0px; ">
+
+      @if(associatedExam){
+      <h1>Requisitos de examenes</h1>
+      <p style="margin-left: 1.5em;">Por favor responda todas las preguntas asociadas a los requisitos de los
+          exámenes:</p>
+      <div
+          style=" padding: 0em 1em; display: grid;grid-template-columns: repeat(1,1fr);gap: 0em 2em;margin-top: 1em;">
+          <div style="overflow: auto; height: auto; max-height: 360px;padding: 0 1em;">
+              @for (item of this.listaRequerimientos; track $index) {
+              @if(item.listRequirements !== null){
+              <h1 style="margin-top: 2em; margin-left: 0;">{{item.examName}}</h1>
+              @for (itemList of item.listRequirements; track $index; let i = $index) {
+              <div style="display: grid;grid-template-columns: auto 1fr auto;">
+                  <div style="display: flex; align-items: end;">
+                      <p>
+                          {{i+1}} ) {{itemList.requirements}}
+                      </p>
+                  </div>
+                  <div style="height: 100%; width: 100%; border-bottom: 1px solid var(--color-01);"></div>
+                  <div>
+                      <mat-radio-group aria-label="Selecciona una opción">
+                          <mat-radio-button [checked]="false" [value]="true"
+                              (change)="itemList.checked = true">Si</mat-radio-button>
+                          <mat-radio-button [checked]="true" [value]="false"
+                              (change)="itemList.checked = false">No</mat-radio-button>
+                      </mat-radio-group>
+                  </div>
+              </div>
+              }
+              }
+              }
+          </div>
+      </div>
+      }@else{
+      <h1>Requisitos de la cita</h1>
+      <p style="margin-left: 1.5em;">Por favor responda todas las preguntas asociadas a los requisitos de la cita:</p>
+      <div
+          style=" padding: 0em 1em; display: grid;grid-template-columns: repeat(1,1fr);gap: 0em 2em;margin-top: 1em;">
+          <div style="overflow: auto; height: auto; max-height: 360px;padding: 0 1em;">
+              @for (item of this.listaRequerimientos[0].procedureRequirements; track $index) {
+                  <div style="display: grid;grid-template-columns: auto 1fr auto;">
+                      <div style="display: flex; align-items: end;">
+                          <p>
+                              {{$index+1}} ) {{item.requirements}}
+                          </p>
+                      </div>
+                      <div style="height: 100%; width: 100%; border-bottom: 1px solid var(--color-01);"></div>
+                      <div>
+                          <mat-radio-group aria-label="Selecciona una opción">
+                              <mat-radio-button [checked]="false" [value]="true"
+                                  (change)="item.checked = true">Si</mat-radio-button>
+                              <mat-radio-button [checked]="true" [value]="false"
+                                  (change)="item.checked = false">No</mat-radio-button>
+                          </mat-radio-group>
+                      </div>
+                  </div>
+              }
+          </div>
+      </div>
+      }
+  </div>
+</ng-template>
+
+<ng-template #reservas>
+  <div
+    style="text-align: center; margin-bottom: 1em; max-height: 60px; overflow: auto;padding: .5em; box-sizing: border-box;">
+    @for (item of listaAgendaSeleccionada; track $index) {
+    <p style="margin: 0;">- Se seleccionó la agenda del dia {{item.desiredDate | date :'fullDate':'UTC'}} de
+      {{item.startTime | formatTime}} a {{item.endTime | formatTime}} para "{{item.caracteristicaName}}" en la sede
+      {{item.sede}}</p>
+    }
+  </div>
+  <p style="margin: 1em auto ;text-align: center;">¿Esta seguro que desea reservar la/s cita/s en este horario?</p>
+</ng-template>
+
+
+<ng-template #agendar>
+  <div style="text-align: center;">
+    <div style="height: 60px; overflow: auto;padding: .5em; box-sizing: border-box; margin-bottom: 1em;">
+      @for (item of listaAgendaSeleccionada; track $index) {
+      <p>- Se seleccionó la agenda del dia {{item.desiredDate | date :'fullDate':'UTC'}} de {{item.startTime |
+        formatTime}} a {{item.endTime | formatTime}} para "{{item.caracteristicaName}}" en la sede {{item.sede}}</p>
+      }
+    </div>
+    @if (!pacienteRemitidoFlag && !associatedExam && this.procedimientoAgendamiento.elementName ) {
+      <div class="container-btn-pay">
+        <span>Seleccione un metodo de pago:</span>
+  
+        <div class="btn-pay btn-paysede" (click)="crearReserva(true)">
+            <mat-icon [svgIcon]="'localizacion'"></mat-icon>
+            <span>Pago en sede</span>
+        </div>
+  
+        <div class="btn-pay btn-mercadopago" id="mercado-pago-checkout"  (click)="crearReserva(false)">
+            <svg viewBox="0 0 40 28" fill="none" height="28" width="40" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#a)" fill="#fff"><path d="M39.994 13.063C39.934 5.775 30.933-.092 19.887 0 8.843.094-.06 6.111 0 13.4c.002.19.003.71.004.775C.069 21.906 7.944 28.103 20.117 28 32.364 27.897 40.064 21.57 40 13.837l-.007-.776zm-19.89 12.604C9.483 25.757.83 20.26.772 13.388c-.003-.277.014-.55.04-.823l.123-.841c.018-.09.047-.178.068-.268.437.129.754.217.907.252 4.886 1.127 6.828 2.298 7.404 2.716a2.07 2.07 0 0 1 1.374-.533h.002c.586 0 1.135.253 1.527.695.614-.4 1.361-.484 2.118-.218.496.172.887.492 1.137.928.506-.163 1.078-.125 1.65.124 1.101.479 1.261 1.51 1.239 2.162 1.308.029 2.363 1.114 2.362 2.443 0 .317-.063.635-.182.925.363.185.982.442 1.53.375.521-.066.677-.235.713-.286l.01-.014-1.474-1.647c-.257-.245-.323-.496-.168-.668a.33.33 0 0 1 .253-.114c.171 0 .317.126.425.217.799.675 1.756 1.674 1.766 1.684l.024.027c.02.025.082.076.285.112q.103.02.221.02c.15 0 .527-.025.802-.253a2 2 0 0 0 .156-.151l.057-.075c.25-.323.013-.653-.037-.716l-1.795-2.042s-.07-.067-.13-.15c-.195-.264-.108-.437-.038-.517a.33.33 0 0 1 .246-.109c.16 0 .31.107.446.223.48.407 1.133 1.056 1.763 1.684l.397.397c.049.032.287.18.618.181q.4 0 .806-.271c.374-.247.548-.55.532-.922-.028-.327-.297-.588-.3-.59l-2.468-2.512c-.254-.22-.33-.486-.183-.67a.35.35 0 0 1 .259-.122c.16 0 .3.107.44.227.44.372 1.372 1.217 2.772 2.51l.138.126s.256.179.633.18q.377 0 .744-.235c.267-.172.422-.42.435-.696.025-.502-.323-.813-.325-.816-.659-.583-6.29-5.566-7.6-6.563-.758-.577-1.178-.728-1.612-.784q-.07-.008-.146-.008a2.4 2.4 0 0 0-.582.08c-.669.184-1.546.815-2.165 1.312-.806.646-1.56 1.253-2.297 1.42a3 3 0 0 1-.746.078c-.694-.001-1.445-.196-1.866-.484-.236-.16-.405-.352-.49-.555-.219-.515.108-.93.259-1.084l1.694-1.85.034-.035c-.243.059-.483.125-.739.198-.615.173-1.237.35-1.87.35h-.002c-.212 0-.42-.019-.623-.035l-.204-.015c-.888-.058-3.71-.783-6.2-1.795l.009-.007.687-.534C9.134 2.466 14.221.832 19.896.784c5.861-.05 11.122 1.605 14.67 4.252l.682.536c.046.038.086.08.13.117l-.222.105c-1.967.91-3.803 1.353-5.614 1.353h-.008c-1.74-.003-3.472-.426-5.145-1.254-.19-.09-1.928-.882-3.682-.885q-.068 0-.136.003c-2.795.062-4.013 1.292-5.304 2.593L13.6 9.42a.4.4 0 0 0-.054.086c.192.22.693.373 1.236.375q.35 0 .691-.078c.51-.114 1.207-.674 1.882-1.215l.048-.038c.749-.6 1.523-1.222 2.313-1.474.348-.112.684-.169.998-.169h.004c.34 0 .605.066.795.126.418.125.892.404 1.586.933 1.133.86 5.103 4.35 7.41 6.39a47 47 0 0 1 8.547-2.822l.003-.016.02.09.12.837q.025.308.028.62c.058 6.872-8.504 12.515-19.125 12.605z"></path><path d="M18.34 18.486c-.219 0-.456.082-.611.137-.108.037-.172.06-.223.06h-.034l-.046-.022a.14.14 0 0 1-.058-.093c-.046-.068-.032-.173.049-.373.004-.01.247-.701.037-1.298a1.15 1.15 0 0 0-.64-.65 1.7 1.7 0 0 0-.672-.153c-.465 0-.763.24-.898.384-.034.036-.08.075-.14.075-.02 0-.101-.011-.133-.111a.2.2 0 0 1-.033-.103 1.6 1.6 0 0 0-.085-.412 1.15 1.15 0 0 0-.762-.709 1.8 1.8 0 0 0-.53-.084c-.908 0-1.4.756-1.42.788l-.18.283-.006-.052-.01.006c-.038-.01-.043-.332-.043-.332a1 1 0 0 0-.046-.21 1.22 1.22 0 0 0-1.142-.825 1.232 1.232 0 0 0-1.138 1.677 1.22 1.22 0 0 0 1.119.747c.314 0 .562-.194.843-.345.077-.04.156-.046.18-.012.022.03.03.066.032.104.015.03.024.066.018.11a2.1 2.1 0 0 0 .05.915c.124.364.394.736.957.957q.212.084.423.085c.252 0 .5-.088.758-.272.063-.045.11-.066.155-.063.03.003.078.012.11.049a.16.16 0 0 1 .037.096q.029.07.014.148c-.014.094-.02.239.024.404.086.263.302.563.824.777q.27.111.507.111c.345 0 .581-.176.768-.35.065-.061.124-.102.19-.102.097 0 .136.072.154.144a.5.5 0 0 1 .037.178c.007.195.053.376.123.545.248.54.79.911 1.42.913a1.58 1.58 0 0 0 1.456-2.164 1.59 1.59 0 0 0-1.434-.958"></path></g><defs><clipPath id="a"><path d="M0 0h40v28H0z" fill="#fff"></path></clipPath></defs></svg>
+            <!-- <svg data-testid="mercado-pago-logo" width="148" height="22" viewBox="0 0 148 22" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"><path d="M89.8811 5.8024C88.8414 4.48945 87.2614 3.83438 85.1412 3.83438C83.021 3.83438 81.4438 4.48945 80.4026 5.8024C79.3615 7.11395 78.8409 8.66408 78.8409 10.4528C78.8409 12.2415 79.3615 13.8284 80.4026 15.1216C81.4438 16.4119 83.0238 17.0599 85.1412 17.0599C87.2586 17.0599 88.84 16.4133 89.8811 15.1216C90.9223 13.827 91.4429 12.2712 91.4429 10.4528C91.4429 8.63443 90.9237 7.11395 89.8811 5.8024ZM87.3035 13.3286C86.7984 14.002 86.0757 14.3408 85.1314 14.3408C84.187 14.3408 83.463 14.002 82.9536 13.3286C82.4443 12.6552 82.1917 11.6952 82.1917 10.4528C82.1917 9.21044 82.4443 8.25325 82.9536 7.58266C83.463 6.91206 84.1884 6.57606 85.1314 6.57606C86.0743 6.57606 86.7984 6.91206 87.3035 7.58266C87.8072 8.25325 88.0612 9.21044 88.0612 10.4528C88.0612 11.6952 87.8086 12.6552 87.3035 13.3286Z" fill="#ffffff"></path><path d="M63.2824 4.70544C62.2272 4.16756 61.0191 3.8965 59.6608 3.8965C57.57 3.8965 56.0953 4.44427 55.2379 5.53981C54.6977 6.24146 54.3946 7.13511 54.3245 8.22501H57.4465C57.5223 7.74359 57.6767 7.36382 57.9068 7.08288C58.2281 6.70311 58.7754 6.51252 59.5499 6.51252C60.2403 6.51252 60.7637 6.60852 61.1215 6.80476C61.4765 6.99676 61.6547 7.3497 61.6547 7.85936C61.6547 8.27866 61.4232 8.58501 60.9573 8.78407C60.6977 8.89843 60.2669 8.99302 59.6636 9.07066L58.5565 9.2076C57.2992 9.36855 56.345 9.63537 55.6996 10.0081C54.5181 10.6942 53.9274 11.7996 53.9274 13.33C53.9274 14.5088 54.2922 15.4194 55.0289 16.0632C55.7613 16.707 56.693 16.9766 57.8198 17.0289C64.8792 17.3465 64.7992 13.2862 64.8638 12.442V7.769C64.8638 6.2697 64.3362 5.24757 63.281 4.70686L63.2824 4.70544ZM61.6421 11.7968C61.621 12.8839 61.3109 13.6349 60.716 14.0458C60.1196 14.458 59.4699 14.6627 58.7641 14.6627C58.3165 14.6627 57.9391 14.5371 57.6276 14.29C57.316 14.0429 57.1617 13.6406 57.1617 13.0843C57.1617 12.4618 57.4157 12.0015 57.925 11.7036C58.2267 11.5286 58.722 11.3789 59.4124 11.2603L60.1491 11.1234C60.5153 11.0528 60.8044 10.978 61.0162 10.8975C61.2295 10.8213 61.4344 10.7168 61.6421 10.5855V11.7968Z" fill="#ffffff"></path><path d="M47.1887 6.67911C47.9956 6.67911 48.5877 6.9304 48.9722 7.43158C49.2332 7.80147 49.3974 8.21936 49.4619 8.68383H52.9432C52.7524 6.91487 52.1378 5.68239 51.0994 4.98356C50.0582 4.28755 48.7238 3.93743 47.0933 3.93743C45.1752 3.93743 43.6696 4.52897 42.5807 5.71345C41.4904 6.89934 40.9446 8.55395 40.9446 10.6815C40.9446 12.5662 41.4385 14.1022 42.4249 15.2867C43.4114 16.4698 44.9521 17.0627 47.0428 17.0627C49.1336 17.0627 50.7177 16.3526 51.7842 14.9338C52.4521 14.0542 52.8267 13.121 52.9053 12.1342H49.4352C49.3637 12.7879 49.1616 13.3187 48.8249 13.7295C48.4909 14.1361 47.9254 14.3436 47.1284 14.3436C46.0045 14.3436 45.2383 13.8284 44.8328 12.7949C44.6097 12.2429 44.496 11.513 44.496 10.6038C44.496 9.69466 44.6097 8.88854 44.8328 8.30971C45.2552 7.22688 46.0409 6.68334 47.1859 6.68334L47.1887 6.67911Z" fill="#ffffff"></path><path d="M40.0108 3.93603C32.8574 3.93603 33.2812 10.3074 33.2812 10.3074V16.7804H36.5267V10.7097C36.5267 9.71444 36.653 8.9789 36.8986 8.4989C37.3448 7.64901 38.2147 7.22406 39.5127 7.22406C39.6109 7.22406 39.7386 7.22971 39.8972 7.23677C40.0557 7.24524 40.2353 7.25794 40.4416 7.28335V3.96144C40.2971 3.95015 40.2045 3.94732 40.1638 3.94168C40.1217 3.93744 40.0712 3.93603 40.0108 3.93603Z" fill="#ffffff"></path><path d="M30.6777 6.35158C30.1164 5.5158 29.4036 4.9045 28.5462 4.51485C27.6861 4.12944 26.7207 3.93602 25.6486 3.93602C23.8399 3.93602 22.3722 4.50921 21.2384 5.65416C20.1061 6.80335 19.5378 8.44948 19.5378 10.5982C19.5378 12.8923 20.165 14.5484 21.4209 15.5663C22.6739 16.5827 24.1234 17.0938 25.7637 17.0938C27.752 17.0938 29.2983 16.4896 30.4026 15.2825C30.999 14.6486 31.3722 14.0204 31.5294 13.3992H28.086C27.9499 13.5954 27.8039 13.7634 27.6426 13.8933C27.1837 14.2731 26.5621 14.3888 25.8282 14.3888C25.1351 14.3888 24.592 14.2829 24.1009 13.9724C23.2913 13.4712 22.8353 12.6241 22.7861 11.3803H31.7679C31.7791 10.3088 31.7469 9.48713 31.6599 8.91678C31.5111 7.94547 31.1814 7.08852 30.679 6.35158H30.6777ZM22.8647 9.23725C22.9798 8.42972 23.2688 7.79018 23.7235 7.31723C24.1795 6.8457 24.8208 6.60852 25.6486 6.60852C26.4092 6.60852 27.0476 6.83158 27.5626 7.27911C28.0747 7.72382 28.361 8.37889 28.4199 9.23725H22.8647Z" fill="#ffffff"></path><path d="M13.088 3.89368C11.5809 3.89368 10.2788 4.55721 9.4032 5.6231C8.57111 4.55862 7.29 3.89368 5.71563 3.89368C2.54584 3.89368 0.5 6.23723 0.5 9.3389V16.779H3.46633V9.2669C3.46633 7.89465 4.38822 6.94876 5.71423 6.94876C7.66886 6.94876 7.87232 8.58078 7.87232 9.2669V16.779H10.8387V9.2669C10.8387 7.89465 11.783 6.94876 13.0866 6.94876C15.0426 6.94876 15.2685 8.58078 15.2685 9.2669V16.779H18.2334V9.3389C18.2334 6.14122 16.3251 3.89368 13.0866 3.89368H13.088Z" fill="#ffffff"></path><path d="M74.6042 2.30543L74.5999 5.80522C74.2379 5.21933 73.7679 4.76192 73.1869 4.43297C72.6074 4.10403 71.9437 3.93744 71.1958 3.93744C69.5737 3.93744 68.2814 4.54451 67.3118 5.75722C66.3422 6.97276 65.8581 8.72337 65.8581 10.8396C65.8581 12.6778 66.3506 14.1827 67.3357 15.3545C68.3207 16.5249 70.2487 17.0387 71.9634 17.0387C77.9409 17.0387 77.8708 11.8829 77.8708 11.8829L77.8736 0.0155213C77.8736 0.0155213 74.6042 -0.336011 74.6042 2.30684V2.30543ZM73.9797 13.3554C73.5069 14.0387 72.8095 14.379 71.8988 14.379C70.9882 14.379 70.3048 14.0345 69.8572 13.3484C69.4096 12.6608 69.1851 11.6599 69.1851 10.5149C69.1851 9.45184 69.404 8.56242 69.8446 7.84524C70.2852 7.12806 70.9769 6.76805 71.9199 6.76805C72.5401 6.76805 73.0817 6.9657 73.5504 7.35959C74.3109 8.01324 74.6926 9.18502 74.6926 10.7013C74.6926 11.7855 74.454 12.6707 73.9797 13.354V13.3554Z" fill="#ffffff"></path><path d="M103.858 3.86544C101.185 3.73838 99.8341 4.37933 98.9543 5.05557C97.7378 5.98875 96.9983 7.36947 96.9983 9.57749V20.924H98.5699C98.9922 20.924 99.4118 20.7785 99.7219 20.4891C100.068 20.1672 100.242 19.7734 100.242 19.3131V15.0735C100.626 15.7371 101.131 16.227 101.769 16.5418C102.373 16.8256 103.073 16.9682 103.867 16.9682C105.361 16.9682 106.588 16.3696 107.542 15.1681C108.496 13.9342 108.972 12.3276 108.972 10.337C108.972 8.34642 108.52 6.93041 107.438 5.60475C106.562 4.53321 105.235 3.92897 103.857 3.86544H103.858ZM104.966 13.1789C104.488 13.8439 103.836 14.1742 103.01 14.1742C102.119 14.1742 101.434 13.8439 100.959 13.1789C100.481 12.5789 100.244 11.6825 100.244 10.4796C100.244 9.18784 100.466 8.23772 100.909 7.63771C101.387 6.97559 102.057 6.64241 102.914 6.64241C103.771 6.64241 104.488 6.97559 104.964 7.63771C105.443 8.30125 105.681 9.24714 105.681 10.4796C105.681 11.6189 105.444 12.5168 104.964 13.1789H104.966Z" fill="#ffffff"></path><path d="M131.743 5.03581C130.641 4.19439 129.514 3.75532 127.575 3.80615C125.607 3.85979 124.176 4.41321 123.285 5.62734C122.395 6.84147 121.951 8.42831 121.951 10.3822C121.951 12.0538 122.286 13.402 122.957 14.4326C123.629 15.4561 124.433 16.1592 125.373 16.5347C126.307 16.9145 127.253 16.9922 128.206 16.7733C129.159 16.5503 129.916 16.0025 130.479 15.1173V15.9192C130.415 16.93 130.173 17.6867 129.754 18.1936C129.33 18.6962 128.861 19.0039 128.345 19.1155C127.834 19.2242 127.315 19.1649 126.801 18.9249C126.284 18.6891 125.903 18.3489 125.654 17.9098H122.233C123.118 20.5894 124.709 21.771 127.575 21.98C132.197 22.3146 133.67 18.3771 133.664 16.2524V9.57749C133.664 7.37089 132.95 5.95628 131.743 5.03439V5.03581ZM130.385 11.5935C130.259 12.3333 130.057 12.8796 129.775 13.2241C129.181 14.0429 128.259 14.3338 127.012 14.1008C125.762 13.8622 125.136 12.6566 125.136 10.4796C125.136 9.46879 125.321 8.56949 125.7 7.7803C126.076 6.99394 126.793 6.59864 127.854 6.59864C128.635 6.59864 129.229 6.88382 129.634 7.44995C130.041 8.01748 130.3 8.66407 130.409 9.39255C130.518 10.1168 130.509 10.8523 130.385 11.5935Z" fill="#ffffff"></path><path d="M119.169 4.70544C118.114 4.16897 116.906 3.8965 115.546 3.8965C113.457 3.8965 111.984 4.44427 111.125 5.53981C110.586 6.24005 110.282 7.1337 110.212 8.22218H113.335C113.411 7.74077 113.565 7.361 113.794 7.08147C114.117 6.7017 114.664 6.5097 115.437 6.5097C116.13 6.5097 116.652 6.6057 117.009 6.80194C117.362 6.99535 117.542 7.34688 117.542 7.85794C117.542 8.27724 117.31 8.5836 116.846 8.78266C116.586 8.8956 116.157 8.99019 115.552 9.06784L114.446 9.20337C113.189 9.36431 112.234 9.63114 111.589 10.0038C110.407 10.6886 109.817 11.7954 109.817 13.3243C109.817 14.5032 110.182 15.4152 110.919 16.0576C111.651 16.7027 112.583 16.971 113.71 17.0246C120.765 17.3423 120.686 13.282 120.749 12.4392V7.76618C120.749 6.26828 120.225 5.24898 119.168 4.70686L119.169 4.70544ZM117.529 11.7968C117.509 12.8867 117.198 13.6335 116.604 14.0458C116.009 14.4566 115.358 14.6627 114.654 14.6627C114.206 14.6627 113.829 14.5371 113.517 14.2914C113.206 14.0444 113.05 13.642 113.05 13.0858C113.05 12.4632 113.306 12.0029 113.815 11.705C114.118 11.53 114.612 11.3803 115.301 11.2632L116.039 11.1262C116.407 11.0556 116.696 10.9808 116.903 10.9017C117.117 10.8241 117.324 10.7196 117.529 10.5883V11.7982V11.7968Z" fill="#ffffff"></path><path d="M145.941 5.73604C144.898 4.42308 143.32 3.7666 141.2 3.7666C139.079 3.7666 137.504 4.42167 136.464 5.73604C135.423 7.04758 134.902 8.5963 134.902 10.3836C134.902 12.1709 135.423 13.7578 136.464 15.0524C137.504 16.3413 139.084 16.9893 141.2 16.9893C143.316 16.9893 144.898 16.3427 145.941 15.0524C146.979 13.7578 147.5 12.2034 147.5 10.3836C147.5 8.56383 146.981 7.04616 145.941 5.73604ZM143.361 13.258C142.857 13.9328 142.134 14.2716 141.191 14.2716C140.248 14.2716 139.521 13.9328 139.015 13.258C138.504 12.586 138.25 11.6274 138.25 10.385C138.25 9.14266 138.503 8.18688 139.015 7.51629C139.523 6.84569 140.248 6.50969 141.191 6.50969C142.134 6.50969 142.857 6.84428 143.361 7.51629C143.866 8.18547 144.118 9.14266 144.118 10.385C144.118 11.6274 143.866 12.586 143.361 13.258Z" fill="#ffffff"></path></svg> -->
+            <span>Mercado pago</span>
+        </div>
+      </div>
+    }
+
+  </div>
+
+</ng-template>

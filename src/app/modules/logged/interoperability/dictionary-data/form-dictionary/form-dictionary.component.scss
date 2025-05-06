@@ -1,0 +1,38 @@
+.container {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.cont-form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) auto repeat(2, 1fr);
+  grid-column-gap: 1em;
+  margin-top: 2em;
+  grid-row-gap: 2em;
+}
+
+
+@media (max-width: 1200px) {
+  .cont-form {
+    grid-template-columns: repeat(2, 1fr) auto
+  }
+}
+
+@media (max-width: 900px) {
+  .cont-form {
+    grid-template-columns: repeat(2, 1fr)
+  }
+}
+
+@media (max-width: 800px) {
+  .cont-form {
+    grid-template-columns: 1fr;
+    box-sizing: border-box;
+    max-height: 60%;
+    overflow: auto;
+    padding: 1em;
+  }
+
+}

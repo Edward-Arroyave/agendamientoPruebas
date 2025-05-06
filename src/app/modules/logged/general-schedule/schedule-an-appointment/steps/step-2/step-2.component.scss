@@ -1,0 +1,179 @@
+  // Paso 2
+
+  .containerTapsPaciente {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+  }
+
+  .contiene-tipo-paciente {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50dvh;
+    margin-top: 1em;
+  }
+
+  .pacienteRemitido {
+    background: linear-gradient(var(--color-01), var(--color-02));
+    color: var(--color-03);
+    padding: 1em 0em;
+    display: grid;
+    grid-template-columns: 130px auto;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 442px;
+    height: 110px;
+    border-radius: 10px;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .pacienteParticular {
+    background: linear-gradient(var(--color-05), var(--color-06));
+    color: var(--color-03);
+    padding: 1em 0em;
+    display: grid;
+    grid-template-columns: 130px auto;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 442px;
+    height: 110px;
+    border-radius: 10px;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .pacienteRemitido:hover {
+    background: linear-gradient(var(--color-02), var(--color-01));
+    color: white !important;
+
+    .border {
+      border-color: white;
+    }
+  }
+
+  .pacienteParticular:hover {
+    background: linear-gradient(var(--color-06), var(--color-05));
+    color: white;
+
+    .border {
+      border-color: white;
+    }
+  }
+
+  .border {
+    width: 130px;
+    height: 100%;
+    border-right: 2px solid var(--color-04);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // transition: .5s ease-in-out;
+  }
+
+  .iconPaciente {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .border-selected-remitido {
+    background: white;
+    padding: 10px;
+    border: 2px solid var(--color-01);
+    border-radius: 20px;
+  }
+
+  .border-selected-paticular {
+    background: white;
+    padding: 10px;
+    border: 2px solid var(--color-05);
+    border-radius: 20px;
+  }
+
+  .contiene-formulario-archivos {
+    padding: 1em;
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+  }
+
+  .form-archivos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+    row-gap: 2em;
+    margin-top: 2em;
+  }
+
+  .entidad-style {
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em
+  }
+
+
+  // Paso 2
+
+
+  @media screen and (max-width : 1020px) {
+
+    .border-selected-remitido {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .containerTapsPaciente {
+      display: grid;
+      grid-template-columns: 1fr;
+      height: 100%;
+    }
+
+    .contiene-tipo-paciente {
+      overflow: auto;
+    }
+
+    .form-archivos {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .entidad-style {
+      grid-column: span 2;
+    }
+  }
+
+  @media screen and (max-width : 800px) {
+    .border {
+      width: 80px;
+    }
+
+    .pacienteRemitido {
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+    }
+
+    .pacienteParticular {
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+    }
+
+    .form-archivos {
+      grid-template-columns: 1fr;
+    }
+
+    .entidad-style {
+      grid-column: span 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1em;
+      row-gap: 2em;
+    }
+
+
+    app-basic-input {
+      grid-column: span 1 !important;
+    }
+  }

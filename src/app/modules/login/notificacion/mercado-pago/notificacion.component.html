@@ -1,0 +1,146 @@
+@if (idNotificacion !== 0 && objMercadoPago) {
+    <div style="display: flex;align-items: center; height: 100%;">
+        <div class="contenedor-notify">
+            <div  style="width: 538px; margin: 0 auto 0;" 
+                  [ngClass]="{'success-box ': idNotificacion == 1,
+                              'pending-box': idNotificacion == 2,
+                              'error-box':idNotificacion == 3}">
+                <div style="display: flex; gap: 2em; align-items: center;">
+                    <div style="display: flex;">
+                        <div style="display: flex; gap: .5em;align-items: center;">
+                            <div  [ngClass]="{'divider-border-success': idNotificacion == 1,
+                                              'divider-border-pending': idNotificacion == 2,
+                                              'divider-border-error':idNotificacion == 3}" 
+                                  class="linea linea1">
+                            </div>
+                            <div  [ngClass]="{'divider-border-success': idNotificacion == 1,
+                                              'divider-border-pending': idNotificacion == 2,
+                                              'divider-border-error':idNotificacion == 3}" 
+                                  class="linea linea2">
+                            </div>
+                            <div  [ngClass]="{'divider-border-success': idNotificacion == 1,
+                                              'divider-border-pending': idNotificacion == 2,
+                                              'divider-border-error':idNotificacion == 3}" 
+                                  class="linea linea3">
+                            </div>
+                        </div>
+        
+                        <div [ngSwitch]="idNotificacion" class="icon-group">
+                            <div *ngSwitchCase="'1'">
+                                <mat-icon class="size-icon" style="color: var(--exito);"  svgIcon="exitoModal"></mat-icon>
+                            </div>
+                            <div *ngSwitchCase="'2'">
+                                <mat-icon class="size-icon" style="color: var(--yellow-01);" svgIcon="advertencia"></mat-icon>
+                            </div>
+                            <div *ngSwitchCase="'3'">
+                                <mat-icon class="size-icon" style="color: var(--error);" svgIcon="errorModal"></mat-icon>
+                            </div>
+                        </div>
+        
+                        <div style="display: flex; gap: .5em;align-items: center;">
+                            <div  [ngClass]="{'divider-border-success': idNotificacion == 1,
+                                              'divider-border-pending': idNotificacion == 2,
+                                              'divider-border-error':idNotificacion == 3}" 
+                                  class="linea linea3">
+                            </div>
+                            <div  [ngClass]="{'divider-border-success': idNotificacion == 1,
+                                              'divider-border-pending': idNotificacion == 2,
+                                              'divider-border-error':idNotificacion == 3}" 
+                                  class="linea linea2">
+                            </div>
+                            <div  [ngClass]="{'divider-border-success': idNotificacion == 1,
+                                              'divider-border-pending': idNotificacion == 2,
+                                              'divider-border-error':idNotificacion == 3}" 
+                                  class="linea linea1">
+                            </div>
+                        </div>
+                    </div>
+                    <p  [ngClass]="{'colorText1 ': idNotificacion == 1,
+                                    'colorText2': idNotificacion == 2,
+                                    'colorText3':idNotificacion == 3
+                                    }">
+                        <strong>{{idNotificacion == 1? messajeResponse.success : idNotificacion == 2 ? messajeResponse.pending: idNotificacion == 3 ? messajeResponse.error: 'Sin respuesta' }}</strong>
+                    </p> 
+                </div>
+            </div>
+        
+            <div class="cont-squares" style="margin-top: 1em;">
+                <div class="cuadros">
+                    @for (c of cuadrosInversa; track $index) {
+                    <div [ngStyle]="{'width.px': c.ancho, 'height.px': c.ancho, 'border-radius.px': c.borde }"
+                        [ngClass]="{'cuadro-background-success ': idNotificacion == 1,
+                                    'cuadro-background-pending': idNotificacion == 2,
+                                    'cuadro-background-error':idNotificacion == 3
+                                    }"
+                        class="cuadro-1" style="margin: 2px;">
+                    </div>
+                    }
+                  </div>
+                <div class="container">  
+                    <!-- Date display -->
+                    <div class="date-box" 
+                        [ngClass]="{'border-success ': idNotificacion == 1,
+                                    'border-pending': idNotificacion == 2,
+                                    'border-error':idNotificacion == 3}">
+                        <strong> {{objMercadoPago.dateCreated | date:'MMMM d, y, h:mm:ss'}}</strong> 
+                    </div>
+                    
+                    <!-- Payment details -->
+                    <div class="payment-details" 
+                        [ngClass]="{'border-success ': idNotificacion == 1,
+                                    'border-pending': idNotificacion == 2,
+                                    'border-error':idNotificacion == 3}">
+                        <div><strong>Total pagado:</strong></div>
+                        <div class="amount"><strong>${{objMercadoPago.additionalInfo?.items[0].unitPrice| currency :'COP'}}</strong></div>
+                        
+                        <div class="detail-row">
+                            <span><strong>Título del examen: </strong></span> {{objMercadoPago.additionalInfo?.items[0].title}}
+                        </div>
+                        
+                        <div class="detail-row">
+                            <span class="detail-title">
+                                <p>
+                                    <strong>Descripción : </strong>{{objMercadoPago.additionalInfo?.items[0].description}}
+                                </p> 
+                            </span> 
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="cuadros">
+                    @for (c of cuadros; track $index) {
+                    <div [ngStyle]="{'width.px': c.ancho, 'height.px': c.ancho, 'border-radius.px': c.borde }"
+                        [ngClass]="{'cuadro-background-success ': idNotificacion == 1,
+                                    'cuadro-background-pending': idNotificacion == 2,
+                                    'cuadro-background-error':idNotificacion == 3}"
+                        class="cuadro-1" style="margin: 2px;">
+                    </div>
+                    }
+                </div>
+            </div>
+            <!-- Divider lines -->
+            <div class="dividers">
+                @for (item of [1,2,3]; track $index) {
+                    <div class="divider" [ngClass]="{
+                        'divider-border-success': idNotificacion == 1,
+                        'divider-border-pending': idNotificacion == 2,
+                        'divider-border-error':idNotificacion == 3
+                        }">
+                    </div>
+                }
+            </div>
+            
+            @if(!noLogged){
+                <!-- Question text -->
+                <div class="question">
+                    ¿Desea regresar a la interfaz para agendar otra cita en el sistema?
+                </div>
+                <!-- Buttons -->
+                 <div style="display: flex; justify-content: center; gap: 1em; margin: 3em 0em;">
+                     <button class="btn-02" (click)="redireccion(1)">Cancelar</button>
+                     <button class="btn-01" (click)="redireccion(2)">Aceptar</button>
+                </div>
+             }
+        </div>
+    </div>
+}

@@ -1,0 +1,14 @@
+  // Paso 1
+  .form-paso-1{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+    gap: 2em;
+    margin: 0em 0; 
+  }
+
+  .titulo-paso-1{
+    margin-bottom: 2em;
+    margin-left: 0;
+  }
+  // Paso 1

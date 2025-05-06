@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30 30">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+
+      .cls-2 {
+        fill: currentColor;
+      }
+
+      .cls-3 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-1" x="2.93" y="2.5" width="24.14" height="25"/>
+    </clipPath>
+  </defs>
+  <g class="cls-3">
+    <g id="Grupo_35652">
+      <path id="Trazado_19579" class="cls-2" d="M26.52,2.5c-.23,0-.45.07-.65.18l-10.87,6.15c-.63.3-1.08.88-1.2,1.57v9.2c.12.69.57,1.27,1.2,1.57l10.87,6.15c.2.11.42.18.65.19.27.03.51-.16.54-.42,0-.03,0-.06,0-.09V3.01c.02-.27-.19-.5-.46-.51-.03,0-.06,0-.09,0"/>
+      <path id="Trazado_19580" class="cls-2" d="M12.89,20.49v-10.98h-5.89c-2.25,0-4.07,1.82-4.07,4.07h0v2.84c0,.98.35,1.93,1,2.67h-.03l5.98,5.98h4.43l-4.58-4.58h3.16Z"/>
+    </g>
+  </g>
+</svg>

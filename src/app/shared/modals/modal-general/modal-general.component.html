@@ -1,0 +1,64 @@
+<div style="position: relative; padding: 5px; border:1px solid white; border-radius: 20px;">
+    <div [style.background]="linearGradient"
+        style="background: white; border:1px solid transparent;border-radius: 20px;">
+        @if(type){
+        <div style="padding-top: 1em; width: 50%;margin:0 auto 0; display: flex;justify-content: center;">
+            <div style="display: flex; gap: .5em;align-items: center;">
+                <div [style.background]="lineColor" class="linea linea1"></div>
+                <div [style.background]="lineColor" class="linea linea2"></div>
+                <div [style.background]="lineColor" class="linea linea3"></div>
+            </div>
+            <div class="shadow"
+                style="background: white; border-radius: 10px; margin: .5em; width: 60px; height: 60px; object-fit: cover; overflow: hidden;padding: .5em ; box-sizing: border-box;">
+                <div [ngSwitch]="type" [style.color]="lineColor">
+                    <div *ngSwitchCase="'1'">
+                        <mat-icon class="size-icon" svgIcon="exitoModal"></mat-icon>
+                    </div>
+                    <div *ngSwitchCase="'2'">
+                        <mat-icon class="size-icon" svgIcon="preguntaModal"></mat-icon>
+                    </div>
+                    <div *ngSwitchCase="'3'">
+                        <mat-icon class="size-icon" svgIcon="advertencia"></mat-icon>
+                    </div>
+                    <div *ngSwitchCase="'4'">
+                        <mat-icon class="size-icon" svgIcon="errorModal"></mat-icon>
+                    </div>
+
+                    <div *ngSwitchDefault>
+                        <mat-icon class="size-icon" svgIcon="exitoModal"></mat-icon>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; gap: .5em;align-items: center;">
+                <div [style.background]="lineColor" class="linea linea3"></div>
+                <div [style.background]="lineColor" class="linea linea2"></div>
+                <div [style.background]="lineColor" class="linea linea1"></div>
+            </div>
+        </div>
+        }
+        <div>
+            <h1 style="text-align: center;">{{title}}</h1>
+            @defer(when !!content){
+            <ng-container *ngTemplateOutlet="content"></ng-container>
+            }
+            @if(!!message){
+            <p style="margin: 1em; text-align: center;color: black;">{{message}}</p>
+            }
+            @if(!!message2){
+            <p style="text-align: center;color: black;">{{message2}}</p>
+            }
+            @if(footer){
+            <div style="display: flex; justify-content: center; gap: 1em;margin-bottom: 1em;">
+                @if(btn2){
+                <button class="btn-02" [style.background]="linearGradientButton" matDialogClose
+                    (click)="second()">{{btn2}}</button>
+                }
+                @if(btn){
+                <button dia class="btn-02 btn-exito" (click)="primary()">{{btn}}</button>
+                }
+            </div>
+            }
+        </div>
+    </div>
+
+</div>

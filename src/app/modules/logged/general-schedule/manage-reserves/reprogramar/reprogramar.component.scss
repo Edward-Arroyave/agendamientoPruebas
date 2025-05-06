@@ -1,0 +1,142 @@
+.container {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.title {
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+.subtitle {
+  font-size: 14px;
+  margin-left: 1em;
+  color: black;
+}
+
+.form-search {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+  margin-top: 1em;
+
+}
+
+.encabezado {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr 943px;
+  align-items: end;
+  gap: 10px;
+}
+.linea {
+  width: 100%;
+  height: 2px;
+  border-bottom: 2px solid var(--color-06);
+}
+
+.horarios {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 0px 30px 0 3px;
+  max-height: 400px; 
+  margin-top: 2rem;
+}
+
+.cards-horarios {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* padding: 1em; */
+  gap: 26px;
+}
+
+.card {
+  display: flex;
+  grid-template-columns: 1fr auto;
+  padding: 15px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.informacion-cont {
+  width: 100%;
+  margin: auto;
+  padding: 0 15px;
+  border-left: var(--color-01) solid 2px;
+  border-right: var(--color-01) solid 2px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+span {
+  font-size: 14px !important;
+}
+
+.font-bold {
+  font-weight: bold;
+  color: var(--color-01);
+}
+
+.no-wrap {
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+}
+  /* No data */
+  .no-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.8em;
+    width: 100%;
+    height: 14em;
+  }
+  
+  .no-data__img {
+    width: 4em;
+    filter: grayscale(1);
+  }
+  
+  .no-data__span {
+    text-align: center;
+    color: #A3A2A2;
+  }
+@media (max-width: 1500px) {
+  .cards-horarios {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .encabezado {
+
+    grid-template-columns: auto .5fr 1fr;
+
+  }
+}
+@media (max-width: 1020px) {
+  .cards-horarios {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .form-search {
+    grid-template-columns: 1fr 1fr;
+  }
+  .encabezado {
+    grid-template-columns: auto 0% 1fr;
+    gap: 2em;
+
+  }
+}
+@media (max-width: 600px) {
+
+
+  .form-search {
+    grid-template-columns: 1fr ;
+  }
+}

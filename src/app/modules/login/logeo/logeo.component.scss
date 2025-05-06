@@ -1,0 +1,294 @@
+#fondo {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 101vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-background {
+  background: url("./../../../../assets/images/loginadministrativo.png") fixed;
+}
+.patient-background {
+  background: url("./../../../../assets/images/loginpaciente.png") fixed;
+}
+.login_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.content-login-card {
+  width: 50%;
+  min-width: 720px;
+  background-color: white;
+  border-radius: 30px;
+  position: relative;
+}
+
+.option-tab {
+  width: 155px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: bold;
+  border-radius: 8px 8px 0px 0px;
+  cursor: pointer;
+  transition: all ease-in-out 0.5s;
+  color: white;
+}
+.principal-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  background: white;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1607843137);
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  top: -30px;
+  transform: translateX(-50%);
+  color: var(--color-04);
+  font-size: 40px;
+  padding: 5px;
+  font-family: "Condensed" !important;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 30%;
+  background: white;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  top: -30px;
+  transform: translateX(-50%);
+  color: var(--color-04);
+  font-size: 40px;
+  padding: 5px;
+}
+
+.logo img {
+  width: 80%;
+}
+
+.float-01 {
+  z-index: 1;
+  position: absolute;
+  left: 10%;
+  top: -40px;
+}
+.float-02 {
+  z-index: 1;
+  position: absolute;
+  right: 10%;
+  top: -40px;
+}
+
+.color-01 {
+  background-color: var(--color-01);
+  color: white;
+  &:hover {
+    background-color: var(--color-02);
+  }
+}
+
+.color-02 {
+  background-color: white;
+  color: var(--color-05);
+  &:hover {
+    background-color: var(--color-06);
+    color: white;
+  }
+}
+
+.header {
+  width: 100%;
+  height: 70px;
+  margin-bottom: 1em;
+  border-radius: 30px 30px 0px 0px;
+  transition: all ease-in-out 0.5s;
+}
+
+.degrade-option {
+  background: linear-gradient(
+    180deg,
+    var(--color-01) 20%,
+    rgba(255, 255, 255, 1) 92%
+  );
+}
+
+// Estilos del formulario
+
+.form_login {
+  margin: 2em 0px;
+}
+
+.basics {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin: auto;
+  margin-bottom: 1em;
+}
+.seconds {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-01);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.underline:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+//Captcha
+
+.content_recaptcha {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5em auto;
+}
+
+.contAlerta {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: red;
+  align-items: center;
+}
+
+//Formulario recuperar
+
+.form-recuperar {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  margin: 2em 0px;
+}
+
+.form-recuperar span {
+  color: black;
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+}
+
+.btns-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+//Contador de tiempo y contenedor
+
+.contador-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  color: black;
+  font-size: 14px;
+}
+
+.contador-box span {
+  color: black;
+  font-size: 14px;
+}
+
+.contador {
+  text-decoration: underline;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+.contador:hover {
+  color: var(--color-01) !important;
+}
+
+.inputs-recuperar {
+  width: 90%;
+  margin: 1em auto;
+  display: grid;
+  gap: 1em;
+  grid-row-gap: 2em;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs-recuperar :nth-child(1) {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.inputs-recuperar :nth-child(2) {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.inputs-recuperar :nth-child(3) {
+  width: 50%;
+  margin: auto;
+  grid-area: 2 / 1 / 3 / 3;
+}
+
+.form-cambiar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 750px) {
+  .content-login-card {
+    width: 98%;
+    min-width: 100px;
+  }
+
+  .logo {
+    top: 3px;
+    height: 40px;
+  }
+}
+@media (max-width: 550px) {
+  .basics {
+   grid-template-columns: 1fr;
+   gap: 2em;
+  }
+
+  .seconds {
+     flex-wrap: wrap;
+  }
+}

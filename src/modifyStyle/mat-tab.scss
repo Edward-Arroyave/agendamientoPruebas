@@ -1,0 +1,121 @@
+
+
+  /* Esilos content tabs */
+
+.mat-tab-body.mat-tab-body-active {
+  overflow-y: hidden !important;
+}
+
+
+  /* COMPONENTE TAB */
+.tab-label {
+    display: inline-flex;
+    gap: .5em;
+    font-size: 12px;
+}
+
+.mat-mdc-tab-label-container {
+    position: relative;
+    padding: 0 0 0 20px;
+}
+
+.mat-mdc-tab-label-container:after {
+    content: "";
+    border:none;
+    position: absolute;
+    width: calc(100% - 4px);
+    bottom: 2px;
+    left: 0;
+    border-radius: 4px;
+}
+
+.mat-mdc-tab-labels {
+    gap: 20px;
+}
+.tab-icon {
+    margin-left: 8px;
+  }
+.mdc-tab.mat-mdc-tab {
+    border-radius: 10px 10px 0 0;
+    background-color: white;
+    box-shadow: 0px 3px 6px #00000029;
+    min-width: auto;
+    max-width: 190px;
+}
+
+.mat-mdc-tab.mat-mdc-tab-disabled {
+    opacity: .8 !important;
+}
+
+.mdc-tab.mat-mdc-tab:not(.mdc-tab--stacked) {
+    height: 35px;
+}
+
+/* ------------- For succes theme color -------------*/
+.mat-mdc-tab .mdc-tab__text-label {
+    font-weight: 800;
+    color: var(--color-01) !important;
+    transition: 50ms color linear !important;
+}
+
+.mat-ripple mat-mdc-tab-ripple {
+    border-radius: 10px 10px 0 0;
+}
+
+/* Change active Tab header label color (Succes Color) */
+.mat-mdc-tab-group .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active,
+.mat-mdc-tab-group .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active,
+.mat-mdc-tab-nav-bar .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active,
+.mat-mdc-tab-nav-bar .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active {
+    background-color: var(--color-02);
+}
+
+.mat-mdc-tab-group .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
+.mat-mdc-tab-group .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
+.mat-mdc-tab-nav-bar .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
+.mat-mdc-tab-nav-bar .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+    color: var(--color-03) !important;
+    font-weight: 800;
+}
+
+.mat-mdc-tab-group .mat-mdc-tab:not(.mdc-tab--active):hover .mdc-tab__ripple::before,
+.mat-mdc-tab-group .mat-mdc-tab-link:not(.mdc-tab--active):hover .mdc-tab__ripple::before,
+.mat-mdc-tab-nav-bar .mat-mdc-tab:not(.mdc-tab--active):hover .mdc-tab__ripple::before,
+.mat-mdc-tab-nav-bar .mat-mdc-tab-link:not(.mdc-tab--active):hover .mdc-tab__ripple::before {
+    opacity: 1 !important;
+}
+
+.mat-mdc-tab-group .mat-mdc-tab:not(.mdc-tab--active):hover .mdc-tab__text-label,
+.mat-mdc-tab-group .mat-mdc-tab:not(.mdc-tab--active):focus .mdc-tab__text-label {
+    color: white !important;
+}
+
+/* Change active Tab bottom border color (Success Color) */
+.mat-mdc-tab-group .mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline,
+.mat-mdc-tab-group .mat-mdc-tab-link:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline,
+.mat-mdc-tab-nav-bar .mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline,
+.mat-mdc-tab-nav-bar .mat-mdc-tab-link:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline {
+    border-color: transparent !important;
+}
+
+/* Change background ripple color on clik (Success Color) */
+.mat-mdc-tab-group .mdc-tab__ripple::before,
+.mat-mdc-tab-group .mat-mdc-tab .mat-ripple-element,
+.mat-mdc-tab-nav-bar .mat-mdc-tab-header-pagination .mat-ripple-element,
+.mat-mdc-tab-nav-bar .mat-mdc-tab-link .mat-ripple-element {
+
+    border-radius: 10px 10px 0 0;
+    background: transparent linear-gradient(180deg, var(--color-01) 0%, var(--color-02) 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+.container-box{
+    display: flex;
+    align-items: center;
+    margin: 0px 3px 10px 3px;
+    border-radius: 10px;
+    padding: 40px 30px;
+    box-shadow: 0px 3px 6px #00000029;
+    background: transparent linear-gradient(180deg, var(--color-02) 0%, #FFFFFF 5%) 0% 0% no-repeat padding-box;
+  }
+

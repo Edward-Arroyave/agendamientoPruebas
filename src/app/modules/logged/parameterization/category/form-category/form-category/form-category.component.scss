@@ -1,0 +1,82 @@
+.container {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.title-form {
+  font-size: 16px;
+  color: var(--color-03);
+  font-weight: 800;
+}
+
+//Formulario
+.form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 40px;
+  align-items: center;
+  gap: 1em;
+  overflow: auto;
+  padding-top: 1em;
+}
+
+/* Aplicar estilos al segundo hijo */
+.form> :nth-child(2) {
+  grid-area: 1 / 2 / 2 / 5;
+}
+
+.text_tool {
+  font-size: 14px;
+  font-weight: bold;
+  color: #3E3E3E;
+}
+
+.toggle-cont {
+  display: flex;
+  gap: 5px;
+
+}
+
+.exam-toggle {
+  grid-area: 2 / 2 / 3 / 5;
+}
+
+
+.full-width1 {
+  grid-column: span 3;
+}
+
+
+@media (max-width: 1200px) {
+  .form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form> :nth-child(2) {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+
+  .exam-toggle {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+}
+
+@media (max-width: 600px) {
+  .form {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .form> :nth-child(2) {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+
+  .exam-toggle {
+    grid-area: 4 / 1 / 5 / 2;
+  }
+
+
+}
+
+

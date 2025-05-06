@@ -1,0 +1,47 @@
+<div class="dropdown-menu" *ngIf="isMenuOpen()">
+  <!-- Botón para abrir/cerrar el menú principal -->
+  <i class="fa-solid fa-play flecha" style="color: var(--color-03); padding: 0 16px 0 0; cursor: pointer;" (click)="toggleMainMenu()"></i>
+
+  <!-- Primer línea -->
+  <div class="v-line"></div>
+
+  <!-- Menú -->
+  <div class="SubmenuScroll"   [ngClass]="{'menu-responsive': openMenuIndex !== null}">
+    <ng-container *ngFor="let menu of menus; let i = index" >
+      <ng-container *ngIf="menu.Ver">
+        <div *ngIf="!isFirstMenuElement(menus, menu)" class="v-line"></div>
+
+        <div class="menu-item-with-submenu">
+          <!-- Menú -->
+          <a (click)="toggleSubMenu(i)" [class.active]="isSubMenuOpen(i)">
+            <i class="fa-solid fa-caret-right fleR" [ngClass]="{'rotate-icon': isSubMenuOpen(i)}"></i>
+            <span>{{ menu.Name }}</span>
+          </a>
+          <hr class="linea-horizontal">
+          <i class="fa-solid fa-sort-down flecha-abajo" *ngIf="isSubMenuOpen(i)" style="color: var(--color-02); margin-left: 8px;"></i>
+
+          <!-- Submenú -->
+          <div class="submenu" *ngIf="isSubMenuOpen(i)">
+            <ng-container *ngFor="let subItem of menu.Children">
+              <ng-container *ngIf="subItem.Ver">
+                <div class="ic23">
+                  <!-- Al hacer clic en un submenú, cerrar todo el menú -->
+                  <a (click)="selectSubMenu()" [routerLink]="getMenuLink(subItem.Name)">
+                    {{ subItem.Name }}
+                  </a>
+                  <i id="iconC" class="fa-solid fa-circle"></i>
+                </div>
+                <div class="line-menu" *ngIf="!isLastElement(menu.Children, subItem)"></div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <div class="v-line"></div>
+  </div>
+
+  <!-- Última línea -->
+</div>
+
+

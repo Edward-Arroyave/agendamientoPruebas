@@ -1,0 +1,103 @@
+<div class="container">
+  <h1 class="title">Usuarios</h1>
+
+
+  <form [formGroup]="formSearch" class="form-search">
+
+    <div class="inputs-form">
+      <app-basic-input [dataSelect]="tiposDocumentos" [valueId]="'idDocumentType'" [valueDescription]="'documentType'"
+        [typeInput]="'select'" [leftIcon]="'tipodocumento'" [form]="formSearch"
+        [nameControlform]="'idIdentificationType'" [textLabel]="'Tipo de documento'" [flagCheck]="false"
+        [searchFlag]="true" [placeholderText]="'Buscar documento'">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'numeral'" [form]="formSearch"  [restriction]="'NumbersLetters'" [maxlength]="20"
+        [nameControlform]="'identificationNumber'" [textLabel]="'N° de documento'"></app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formSearch" [nameControlform]="'firstName'"
+        [textLabel]="'Nombre'"></app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formSearch"
+        [nameControlform]="'firstLastName'" [textLabel]="'Apellido'"></app-basic-input>
+    </div>
+
+    <div class="btns-form">
+      <button class="btnIcon-01" (click)="filterSearch()">
+        <div><span>Buscar</span></div>
+        <mat-icon>search</mat-icon>
+      </button>
+      <button class="btnIcon-01" (click)="limpiar()">
+        <div><span>Limpiar</span></div>
+        <mat-icon svgIcon="limpiar"></mat-icon>
+      </button>
+
+      @if(permisosDelModulo.Crear){
+      <button class="btnIcon-01" routerLink="form">
+        <div><span>Agregar</span></div>
+        <mat-icon>add</mat-icon>
+      </button>
+      }
+
+    </div>
+
+
+
+
+  </form>
+
+
+
+
+  <div class="users" #scrollContainer (scroll)="scrollListUsers($event)">
+    @for (item of listUsers; track $index) {
+    <div class="card-user shadow">
+      <div class="cont-image-user">
+        <div class="image-user">
+          @if(item.image){
+          <img [src]="item.image" alt="imagen usuario">
+          } @if(!item.image){
+          <mat-icon [svgIcon]="'usuario'"></mat-icon>
+          }
+        </div>
+      </div>
+
+      <div class="info-user">
+
+        <div class="name" [matTooltip]="item.name + item.lastName">
+          <span>{{ item.name}}  {{item.lastName }}</span>
+        </div>
+
+        <div class="document">
+          <span>Documento:</span>
+          <span [matTooltip]="item.identificationNumber">{{ item.tipoDocumento }} {{ item.identificationNumber }}</span>
+        </div>
+      </div>
+
+
+      <div class="btns-options">
+        @if(permisosDelModulo.Editar){
+        <div class="btn-user key-i" (click)="openModalCredencial(credenciales, item.email, item.idUser)"
+          [matTooltip]="'Enviar credenciales'">
+          <mat-icon [svgIcon]="'llave'"></mat-icon>
+        </div>
+        <app-toggle [flag]="item.active" (onChange)="cambiarEstado($event, item.idUser,item)"></app-toggle>
+        <div class="btn-user edit-i" [matTooltip]="'editar'" [routerLink]="['form/'+item.idUser]">
+          <mat-icon>edit</mat-icon>
+        </div>
+
+        <div class="btn-user user-i" [routerLink]="['permisos/'+item.idUser]">
+          <mat-icon [svgIcon]="'usuario'" [matTooltip]="'permisos'"></mat-icon>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>
+
+<ng-template #credenciales>
+  <span class="text-enviar">
+    ¿Desea enviar las credenciales al correo: {{correoUsuario}}?
+  </span>
+
+</ng-template>

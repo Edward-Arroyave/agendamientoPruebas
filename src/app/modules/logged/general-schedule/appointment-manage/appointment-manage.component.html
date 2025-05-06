@@ -1,0 +1,353 @@
+<div class="principal-cont">
+  <span class="titulo">Administración de citas </span>
+
+  <div class="contenedor1">
+
+    <form [formGroup]="formSearch" class="form-search form-inline">
+
+      <div class="input-container">
+
+        <!-- input buscar sede -->
+        <app-basic-input [typeInput]="'date'" [rightIcon]="'fecha-mini'" [leftIcon]="'fecha-normal'" [form]="formSearch"
+          [nameControlform]="'dateAppointment'" [textLabel]="'Fecha'"
+          [placeholderText]="'Seleccione una fecha'"></app-basic-input>
+
+        <app-basic-input [typeInput]="'text'" [rightIcon]="'search'" [leftIcon]="'search'" [form]="formSearch"
+          [nameControlform]="'filterCode'" [textLabel]="'Código de la cita'"
+          [ariaRequired]="false"></app-basic-input>
+
+        <app-basic-input [typeInput]="'text'" [rightIcon]="'search'" [leftIcon]="'buscar-tuerca'" [form]="formSearch"
+          [nameControlform]="'FilterDoc'" [textLabel]="'Número de documento'" [ariaRequired]="false"></app-basic-input>
+
+      </div>
+
+      <button class="btnIcon-01" (click)="busquedaAvanzadaModal(avanzada)">
+        <div><span>Búsqueda avanzada</span></div>
+        <mat-icon>search</mat-icon>
+      </button>
+
+      <button class="btnIcon-01" (click)="search()">
+        <div><span>Buscar</span></div>
+        <mat-icon>search</mat-icon>
+      </button>
+
+      <button class="btnIcon-01" (click)="limpiarFiltros()">
+        <div><span>Limpiar</span></div>
+        <mat-icon svgIcon="limpiar"></mat-icon>
+      </button>
+
+      <!-- <button class="btnIcon-01">
+            <div><span>Cargar archivo</span></div>
+            <mat-icon>upload</mat-icon>
+        </button> -->
+      <div class="cont-hours">
+        {{ currentTime | date:'hh:mm a' }} - {{ currentTime | date:'dd/MM/yyyy' }}
+      </div>
+    </form>
+  </div>
+
+
+  <div class="table-container">
+    <div class="tableHours" style="overflow: auto;
+        white-space: nowrap;">
+      <table class="myTable " style="width: 100%;">
+        <thead class="commonTable">
+          <tr>
+            <th *ngFor="let item of cabeceros; let i = index">{{ item }}</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="AdminCitas.length > 0; else noData">
+          <tr
+            *ngFor="let item of AdminCitas  | paginate: { itemsPerPage: itemsPorPagina, currentPage: currentPage, id:'PgtorCitas', totalItems: counter}"
+            class="shadow"
+            [ngClass]="{'current-time-table': isCurrentAppointment(item.dateAppointment, item.startTime, item.endTime)}">
+            <td [matTooltip]="item.internalCode">{{ item.internalCode }}</td>
+            <td>{{ item.dateAppointment }}</td>
+            <td>{{ item.documentPatient }}</td>
+            <td>{{ item.namePatient }}</td>
+            <td>
+              <div class="iconContainer shadow" (click)="ModalDetalle(Detail, item)">
+                <mat-icon class="iconTable yellow">library_books</mat-icon>
+              </div>
+            </td>
+            <td>
+              <div class="iconContainer shadow" (click)="Asistencia(asistencia,item)">
+                <mat-icon class="iconTable1 assistence" svgIcon="Asistencia"></mat-icon>
+              </div>
+            </td>
+            <td>
+              <div class="iconContainer shadow" (click)="Reprogramar(item)">
+                <mat-icon class="iconTable yellow" svgIcon="reprogramar"></mat-icon>
+              </div>
+            </td>
+            <td>
+              <div class="iconContainer shadow" (click)="confirmarEliminacionModal(item)">
+                <mat-icon class="iconTable eliminar">close</mat-icon>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="time-column">
+      <div
+        *ngFor="let cita of AdminCitas | paginate: { itemsPerPage: itemsPorPagina, currentPage: currentPage, totalItems: counter }"
+        class="time-item"
+        [ngClass]="{'current-time': isCurrentAppointment(cita.dateAppointment, cita.startTime, cita.endTime)}"
+        [matTooltip]="calcularDuracionTooltip(cita.startTime, cita.endTime)" matTooltipPosition="left">
+        {{ extractTime(cita.startTime) }}
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Paginación -->
+<pagination-controls *ngIf="AdminCitas.length > 0"
+  [ngClass]="{'dn': AdminCitas.length == 0, 'ds': AdminCitas.length > 0}"
+  class="container-table__paginator my-pagination" id="PgtorCitas" (pageChange)="handlePageChange($event)" previousLabel
+  nextLabel>
+</pagination-controls>
+
+
+<ng-template #asistencia>
+  <div class="cont-modal">
+    <span class="title">Confirmación de asistencia del paciente</span>
+    <div class="cont-detalle">
+      <div class="valores">
+        <span class="text-patient">¿El paciente {{selectedPatientName }} asistió puntualmente a la cita?</span>
+        <div class="linea-separador"></div>
+        <form [formGroup]="asistenciaForm">
+          <mat-radio-group formControlName="confirmPatientAttendance" aria-labelledby="asistencia-patient-label"
+            class="asistencia-radio-group">
+            <mat-radio-button class="asistencia-radio-button" [value]="true">Sí</mat-radio-button>
+            <mat-radio-button class="asistencia-radio-button" [value]="false">No</mat-radio-button>
+          </mat-radio-group>
+
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #Detail>
+  <div class="cont-modal">
+    <span class="title">Detalle de reserva</span>
+
+    <div class="cont-detalle1 shadow">
+      <div class="valores1">
+        <div class="grid-container">
+          <!-- Categoría -->
+          <div class="elemento">
+            <mat-icon class="title1" svgIcon="sede"></mat-icon>
+            <div class="container">
+              <span class="subT1">Sede:</span>
+              <span class="textS1">{{datosCita.attentionCenterName || 'No disponible'}}</span>
+            </div>
+          </div>
+
+          <!-- Especialidad -->
+          <div class="elemento">
+            <mat-icon class="title1" svgIcon="reloj"></mat-icon>
+            <div class="container">
+              <span class="subT1">Duración de la cita:</span>
+              <span class="textS1">{{ datosCita.duracionCita || 'No disponible' }}</span>
+            </div>
+          </div>
+
+
+          <!-- Característica -->
+          <div class="elemento">
+            <mat-icon class="title1" svgIcon="tipoAtencion"></mat-icon>
+            <div class="container">
+              <span class="subT1">Tipo de atención:</span>
+              <span class="textS1">
+                {{ datosCita.idTypeAttention === 1 ? 'Presencial' : (datosCita.idTypeAttention === 2 ? 'Virtual' : 'No
+                disponible') }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Característica -->
+          <div class="elemento">
+            <mat-icon class="title1" svgIcon="categoria"></mat-icon>
+            <div class="container">
+              <span class="subT1">Categoria:</span>
+              <span class="textS1">{{datosCita.categoryName || 'No disponible'}}</span>
+            </div>
+          </div>
+          <!-- Característica -->
+          <div class="elemento">
+            <mat-icon class="title1" svgIcon="especialidad"></mat-icon>
+            <div class="container">
+              <span class="subT1">Especialidad:</span>
+              <span class="textS1">{{datosCita.specialtiesName || 'No disponible' }}</span>
+            </div>
+          </div>
+          <!-- Característica -->
+          <div class="elemento">
+            <mat-icon class="title1" svgIcon="caracteristica"></mat-icon>
+            <div class="container">
+              <span class="subT1">Caracteristica:</span>
+              <span class="textS1">{{datosCita.characteristicName || 'No disponible' }}</span>
+            </div>
+          </div>
+          <!-- Característica -->
+          <div class="elemento">
+            <mat-icon class="title1" svgIcon="elemento"></mat-icon>
+            <div class="container">
+              <span class="subT1">Elemento:</span>
+              <span class="textS1">{{datosCita.elementName || 'No disponible' }}</span>
+            </div>
+          </div>
+          <!-- Característica -->
+          <div class="elemento">
+            <mat-icon class="title1" svgIcon="condicion-especial"></mat-icon>
+            <div class="container">
+              <span class="subT1">Condicion Especial:</span>
+              <span class="textS1">{{datosCita.specialCondition || 'No disponible' }}</span>
+            </div>
+          </div>
+
+          <!-- Elementos -->
+          <div class="elemento cont4">
+            <mat-icon class="title1" svgIcon="sede"></mat-icon>
+            <div class="container">
+              <span class="subT1">Dirección:</span>
+              <span>{{datosCita.address || 'No disponible' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    @if(detailExams){
+    <div class="cont-detalle1 shadow">
+
+      <div class="cont-exams">
+        <mat-icon class="title1" svgIcon="Documento"></mat-icon>
+        <div>
+
+          <span class="subT1">Exámenes de laboratorio:</span>
+
+          <div class="list-exams">
+            @for (exam of listExams; track $index) {
+            <span [matTooltip]="exam" class="text-truncate">-{{exam}}</span>
+            }
+          </div>
+
+        </div>
+
+
+      </div>
+      <span class="total-exams">Total de exámenes: {{ listExams.length }} {{ listExams.length === 1 ? 'examen' :
+        'exámenes' }}</span>
+
+
+
+    </div>
+    }
+
+
+  </div>
+</ng-template>
+
+<!--
+  Paginación
+  <pagination-controls *ngIf="AdminCitas.length > 0"
+    [ngClass]="{'dn': AdminCitas.length == 0, 'ds': AdminCitas.length > 0}"
+    class="container-table__paginator my-pagination" id="PgtorCitas" (pageChange)="handlePageChange($event)"
+    previousLabel nextLabel>
+  </pagination-controls>
+-->
+
+<ng-template #asistencia>
+  <div class="cont-modal">
+    <h1 class="title">Confirmación de asistencia del paciente</h1>
+    <div class="cont-detalle">
+      <div class="valores">
+        <span class="text-patient">¿El paciente {{selectedPatientName }} asistió puntualmente a la cita?</span>
+        <div class="linea-separador"></div>
+        <form [formGroup]="asistenciaForm">
+          <mat-radio-group aria-labelledby="asistencia-patient-label" class="asistencia-radio-group"
+            [(ngModel)]="confirmPatientAttendance">
+
+            <!-- Repetición para los valores "Sí" y "No" -->
+            <mat-radio-button class="asistencia-radio-button" [value]="true">Sí</mat-radio-button>
+            <mat-radio-button class="asistencia-radio-button" [value]="false">No</mat-radio-button>
+
+          </mat-radio-group>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #pre_eliminar>
+  <div class="cont-modal">
+    <h1 class="title" style="text-align: center;">Confirmación de cancelación</h1>
+    <div class="cont-detalle">
+      <div class="valores">
+        <span class="text-patient">¿Esta seguro que desea cancelar y no re-agendar la cita?</span>
+        <div class="linea-separador"></div>
+        <form [formGroup]="confirmarEliminacion">
+          <mat-radio-group aria-labelledby="asistencia-patient-label" class="asistencia-radio-group" formControlName="confirmar">
+
+            <!-- Repetición para los valores "Sí" y "No" -->
+            <mat-radio-button class="asistencia-radio-button" [value]="true">Sí, cancelar</mat-radio-button>
+            <mat-radio-button class="asistencia-radio-button" [value]="false">No, re-agendar</mat-radio-button>
+
+          </mat-radio-group>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #eliminar>
+  <div class="content">
+    <h1 style="margin-bottom: 1em;" class="title">Cancelar cita</h1>
+    <form [formGroup]="eliminacionForm" class="motivo">
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'Documento'" [form]="eliminacionForm"
+        [nameControlform]="'motivo'" [textLabel]="'Motivo de cancelación'"></app-basic-input>
+    </form>
+  </div>
+</ng-template>
+
+
+<ng-template #avanzada>
+  <div class="cont-modal">
+    <h1 class="title">Busqueda avanzada</h1>
+
+    <form [formGroup]="formAvanced" class="form-avanced ">
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formAvanced"
+        [nameControlform]="'firstNamePatient'" [textLabel]="'Primer nombre'"></app-basic-input>
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formAvanced"
+        [nameControlform]="'secondNamePatient'" [textLabel]="'Segundo nombre'"></app-basic-input>
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formAvanced"
+        [nameControlform]="'firstLastNamePatient'" [textLabel]="'Primer apellido'"></app-basic-input>
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formAvanced"
+        [nameControlform]="'secondLastNamePatient'" [textLabel]="'Segundo apellido'"></app-basic-input>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #noData>
+  <tbody>
+    <tr>
+      <td colspan="12">
+        <div class="no-data">
+          <img class="no-data__img" src="assets/images/logos/icono_noData.png" alt="icon-no-data" />
+          <span class="no-data__span">Sin datos, seleccione una fecha para cargar las citas.</span>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</ng-template>

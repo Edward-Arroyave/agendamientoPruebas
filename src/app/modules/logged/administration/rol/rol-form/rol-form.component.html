@@ -1,0 +1,25 @@
+<div class="container">
+  <h3 class="title-form">{{!isEdit? 'Agregar': 'Editar'}} rol</h3>
+
+
+  <form [formGroup]="formulario" class="form">
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formulario"
+      [nameControlform]="'roleName'" [textLabel]="'Nombre del rol'"></app-basic-input>
+
+    <app-basic-input [dataSelect]="tiposDeRol" [valueId]="'IdTypeRole'"
+      [valueDescription]="'TypeRoleName'" [typeInput]="'select'" [leftIcon]="'roles'"
+      [form]="formulario" [nameControlform]="'idTypeRole'" [textLabel]="'Tipo de rol'"
+      [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar tipo'">
+    </app-basic-input>
+
+  </form>
+
+
+
+  <div class="controls_two_buttons absolute_boton">
+    <button class="btn-01" (click)="cancelar()">Cancelar</button>
+    <button class="btn-02" (click)="crearRol()">{{!isEdit? 'Guardar': 'Actualizar'}}</button>
+  </div>
+
+</div>

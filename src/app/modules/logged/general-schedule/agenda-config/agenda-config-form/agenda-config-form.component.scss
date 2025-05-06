@@ -1,0 +1,309 @@
+.container {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.title {
+  margin-bottom: 1em !important;
+}
+
+.content-form {
+  max-height: 225px;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: 1em;
+  border-bottom: double 4px var(--color-01);
+  margin-bottom: 3em;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  row-gap: 2em;
+}
+
+.toggle-input-text {
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.content-tabs {
+  margin: auto;
+  width: 99%;
+  border-radius: 10px;
+  position: relative;
+  border-top: 2px solid var(--color-02);
+  box-sizing: border-box;
+  min-height: 200px;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  margin-left: 1em;
+  width: 100%;
+}
+
+.mat-mdc-tab-group {
+  width: 100%;
+}
+
+.mat-mdc-tab-body-content {
+  padding: 1px;
+}
+
+.content-tabs {
+  width: 98%;
+  margin: auto;
+  padding: 1em;
+  box-sizing: border-box;
+  gap: 1em;
+  box-shadow: 0px 3px 6px #00000029;
+  margin-bottom: 5px;
+  overflow-y: auto;
+}
+
+// Primer Tab Horaro de atentción
+.title-tab {
+  font-size: 14px;
+  color: var(--color-01);
+  font-weight: bold;
+}
+
+.form-tab1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.forms-container-tab {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  border-bottom: 2px solid var(--color-01);
+  padding-bottom: 0.5em;
+}
+
+.contiene-title {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.form-one {
+  border-right: var(--color-01) 1px solid;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  padding: 1em;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  padding: 1em;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-tab1-s1 {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: 1em;
+  padding: 0.5em;
+  box-sizing: border-box;
+}
+
+.form-dias {
+  display: flex;
+  flex-wrap: wrap;
+  border-right: var(--color-01) 1px solid;
+  padding-right: 10px;
+}
+
+.intermedio-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+}
+
+// TAB 2 HORARIO DE BLOQUEO
+
+.form-tab-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1em;
+  justify-content: center;
+  align-items: start;
+  box-sizing: border-box;
+  margin-top: 1em;
+}
+
+.add-btn-block {
+  background-color: var(--color-05);
+  color: black;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 1s ease;
+}
+
+.add-btn-block :hover {
+
+  color: white;
+}
+
+.hours-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-table-range {
+  max-height: 160px;
+  overflow: auto;
+}
+
+.form-tab-3 {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.container-form-3 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin-top: 1em;
+}
+
+.fechas-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+}
+
+.horas-3{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+}
+
+.hours-special-add {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+}
+
+.tab-icon {
+  margin: 0px !important;
+}
+
+.intermedial-hour-special{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1em;
+  margin-top: 1em;
+  align-items: center;
+}
+
+
+
+
+@media (max-width: 1600px) {
+
+  .form-tab-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    justify-content: center;
+    align-items: center;
+
+  }
+}
+
+@media (max-width: 1300px) {
+  .intermedio-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2em;
+  }
+}
+
+@media (max-width: 1000px) {
+  .form {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .form-one {
+    grid-template-columns: 1fr;
+  }
+
+  .form-two {
+    grid-template-columns: 1fr;
+    gap: 2em;
+  }
+
+  .form-tab-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .container-form-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  .form {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-height: 700px) {
+  .content-form {
+    min-height: 100px;
+
+  }
+
+  .content-tabs {
+    min-height: 300px;
+    margin-bottom: 1em;
+  }
+
+  .container {
+    overflow-y: auto;
+    padding-right: 1em;
+    font-size: 12px !important;
+  }
+
+  .absolute_boton {
+    position: relative;
+  }
+
+
+}

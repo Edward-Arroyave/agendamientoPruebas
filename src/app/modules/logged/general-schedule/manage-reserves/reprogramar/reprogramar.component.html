@@ -1,0 +1,80 @@
+<div class="container">
+  <h1 class="title">{{ status === 1 ? 'Reprogramar reserva' : 'Reprogramar cita' }}</h1>
+  <span class="subtitle"> Por favor seleccione la nueva fecha para su {{status === 1? 'reserva' : 'cita'}}</span>
+
+
+  <form [formGroup]="formSearch" class="form-search">
+    <app-basic-input [typeInput]="'date'" [rightIcon]="'fecha-mini'" [leftIcon]="'fecha-hombre'" [form]="formSearch"
+      [nameControlform]="'desiredDate'" [textLabel]="'Fecha deseada'" [minDate]="minDate">
+    </app-basic-input>
+  </form>
+
+  <section>
+
+    <div class="encabezado">
+      <span>Por favor seleccione un horario:</span>
+      <div class="linea">
+
+      </div>
+      <div class="card-patient">
+        <app-tarjeta-paciente [cabeceros]="headers" [itemsBody]="subHeaders"></app-tarjeta-paciente>
+
+      </div>
+    </div>
+
+     <!-- Mostrar mensajes condicionales -->
+     <div *ngIf="!formSearch.get('desiredDate')?.value" class="no-data">
+      <img class="no-data__img" src="assets/images/logos/icono_noData.png" alt="icon-no-data" />
+      <span class="no-data__span">Seleccione una fecha para buscar disponibilidad de citas</span>
+    </div>
+    <div *ngIf="formSearch.get('desiredDate')?.value && horarios.length === 0" class="no-data">
+      <img class="no-data__img" src="assets/images/logos/icono_noData.png" alt="icon-no-data" />
+      <span class="no-data__span">No hay citas disponibles</span>
+    </div>
+
+
+    <div  class="horarios cards-horarios" *ngIf="horarios.length > 0" >
+
+      <div *ngFor="let item of horarios; let i = index" >
+
+        <div  class="card shadow">
+          <div class="informacion-cont">
+            <div style="display: flex;flex-direction: column;margin-bottom: 5px;">
+              <span class="font-bold">Fecha: {{ item.desiredDate | date :'fullDate':'UTC' }}</span>
+
+              <span class="font-bold">Hora: {{ item.startTime | formatTime }} - {{ item.endTime | formatTime }}</span>
+            </div>
+
+            <span class="no-wrap"><span style="font-weight: bold;">Sede: </span>{{item.sede}}</span>
+            <span class="no-wrap"><span style="font-weight: bold;"></span>{{item.characteristicName}}</span>
+
+          </div>
+          <button (click)="openModalConfirmar(confirmar, item, item)" style="height: 35px;" class="btn-02">Reprogramar</button>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="controls_two_buttons absolute_boton">
+      <button class="btn-01" (click)="cancelar()">Cancelar</button>
+    </div>
+
+
+  </section>
+
+
+  <ng-template #confirmar></ng-template>
+
+  <ng-template #noData>
+
+          <div class="no-data">
+            <img class="no-data__img" src="assets/images/logos/icono_noData.png" alt="icon-no-data" />
+            <span class="no-data__span">No hay citas disponibles</span>
+          </div>
+
+  </ng-template>
+
+
+</div>

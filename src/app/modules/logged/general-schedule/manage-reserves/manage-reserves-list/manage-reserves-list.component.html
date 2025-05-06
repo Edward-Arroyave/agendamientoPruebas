@@ -1,0 +1,230 @@
+<div class="container">
+  <span class="titulo">Administración de reservas </span>
+
+  <div class="contenedor1">
+    <form [formGroup]="formulario" class="form-search">
+
+      <app-basic-input [dataSelect]="listSedes" [valueId]="'idAttentionCenter'"
+        [valueDescription]="'attentionCenterName'" [typeInput]="'select'" [leftIcon]="'sede'" [form]="formulario"
+        [nameControlform]="'idSede'" [textLabel]="'Sede'" [flagCheck]="false" [searchFlag]="true"
+        [placeholderText]="'Buscar sede'">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'date'" [rightIcon]="'fecha-mini'" [leftIcon]="'fecha-normal'" [form]="formulario"
+        [nameControlform]="'dateAppointment'" [textLabel]="'Buscar por fecha'"
+        [placeholderText]="'Seleccione una fecha'"></app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [rightIcon]="'search'" [leftIcon]="'buscar-tuerca'" [form]="formulario"
+        [nameControlform]="'documentPatient'" [textLabel]="'N° de documento'"></app-basic-input>
+
+
+
+      <button class="btnIcon-01" (click)=" busquedaAvanzadaModal(avanzada)">
+        <div><span>Búsqueda avanzada</span></div>
+        <mat-icon>search</mat-icon>
+      </button>
+      <button class="btnIcon-01" (click)="search()">
+        <div><span>Buscar</span></div>
+        <mat-icon>search</mat-icon>
+      </button>
+      <button class="btnIcon-01" (click)="limpiar()">
+        <div><span>Limpiar</span></div>
+        <mat-icon svgIcon="limpiar"></mat-icon>
+      </button>
+
+
+
+    </form>
+  </div>
+
+
+
+
+  <div class="table-content">
+    @if(reservas.length !==0){
+
+    <table class="myTable">
+      <thead class="commonTable">
+        <tr>
+          @for (item of cabeceros; track $index) {
+          <th>{{item}}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of reservas | paginate: { id:'paginador', itemsPerPage: itemsPorPagina, currentPage: currentPage, totalItems:
+        counter }; track item; let j = $index) {
+        <tr class="shadow">
+          <td class="text-truncate" [matTooltip]="item.sedeAppointment">{{item.sedeAppointment}}</td>
+          <td class="text-truncate" [matTooltip]="item.internalCode">{{item.internalCode}}</td>
+          <td class="text-truncate" [matTooltip]="item.dateAppointmentFormatted ">{{item.dateAppointmentFormatted }}</td>
+          <td class="text-truncate" [matTooltip]="item.documentPatient">{{item.documentPatient}}</td>
+          <td class="text-truncate" [matTooltip]="item.namePatient">{{item.namePatient}}</td>
+          <!-- <td>
+            <div class="iconContainer shadow" (click)="openModal(files, 'file',  item.idAppointment)">
+              <mat-icon class="iconTable editar">insert_drive_file</mat-icon>
+            </div>
+          </td> -->
+          <td>
+            <div class="iconContainer shadow" [class]="item" (click)="openModal(detail , 'detail', item.idAppointment)">
+              <mat-icon class="iconTable yellow">library_books</mat-icon>
+            </div>
+          </td>
+          <!-- <td>
+            @if(item.statusName && (item.statusName == 'Transmitido')){
+              <div class="iconContainer shadow" (click)="modalConfirmar(confirmar, item)">
+                <mat-icon class="iconTable confirmar">check</mat-icon>
+              </div>
+            }
+
+          </td> -->
+          <td>
+            @if(item.statusName == null || item.statusName == 'Transmitido' || item.statusName == 'Pendiente'){
+              <div class="iconContainer shadow" (click)="reprogramar(item)">
+                <mat-icon class="iconTable yellow" svgIcon="reprogramar"></mat-icon>
+              </div>
+            }
+
+          </td>
+          <td>
+            <div class="iconContainer shadow" (click)="openModalCancelacion(eliminar, item)">
+              <mat-icon class="iconTable eliminar">close</mat-icon>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    <pagination-controls id="paginador" previousLabel="" nextLabel="" [responsive]="false"
+      (pageChange)="handlePageChange($event)"></pagination-controls>
+
+    }@else {
+    <div class="no-data">
+      <img class="no-data__img" src="assets/images/logos/icono_noData.png" alt="icon-no-data" />
+      <span class="no-data__span">Seleccione una sede para buscar reservas</span>
+    </div>
+    }
+  </div>
+
+
+</div>
+
+
+
+
+<!-- <div class="controls_two_buttons absolute_boton">
+    <button class="btn-02" (click)="agendarCita()">Agendar una cita</button>
+  </div> -->
+
+
+
+
+
+
+
+<ng-template #files>
+  <div class="content">
+    <h1 class="title">Detalle de archivos cargados</h1>
+    <div class="shadow degrade files-content">
+      @for (item of archivos; track $index) {
+      <div class="card-file">
+        <div class="icon-clinico">
+          <mat-icon svgIcon="archivo-clinico"></mat-icon>
+        </div>
+        <div class="text-clinico">
+          <span class="title-clinico">
+            {{ item.name }}:
+          </span>
+
+          <span class="title-clinico2" [matTooltip]="item.filename" (click)="item.file && openPdf(item.file)"
+            [ngClass]="{'hover-enlace': item.filename == 'Abrir archivo'}">
+            {{ item.filename }}
+          </span>
+        </div>
+
+
+      </div>
+      }
+    </div>
+
+  </div>
+
+</ng-template>
+
+
+<ng-template #detail>
+  <div class="content">
+    <h1 class="title">Detalle de reserva</h1>
+    <div class="shadow degrade detalle-content">
+      @for (item of detalleBody; track $index) {
+      <div class="card-file">
+        <div class="icon-clinico">
+          <mat-icon [svgIcon]="item.icono"></mat-icon>
+        </div>
+        <div class="text-clinico">
+          <span class="title-clinico">
+            {{ item.titulo }}:
+          </span>
+
+          <span class="title-clinico2" [matTooltip]="item.subtitulo">
+            {{ item.subtitulo }}
+          </span>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="shadow degrade detalle-content">
+
+      <div class="card-file">
+        <div class="icon-clinico">
+          <mat-icon [svgIcon]="'Pasarela'"></mat-icon>
+        </div>
+        <div class="text-clinico">
+          <span class="title-clinico">
+            Estado de transacción:
+          </span>
+
+          <span class="title-clinico2" [matTooltip]="transactionStatus">
+            {{transactionStatus}}
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #eliminar>
+  <div class="content">
+    <h1 class="title">Cancelar reserva</h1>
+    <form [formGroup]="eliminacionForm" class="motivo">
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'Documento'" [form]="eliminacionForm"
+        [nameControlform]="'motivo'" [textLabel]="'Motivo de cancelación'"></app-basic-input>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #confirmar>
+
+</ng-template>
+
+
+<ng-template #avanzada>
+
+  <div class="content">
+    <h1 class="title">Busqueda avanzada</h1>
+    <form [formGroup]="form2" class="form-avanzada">
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="form2" [nameControlform]="'firstNamePatient'"
+        [textLabel]="'Primer nombre'"></app-basic-input>
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="form2"
+        [nameControlform]="'secondNamePatient'" [textLabel]="'Segundo nombre'"></app-basic-input>
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="form2"
+        [nameControlform]="'firstLastNamePatient'" [textLabel]="'Primer apellido'"></app-basic-input>
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="form2"
+        [nameControlform]="'secondLastNamePatient'" [textLabel]="'Segundo apellido'"></app-basic-input>
+    </form>
+  </div>
+
+</ng-template>

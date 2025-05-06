@@ -1,0 +1,11 @@
+<div class="content-card shadow">
+  @for (item of tarjetaArreglo; track $index) {
+    <div class="text-card">
+      <span class="title-card" [matTooltip]="item.title">{{item.title}}</span>
+      <span class="subtitle-card" [matTooltip]="item.subtitle">{{item.subtitle}}</span>
+    </div>
+
+  }
+
+
+</div>

@@ -1,0 +1,132 @@
+<div class="container">
+  <h3 class="title-form">{{ idPreparation ? 'Editar' : 'Agregar' }} preparación</h3>
+
+  <form [formGroup]="formPre" class="form">
+    <!-- Input para seleccionar Ciudad -->
+    <app-basic-input [dataSelect]="categorias" [valueId]="'idCategory'" [valueDescription]="'categoryName'"
+      [typeInput]="'select'" [leftIcon]="'categoria'" [rightIcon]="'arrow_drop_down'" [form]="formPre"
+      [nameControlform]="'idCategory'" [textLabel]="'Categoria'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar categorias'">
+    </app-basic-input>
+
+    <!-- Input para Sede -->
+
+    <app-basic-input [dataSelect]="espacialidades" [valueId]="'idSpecialties'" [valueDescription]="'specialtiesName'"
+      [typeInput]="'select'" [leftIcon]="'especialidad'" [rightIcon]="'arrow_drop_down'" [form]="formPre"
+      [nameControlform]="'idSpecialties'" [textLabel]="'Especialidad'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar especialidad'">
+    </app-basic-input>
+
+    <!-- Input para caracteristica -->
+    <app-basic-input [dataSelect]="caracteristicas" [valueId]="'idCharacteristic'"
+      [valueDescription]="'characteristicName'" [typeInput]="'select'" [leftIcon]="'caracteristica'"
+      [rightIcon]="'arrow_drop_down'" [form]="formPre" [nameControlform]="'idCharacteristic'"
+      [textLabel]="'Característica'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar caracteristica'">
+    </app-basic-input>
+
+    <!-- Input para Nombre de la Categoría -->
+    <app-basic-input [dataSelect]="elementos" [valueId]="'idElement'" [valueDescription]="'elementName'"
+      [typeInput]="'select'" [rightIcon]="'arrow_drop_down'" [leftIcon]="'elemento'" [form]="formPre"
+      [nameControlform]="'elements'" [textLabel]="'Elementos'" [flagCheck]="true" [searchFlag]="true"
+      [placeholderText]="'Buscar elemento'">
+    </app-basic-input>
+
+    <!-- <app-basic-input [dataSelect]="CondicionEspecial" [valueId]="'idSpecialCondition'" [valueDescription]="'specialConditionName'" [typeInput]="'select'"
+      [leftIcon]="'condicion-especial'" [rightIcon]="'arrow_drop_down'" [form]="formPre" [nameControlform]="'idSpecialCondition'" [textLabel]="'Condición especial'"
+      [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar condición especial'">
+      </app-basic-input> -->
+
+
+
+    <!-- Input para Descripción -->
+    <app-basic-input class="full-width1" [typeInput]="'textarea'" [leftIcon]="'usuario'" [form]="formPre"
+      [nameControlform]="'observations'" [textLabel]="'Observaciones'">
+    </app-basic-input>
+
+    <div class="full-width">
+
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" preserveContent [disableRipple]="true"
+        [selectedIndex]="selectedTabIndex" class="custom-tab-group">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Precondiciones
+            <!-- <mat-icon class="tab-icon" *ngIf="formPre.get('preconditions')?.value">check</mat-icon> -->
+          </ng-template>
+          <div class="container-box">
+            <app-basic-input class="textarea-with" [typeInput]="'textarea'" [form]="formPre" [leftIcon]="'usuario'"
+              [nameControlform]="'preconditions'" [rows]="8" [textLabel]="'Precondiciones'">
+            </app-basic-input>
+          </div>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Indicaciones
+            <!-- <mat-icon class="tab-icon" *ngIf="formPre.get('indications')?.value">check</mat-icon> -->
+          </ng-template>
+          <div class="container-box">
+            <app-basic-input class="textarea-with" [typeInput]="'textarea'" [form]="formPre" [leftIcon]="'usuario'"
+              [nameControlform]="'indications'" [rows]="8" [cols]="40" [textLabel]="'Indicaciones'">
+            </app-basic-input>
+
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Requisitos
+            <!-- <mat-icon class="tab-icon">check</mat-icon> -->
+          </ng-template>
+          <div class="container-box">
+            <div formArrayName="listRequeriments" class="requisitos-container">
+              <ng-container *ngFor="let requirement of listRequeriments.controls; let i = index">
+                <div [formGroupName]="i" class="requisito" *ngIf="!requirement.get('isHidden')?.value">
+                  <!-- Checkbox para marcar el requisito -->
+                  <div class="checkbox" *ngIf="!requirement.get('isHidden')?.value">
+                    <mat-checkbox [formControlName]="'markedForDeletion'">
+                    </mat-checkbox>
+
+                  </div>
+
+                  <!-- Textarea para el requisito -->
+                  <app-basic-input [form]="requirement" [nameControlform]="'requirements'" [typeInput]="'textarea'"
+                    [leftIcon]="'usuario'" [rows]="1" [cols]="40" [textLabel]="'Requisito #' + (i+1)">
+                  </app-basic-input>
+
+
+                  <!-- Toggle para essentialRequirement -->
+                  <div class="text-togle1">
+                    <app-toggle style="padding-left: 1rem;" [flag]="requirement.get('essentialRequirement')?.value"
+                      (onChange)="toggleEssentialRequirement(i, $event)">
+                    </app-toggle>
+                    <h1>Requisito esencial</h1>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+
+            <!-- Botones para agregar y eliminar -->
+            <div class="requisito-buttons">
+              <button class="btnIcon-01" (click)="agregarRequisito()">
+
+                <mat-icon>add</mat-icon>
+              </button>
+              <button class="btnIcon-01" (click)="eliminarRequisitosActivos()">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+
+
+    </div>
+  </form>
+  <!-- Botones de Acción -->
+  <div class="controls_two_buttons absolute_boton">
+    <button type="button" class="btn-01" (click)="cancelar()">Cancelar</button>
+    <button type="button" class="btn-02" (click)="save()">{{ idPreparation ? 'Actualizar' : 'Guardar' }}</button>
+  </div>
+</div>

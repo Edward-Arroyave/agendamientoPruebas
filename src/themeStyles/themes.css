@@ -1,0 +1,1235 @@
+
+:root{
+    --color-01: #EA3666;
+    --color-02: #F2ABBB;
+    --color-03: #5C1123;
+    --color-04: #361355;
+    --color-05: #9D5BD5;
+    --color-06: #D9BAF4;
+
+    --exito :#5CB4D5 ;
+    --exito-light :#A3DBF0 ;
+
+    --ayuda :#9D5BD5;
+    --ayuda-light :#D9BAF4;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#EB3635 ;
+    --error-light :#F0A7A6;
+
+    --advertencia :#EB9734;
+    --advertencia-light :#EFC696 ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#D12B2B;
+    --red-02:#d12b2b7e;
+
+    --yellow-01:#EB9734;
+    --yellow-02:#EFC696;
+
+    --estado:#5CB4D5;
+    --estado-2:#A3DBF0;
+
+    --editar:#EA3666;
+    --editar-2:#F2ABBB;
+
+    --tabla:#EA3666;
+    --tabla-2:#F2ABBB;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+.gray-blue-theme {
+
+    --color-01: #007B7B; /* Gris muy oscuro */
+    --color-02: #80B2B2; /* Gris medio */
+    --color-03: #004545; /* Azul petróleo oscuro */
+    --color-04: #408B8B; /* Gris oscuro */
+    --color-05: #a3a1a1; /* Gris claro */
+    --color-06: #A0C4D8; /* Gris medio claro */
+
+    --exito: #28BF7F;
+    --exito-light: #8CF0C6;
+
+    --ayuda: #007B7B;
+    --ayuda-light: #A0C4D8;
+
+    --complemento: "";
+    --complemento-light: "";
+
+    --error: #E54F4F;
+    --error-light: #EFA8A8;
+
+    --advertencia: #E5AB4F;
+    --advertencia-light: #EBCFA3;
+
+    --gray-01: #00000029;
+    --gray-02: #A3A2A2;
+
+    --red-01: #E54F4F;
+    --red-02: #EFA8A8;
+
+    --yellow-01: #E5AB4F;
+    --yellow-02: #EBCFA3;
+
+    --estado: #007B7B;
+    --estado-2: #A0C4D8;
+
+    --editar: #007B7B;
+    --editar-2: #80B2B2;
+
+    --current_date: '';
+
+    --fuente: "Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+
+
+/* Rosados */
+.pink-theme{
+    --color-01: #DD1FB1;
+    --color-02: #F28CCB;
+    --color-03: #680D4C;
+    --color-04: #9C1883;
+    --color-05: #F061D5;
+    --color-06: #FFC3F3;
+
+    --exito :#F061D5 ;
+    --exito-light :#FFC3F3 ;
+
+    --ayuda :#DD1FB1;
+    --ayuda-light :#F28CCB;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#DD1FB1 ;
+    --error-light :#F28CCB;
+
+    --advertencia :#F061D5;
+    --advertencia-light :#FFC3F3 ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#DD1FB1;
+    --red-02:#F28CCB;
+
+    --yellow-01:#F061D5;
+    --yellow-02:#FFC3F3;
+
+    --estado:#DD1FB1;
+    --estado-2:#F28CCB;
+
+    --editar:#F061D5;
+    --editar-2:#FFC3F3;
+
+    --tabla:#DD1FB1;
+    --tabla-2:#F28CCB;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.blues-pink-theme{
+    --color-01: #E54F9B;
+    --color-02: #F5B5D5;
+    --color-03: #67143E;
+    --color-04: #15215C;
+    --color-05: #5B75F3;
+    --color-06: #AAB7F4;
+
+    --exito :#28BF7F ;
+    --exito-light :#8CF0C6 ;
+
+    --ayuda :#5B75F3;
+    --ayuda-light :#AAB7F4;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#E54F4F ;
+    --error-light :#EFA8A8;
+
+    --advertencia :#E5AB4F;
+    --advertencia-light :#EBCFA3 ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#E54F4F;
+    --red-02:#EFA8A8;
+
+    --yellow-01:#E5AB4F;
+    --yellow-02:#EBCFA3;
+
+    --estado:#28BF7F;
+    --estado-2:#8CF0C6;
+
+    --editar:#5B75F3;
+    --editar-2:#AAB7F4;
+
+    --tabla:#E54F9B;
+    --tabla-2:#F5B5D5;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.pink-violet-theme{
+    --color-01: #EA3666;
+    --color-02: #F2ABBB;
+    --color-03: #5C1123;
+    --color-04: #361355;
+    --color-05: #9D5BD5;
+    --color-06: #D9BAF4;
+
+    --exito :#5CB4D5 ;
+    --exito-light :#A3DBF0 ;
+
+    --ayuda :#9D5BD5;
+    --ayuda-light :#D9BAF4;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#EB3635 ;
+    --error-light :#F0A7A6;
+
+    --advertencia :#EB9734;
+    --advertencia-light :#EFC696 ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#D12B2B;
+    --red-02:#d12b2b7e;
+
+    --yellow-01:#EB9734;
+    --yellow-02:#EFC696;
+
+    --estado:#5CB4D5;
+    --estado-2:#A3DBF0;
+
+    --editar:#EA3666;
+    --editar-2:#F2ABBB;
+
+    --tabla:#EA3666;
+    --tabla-2:#F2ABBB;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+/* Rosados */
+
+/* Azules */
+.blue-theme{
+    --color-01: #1F7EDD;
+    --color-02: #8CCBF2;
+    --color-03: #0D4568;
+    --color-04: #185A9C;
+    --color-05: #61AEF0;
+    --color-06: #C3E8FF;
+
+    --exito :#8CCBF2 ;
+    --exito-light :#C3E8FF ;
+
+    --ayuda :#1F7EDD;
+    --ayuda-light :#8CCBF2;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#1F7EDD ;
+    --error-light :#8CCBF2;
+
+    --advertencia :#61AEF0;
+    --advertencia-light :#C3E8FF ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#1F7EDD;
+    --red-02:#8CCBF2;
+
+    --yellow-01:#61AEF0;
+    --yellow-02:#C3E8FF;
+
+    --estado:#1F7EDD;
+    --estado-2:#8CCBF2;
+
+    --editar:#61AEF0;
+    --editar-2:#C3E8FF;
+
+    --tabla:#1F7EDD;
+    --tabla-2:#8CCBF2;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.bluesh-green-invert-theme{
+    --color-01: #09B3D1;
+    --color-02: #8DD8E5;
+    --color-03: #0D4B3F;
+    --color-04: #093C45;
+    --color-05: #28BA9E;
+    --color-06: #97DDCF;
+
+    --exito :#8CCBF2 ;
+    --exito-light :#C3E8FF ;
+
+    --ayuda :#1F7EDD;
+    --ayuda-light :#8CCBF2;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#1F7EDD ;
+    --error-light :#8CCBF2;
+
+    --advertencia :#61AEF0;
+    --advertencia-light :#C3E8FF ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#1F7EDD;
+    --red-02:#8CCBF2;
+
+    --yellow-01:#61AEF0;
+    --yellow-02:#C3E8FF;
+
+    --estado:#1F7EDD;
+    --estado-2:#8CCBF2;
+
+    --editar:#61AEF0;
+    --editar-2:#C3E8FF;
+
+    --tabla:#1F7EDD;
+    --tabla-2:#8CCBF2;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.bluesh-green-theme{
+    --color-01: #28BA9E;
+    --color-02: #97DDCF;
+    --color-03: #0D4B3F;
+    --color-04: #093C45;
+    --color-05: #09B3D1;
+    --color-06: #8DD8E5;
+
+    --exito :#28BA9E ;
+    --exito-light :#97DDCF ;
+
+    --ayuda :#09B3D1;
+    --ayuda-light :#8DD8E5;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#D12C2B ;
+    --error-light :#EFAFAE;
+
+    --advertencia :#E2C423;
+    --advertencia-light :#EDDE8A ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#D12C2B;
+    --red-02:#EFAFAE;
+
+    --yellow-01:#E2C423;
+    --yellow-02:#EDDE8A;
+
+    --estado:#28BA9E;
+    --estado-2:#97DDCF;
+
+    --editar:#61AEF0;
+    --editar-2:#8DD8E5;
+
+    --tabla:#09B3D1;
+    --tabla-2:#8DD8E5;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.bluesh-red-theme{
+
+    --color-01: #E32D2E;
+    --color-02: #F8ACAC;
+    --color-03: #551011;
+    --color-04: #144253;
+    --color-05: #02AFF0;
+    --color-06: #95D7F0;
+
+    --exito :#21C34B ;
+    --exito-light :#AAF4BD ;
+
+    --ayuda :#02AFF0;
+    --ayuda-light :#95D7F0;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#E32D2E ;
+    --error-light :#F8ACAC;
+
+    --advertencia :#E3B22C;
+    --advertencia-light :#F2DCA0 ;
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#E32D2E;
+    --red-02:#F8ACAC;
+
+    --yellow-01:#E3B22C;
+    --yellow-02:#F2DCA0;
+
+    --estado:#21C34B;
+    --estado-2:#AAF4BD;
+
+    --editar:#61AEF0;
+    --editar-2:#95D7F0;
+
+    --tabla:#E32D2E;
+    --tabla-2:#F8ACAC;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.bluesh-green-invert-theme{
+    --color-01: #09B3D1;
+    --color-02: #8DD8E5;
+    --color-03: #0D4B3F;
+    --color-04: #093C45;
+    --color-05: #28BA9E;
+    --color-06: #97DDCF;
+
+    --exito :#8CCBF2 ;
+    --exito-light :#C3E8FF ;
+
+    --ayuda :#1F7EDD;
+    --ayuda-light :#8CCBF2;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#1F7EDD ;
+    --error-light :#8CCBF2;
+
+    --advertencia :#61AEF0;
+    --advertencia-light :#C3E8FF ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#1F7EDD;
+    --red-02:#8CCBF2;
+
+    --yellow-01:#61AEF0;
+    --yellow-02:#C3E8FF;
+
+    --estado:#1F7EDD;
+    --estado-2:#8CCBF2;
+
+    --editar:#61AEF0;
+    --editar-2:#C3E8FF;
+
+    --tabla:#1F7EDD;
+    --tabla-2:#8CCBF2;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.redish-blue-theme{
+    --color-01: #0779B1;
+    --color-02: #A3D3EA;
+    --color-03: #0D3A50;
+    --color-04: #4B0E1B;
+    --color-05: #BE2040;
+    --color-06: #F2B1BE;
+
+    --exito :#0AB176 ;
+    --exito-light :#95EBCD ;
+
+    --ayuda :#0779B1;
+    --ayuda-light :#A3D3EA;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#BE2040 ;
+    --error-light :#F2B1BE;
+
+    --advertencia :#BFA01F;
+    --advertencia-light :#EDDD98 ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#BE2040;
+    --red-02:#F2B1BE;
+
+    --yellow-01:#BFA01F;
+    --yellow-02:#EDDD98;
+
+    --estado:#0AB176;
+    --estado-2:#95EBCD;
+
+    --editar:#963AC7;
+    --editar-2:#D39FEF;
+
+    --tabla:#0779B1;
+    --tabla-2:#A3D3EA;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.curuba-blue-theme{
+    --color-01: #1F41BA;
+    --color-02: #AFD7FA;
+    --color-03: #0F1D52;
+    --color-04: #6C4918;
+    --color-05: #EBAD54;
+    --color-06: #EBD0A9;
+
+    --exito :#1EBA4E ;
+    --exito-light :#8FEDAC ;
+
+    --ayuda :#1F41BA;
+    --ayuda-light :#AFD7FA;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#E64241 ;
+    --error-light :#F2B1B1;
+
+    --advertencia :#EBAD54;
+    --advertencia-light :#EBD0A9 ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#E64241;
+    --red-02:#F2B1B1;
+
+    --yellow-01:#EB6736;
+    --yellow-02:#F2B9A4;
+
+    --estado:#1EBA4E;
+    --estado-2:#8FEDAC;
+
+    --editar:#EBAD54;
+    --editar-2:#EBD0A9;
+
+    --tabla:#1F41BA;
+    --tabla-2:#AFD7FA;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+/* Azules */
+
+/* ROjos */
+.red-theme{
+    --color-01: #EB1D1D;
+    --color-02: #F28D8C;
+    --color-03: #680D0E;
+    --color-04: #9C1918;
+    --color-05: #F06161;
+    --color-06: #FFC3C3;
+
+    --exito :#F06161 ;
+    --exito-light :#FFC3C3 ;
+
+    --ayuda :#EB1D1D;
+    --ayuda-light :#F28D8C;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#EB1D1D ;
+    --error-light :#F28D8C;
+
+    --advertencia :#F06161;
+    --advertencia-light :#FFC3C3 ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#EB1D1D;
+    --red-02:#F28D8C;
+
+    --yellow-01:#F06161;
+    --yellow-02:#FFC3C3;
+
+    --estado:#EB1D1D;
+    --estado-2:#F28D8C;
+
+    --editar:#F06161;
+    --editar-2:#FFC3C3;
+
+    --tabla:#EB1D1D;
+    --tabla-2:#F28D8C;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.red-violet-theme{
+    --color-01: #E33B2D;
+    --color-02: #F2AD9D;
+    --color-03: #551F13;
+    --color-04: #361557;
+    --color-05: #633493;
+    --color-06: #CBAEEA;
+
+    --exito :#34935C ;
+    --exito-light :#99F4BF ;
+
+    --ayuda :#633493;
+    --ayuda-light :#CBAEEA;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#E33B2D ;
+    --error-light :#F2AD9D;
+
+    --advertencia :#E3AB2B;
+    --advertencia-light :#F5D792 ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#E33B2D;
+    --red-02:#F2AD9D;
+
+    --yellow-01:#E3AB2B;
+    --yellow-02:#F5D792;
+
+    --estado:#34935C;
+    --estado-2:#99F4BF;
+
+    --editar:#633493;
+    --editar-2:#CBAEEA;
+
+    --tabla:#EB1D1D;
+    --tabla-2:#F28D8C;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+
+/* ROjos */
+
+/* Morados */
+
+.purple-theme{
+    --color-01: #7a1dd7;
+    --color-02: #CB8CF2;
+    --color-03: #450D68;
+    --color-04: #64189C;
+    --color-05: #B361F0;
+    --color-06: #EAC3FF;
+
+    --exito :#7E1FDD ;
+    --exito-light :#CB8CF2 ;
+
+    --ayuda :#B361F0;
+    --ayuda-light :#EAC3FF;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#7E1FDD ;
+    --error-light :#CB8CF2;
+
+    --advertencia :#B361F0;
+    --advertencia-light :#EAC3FF ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#7E1FDD;
+    --red-02:#CB8CF2;
+
+    --yellow-01:#B361F0;
+    --yellow-02:#EAC3FF;
+
+    --estado:#7E1FDD;
+    --estado-2:#CB8CF2;
+
+    --editar:#B361F0;
+    --editar-2:#EAC3FF;
+
+    --tabla:#7E1FDD;
+    --tabla-2:#CB8CF2;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.yellowish-purple-theme{
+    --color-01: #9E45C7;
+    --color-02: #DBADF0;
+    --color-03: #3E1153;
+    --color-04: #584A10;
+    --color-05: #E9BC00;
+    --color-06: #EBD98E;
+
+    --exito :#079434 ;
+    --exito-light :#96EFB2 ;
+
+    --ayuda :#1C61C1;
+    --ayuda-light :#A5C4EF;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#D80F0E ;
+    --error-light :#EF9F9F;
+
+    --advertencia :#E9BC00;
+    --advertencia-light :#EBD98E ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#D80F0E;
+    --red-02:#EF9F9F;
+
+    --yellow-01:#1C61C1;
+    --yellow-02:#A5C4EF;
+
+    --estado:#079434;
+    --estado-2:#96EFB2;
+
+    --editar:#E9BC00;
+    --editar-2:#EBD98E;
+
+    --tabla:#9E45C7;
+    --tabla-2:#DBADF0;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.blues-purple-theme{
+    --color-01: #AD4DA8;
+    --color-02: #D9A7D6;
+    --color-03: #52104E;
+    --color-04: #14425F;
+    --color-05: #3682B9;
+    --color-06: #A4CEED;
+
+    --exito :#37B97D ;
+    --exito-light :#8DEABF ;
+
+    --ayuda :#3682B9;
+    --ayuda-light :#A4CEED;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#C1403F ;
+    --error-light :#F09B9A;
+
+    --advertencia :#DDC024;
+    --advertencia-light :#EBDD92 ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#C1403F;
+    --red-02:#F09B9A;
+
+    --yellow-01:#DDC024;
+    --yellow-02:#EBDD92;
+
+    --estado:#37B97D;
+    --estado-2:#8DEABF;
+
+    --editar:#3682B9;
+    --editar-2:#A4CEED;
+
+    --tabla:#AD4DA8;
+    --tabla-2:#D9A7D6;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.dark-blue-purple-theme {
+
+    --color-01: #3e5a7b;       
+    --color-02: #9dacbe; 
+    --color-03: #2d113b; 
+    --color-04: #6d328b; 
+    --color-05: #9757b0; 
+    --color-06: #e7c7e6; 
+
+    --exito: #28BF7F;
+    --exito-light: #8CF0C6;
+
+    --ayuda: #007B7B;
+    --ayuda-light: #A0C4D8;
+
+    --complemento: "";
+    --complemento-light: "";
+
+    --error: #E54F4F;
+    --error-light: #EFA8A8;
+
+    --advertencia: #E5AB4F;
+    --advertencia-light: #EBCFA3;
+
+    --gray-01: #00000029;
+    --gray-02: #A3A2A2;
+
+    --red-01: #E54F4F;
+    --red-02: #EFA8A8;
+
+    --yellow-01: #E5AB4F;
+    --yellow-02: #EBCFA3;
+
+    --estado: #007B7B;
+    --estado-2: #A0C4D8;
+
+    --editar: #007B7B;
+    --editar-2: #80B2B2;
+
+    --current_date: '';
+
+    --fuente: "Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+/* Morados */
+
+/* Naranja */
+.orange-theme{
+
+    --color-01: #EB741D;
+    --color-02: #F2B38C;
+    --color-03: #68340D;
+    --color-04: #9C5518;
+    --color-05: #F09261;
+    --color-06: #FFDAC3;
+
+    --exito :#F09261 ;
+    --exito-light :#FFDAC3 ;
+
+    --ayuda :#EB741D;
+    --ayuda-light :#F2B38C;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#EB741D ;
+    --error-light :#F2B38C;
+
+    --advertencia :#F09261;
+    --advertencia-light :#FFDAC3 ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#EB741D;
+    --red-02:#F2B38C;
+
+    --yellow-01:#F09261;
+    --yellow-02:#FFDAC3;
+
+    --estado:#EB741D;
+    --estado-2:#F2B38C;
+
+    --editar:#F09261;
+    --editar-2:#FFDAC3;
+
+    --tabla:#EB741D;
+    --tabla-2:#F2B38C;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.navy-orange-theme{
+    --color-01: #DE6600;
+    --color-02: #F0C198;
+    --color-03: #532F10;
+    --color-04: #0E4040;
+    --color-05: #007A7A;
+    --color-06: #8DC3C3;
+
+    --exito :#007A7A ;
+    --exito-light :#8DC3C3 ;
+
+    --ayuda :#0E4FB8;
+    --ayuda-light :#8CB1ED;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#D33233 ;
+    --error-light :#F49FA0;
+
+    --advertencia :#DEB300;
+    --advertencia-light :#F2E19B ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#D33233;
+    --red-02:#F49FA0;
+
+    --yellow-01:#DEB300;
+    --yellow-02:#F2E19B;
+
+    --estado:#0E4FB8;
+    --estado-2:#8CB1ED;
+
+    --editar:#007A7A;
+    --editar-2:#8DC3C3;
+
+    --tabla:#EB741D;
+    --tabla-2:#F2B38C;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.yellowish-orange-theme{
+    --color-01: #DD821B;
+    --color-02: #EFC89C;
+    --color-03: #72440E;
+    --color-04: #675414;
+    --color-05: #F4C00E;
+    --color-06: #EAD89C;
+
+    --exito :#49BE49 ;
+    --exito-light :#8CED8C ;
+
+    --ayuda :#8849BE;
+    --ayuda-light :#CAA1ED;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#DE221A ;
+    --error-light :#F49490;
+
+    --advertencia :#DEB300;
+    --advertencia-light :#F2E19B ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#DE221A;
+    --red-02:#F49490;
+
+    --yellow-01:#8849BE;
+    --yellow-02:#CAA1ED;
+
+    --estado:#49BE49;
+    --estado-2:#8CED8C;
+
+    --editar:#DEB300;
+    --editar-2:#F2E19B;
+
+    --tabla:#EB741D;
+    --tabla-2:#F2B38C;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+/* Naranja */
+/* Amarillos */
+.yellow-theme{
+    --color-01: #EBCB1D;
+    --color-02: #F2DE8C;
+    --color-03: #68530D;
+    --color-04: #9C7E18;
+    --color-05: #F0CF61;
+    --color-06: #FFEDC3;
+
+    --exito :#F0CF61 ;
+    --exito-light :#FFEDC3 ;
+
+    --ayuda :#EBCB1D;
+    --ayuda-light :#F2DE8C;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#EBCB1D ;
+    --error-light :#F2DE8C;
+
+    --advertencia :#F0CF61;
+    --advertencia-light :#FFEDC3 ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#EBCB1D;
+    --red-02:#F2DE8C;
+
+    --yellow-01:#F0CF61;
+    --yellow-02:#FFEDC3;
+
+    --estado:#EBCB1D;
+    --estado-2:#F2DE8C;
+
+    --editar:#F0CF61;
+    --editar-2:#FFEDC3;
+
+    --tabla:#EBCB1D;
+    --tabla-2:#F2DE8C;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.greenish-yellow-theme{
+    --color-01: #E2A300;
+    --color-02: #EDD596;
+    --color-03: #5C4816;
+    --color-04: #165733;
+    --color-05: #53B27E;
+    --color-06: #98DBB6;
+
+    --exito :#53B27E ;
+    --exito-light :#98DBB6 ;
+
+    --ayuda :#4864BF;
+    --ayuda-light :#8AA1EF;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#E23300 ;
+    --error-light :#EBA38F;
+
+    --advertencia :#E2A300;
+    --advertencia-light :#EDD596 ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#E23300;
+    --red-02:#EBA38F;
+
+    --yellow-01:#CE6B36;
+    --yellow-02:#EFAA85;
+
+    --estado:#4864BF;
+    --estado-2:#8AA1EF;
+
+    --editar:#53B27E;
+    --editar-2:#98DBB6;
+
+    --tabla:#E2A300;
+    --tabla-2:#EDD596;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+
+.bluesh-yellow-theme{
+    --color-01: #F8C000;
+    --color-02: #EFD47A;
+    --color-03: #695616;
+    --color-04: #0F4358;
+    --color-05: #01A0E1;
+    --color-06: #94D5F0;
+
+    --exito :#1AC984 ;
+    --exito-light :#8EF0C9 ;
+
+    --ayuda :#01A0E1;
+    --ayuda-light :#94D5F0;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#D72425 ;
+    --error-light :#F09596;
+
+    --advertencia :#F8C000;
+    --advertencia-light :#EFD47A ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#D72425;
+    --red-02:#F09596;
+
+    --yellow-01:#953DD5;
+    --yellow-02:#C68EEF;
+
+    --estado:#1AC984;
+    --estado-2:#8EF0C9;
+
+    --editar:#01A0E1;
+    --editar-2:#94D5F0;
+
+    --tabla:#F8C000;
+    --tabla-2:#EFD47A;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+/* Amarillos */
+/* Verdes */
+.green-theme{
+    --color-01: #1FDD61;
+    --color-02: #94F28C;
+    --color-03: #17680D;
+    --color-04: #189C1D;
+    --color-05: #61F061;
+    --color-06: #C5FFC3;
+
+    --exito :#61F061 ;
+    --exito-light :#C5FFC3 ;
+
+    --ayuda :#1FDD61;
+    --ayuda-light :#94F28C;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#1FDD61 ;
+    --error-light :#94F28C;
+
+    --advertencia :#61F061;
+    --advertencia-light :#C5FFC3 ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#1FDD61;
+    --red-02:#94F28C;
+
+    --yellow-01:#61F061;
+    --yellow-02:#C5FFC3;
+
+    --estado:#1FDD61;
+    --estado-2:#94F28C;
+
+    --editar:#61F061;
+    --editar-2:#C5FFC3;
+
+    --tabla:#1FDD61;
+    --tabla-2:#94F28C;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+.orange-green-theme{
+    --color-01: #3EB940;
+    --color-02: #A5E8A7;
+    --color-03: #125214;
+    --color-04: #573D15;
+    --color-05: #EFA229;
+    --color-06: #F0CF9A;
+
+    --exito :#3EB940 ;
+    --exito-light :#A5E8A7 ;
+
+    --ayuda :#5252D1;
+    --ayuda-light :#A3A3F2;
+
+    --complemento :"";
+    --complemento-light :"";
+
+    --error :#C42C2C ;
+    --error-light :#EF9E9E;
+
+    --advertencia :#EFA229;
+    --advertencia-light :#F0CF9A ;
+
+
+    --gray-01:#00000029;
+    --gray-02:#A3A2A2;
+
+    --red-01:#C42C2C;
+    --red-02:#EF9E9E;
+
+    --yellow-01:#EFCD3F;
+    --yellow-02:#F4E193;
+
+    --estado:#5252D1;
+    --estado-2:#A3A3F2;
+
+    --editar:#EFA229;
+    --editar-2:#F0CF9A;
+
+    --tabla:#3EB940;
+    --tabla-2:#A5E8A7;
+
+    --current_date:'';
+
+    --fuente:"Mulish", "Mulish-Bold", "Mulish-ExtraBold";
+}
+/* Verdes */
+

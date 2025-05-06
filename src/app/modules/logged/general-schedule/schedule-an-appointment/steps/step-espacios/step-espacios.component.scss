@@ -1,0 +1,75 @@
+.fondoTransparente{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .transparente{
+        background: transparent;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        z-index: 99;
+    }
+}
+
+.radio-companion{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  grid-column: span 2;
+}
+
+
+  //Modal
+
+
+  .content-modal {
+    width: 95%;
+    margin: auto;
+    border-left: var(--color-04) 2px solid;
+    border-right: var(--color-04) 2px solid;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .degrade {
+    background: linear-gradient(180deg,
+        rgba(235, 235, 235, 1) 63%,
+        rgba(255, 255, 255, 1) 92%);
+    border-radius: 10px;
+    padding: 1em;
+    box-sizing: border-box;
+  }
+
+  .form-companion{
+    display: grid;
+    grid-template-columns: repeat(3 , 1fr);
+    gap: 1em;
+    padding: 1em;
+    box-sizing: border-box;
+    row-gap: 2em;
+  }
+
+
+  @media screen and (max-width : 1000px) {
+    .form-companion{
+      grid-template-columns: repeat(2 , 1fr);
+    }
+
+  }
+  @media screen and (max-width : 700px) {
+    .form-companion{
+      grid-template-columns: repeat(1 , 1fr);
+      height: 300px;
+      overflow: auto;
+    }
+
+  }
+  @media screen and (max-height : 500px) {
+    .form-companion{
+      grid-template-columns: repeat(1 , 1fr);
+
+    }
+
+  }

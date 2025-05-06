@@ -1,0 +1,164 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.content-payment {
+  width: 99%;
+  margin: 2em auto;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  height: 83px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.gateway {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-disable {
+  background: linear-gradient(180deg,
+      #A3A2A2 25%,
+      #C6C6C6 92%);
+  transition: all 1s ease-in-out;
+  color: white;
+}
+
+.icon-enable {
+  background: linear-gradient(180deg,
+      var(--color-01) 25%,
+      white 135%);
+  color: white;
+}
+
+.gateway mat-icon {
+  width: 60px;
+  height: 60px;
+}
+
+
+.no-content {
+  overflow: hidden;
+  font-weight: bold;
+  color: #6B6B6B;
+  transition: all 1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.no-content div {
+  margin: 1em 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.no-content div span::before {
+  white-space: nowrap;
+  content: "--------------------------------------------------------- De click aquí para agregar una nueva pasarela de pagos ---------------------------------------------------------"
+}
+
+.agregate:hover .no-content {
+  color: white;
+  background: #9B9B9B;
+  cursor: pointer;
+}
+
+.agregate:hover .icon-disable {
+  color: #9B9B9B;
+  background: white;
+  cursor: pointer;
+}
+
+
+.info-gateway {
+  margin: 1em 2em;
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.information {
+  width: 100%;
+  padding: 0px 1em;
+  border-left: 2px solid var(--color-01);
+  border-right: 2px solid var(--color-01);
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  gap: 1em;
+}
+
+.info-cont {
+  display: flex;
+  width: 100%;
+  font-size: 14px;
+  gap: .5em;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.title-info {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.sub-info {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.url {
+  color: var(--color-01);
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.cont-icon-edit{
+  display: flex;
+  justify-content: flex-end;
+  width: 110px;
+}
+
+@media screen and (max-width : 1100px) {
+  .information {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .5em;
+    overflow: auto;
+    padding: 0px .5em;
+  }
+
+  .info-gateway {
+    margin: .4em 2em;
+  }
+
+}
+
+@media screen and (max-width : 800px) {
+
+  .no-content div span::before {
+    white-space: wrap;
+    content: "De click aquí para agregar una nueva pasarela de pagos";
+  }
+
+}

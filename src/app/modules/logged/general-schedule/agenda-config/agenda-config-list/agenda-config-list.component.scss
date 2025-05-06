@@ -1,0 +1,288 @@
+.container {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.title {
+  margin-bottom: 1em !important;
+}
+
+.cont-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1em;
+  padding: 16px 0 16px 0;
+}
+
+.agendas-content {
+  padding: 1em 0px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  grid-auto-rows: 60px;
+  /* Configura las filas para que cada una tenga una altura de 60px */
+  overflow: auto;
+}
+
+.card-agenda {
+  border-radius: 10px;
+  width: 100%;
+  height: 60px;
+  display: grid;
+  grid-template-columns: 60px 1fr 0.5fr;
+  overflow: hidden;
+}
+
+.cont-imagen {
+  width: 100%;
+  background: linear-gradient(180deg, var(--color-01) 63%, var(--color-02) 99%);
+  border-radius: 10px 0 0 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cont-imagen mat-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.cont-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  padding: 0.5em;
+  overflow: hidden;
+  border-right: 1px solid var(--color-01);
+  overflow-y: auto;
+}
+
+.text-bold {
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.text-truncate {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-normal {
+  font-size: 12px;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.line {
+  height: 100%;
+}
+
+.cont-btns {
+  padding: 0.5em;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5em;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.iconContainer {
+  padding: 1px;
+  width: 20px;
+  height: 20px;
+}
+
+.iconTable {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.iconsvg {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+// MODALES
+
+.degrade {
+  background: linear-gradient(180deg,
+      rgba(235, 235, 235, 1) 63%,
+      rgba(255, 255, 255, 1) 92%);
+  border-radius: 10px;
+  padding: 1em;
+  box-sizing: border-box;
+  width: 98%;
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+.content {
+  width: 95%;
+  margin: auto;
+  border-left: var(--color-04) 2px solid;
+  border-right: var(--color-04) 2px solid;
+  display: flex;
+  flex-direction: column;
+}
+
+//Modal parametros
+.parametros-items {
+  // display: grid;
+  // grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+.parametros-items> :nth-child(9) {
+  grid-column: span 2;
+}
+
+.parametro {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  overflow: hidden;
+  gap: 5px;
+}
+
+.one-grid {
+  grid-column: span 4;
+
+}
+
+.desc-param {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.desc-title {
+  color: var(--color-01);
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.elemento {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  overflow: hidden;
+  gap: 5px;
+}
+
+.elemento-text {
+  width: 100%;
+  height: 45px;
+  overflow: auto;
+}
+
+//Modal de detalle de configuracion de agenda
+
+.title-detail-conf {
+  color: var(--color-4);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.detail-config-grid {
+  display: grid;
+  row-gap: 1em;
+  grid-template-columns: repeat(4, 1fr);
+  max-height: 52px;
+  overflow: auto;
+}
+
+.triple-grid {
+  grid-column: span 3;
+}
+
+.text-notruncate {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: wrap;
+  overflow: auto;
+  text-overflow: none;
+}
+
+
+/* No data */
+.no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.8em;
+  width: 100%;
+  height: 14em;
+}
+
+.no-data__img {
+  width: 4em;
+  filter: grayscale(1);
+}
+
+.no-data__span {
+  text-align: center;
+  color: #a3a2a2;
+}
+
+
+
+@media (max-width: 1400px) {
+  .cont-info {
+    grid-template-columns: 1fr;
+
+  }
+}
+
+@media (max-width: 1000px) {
+  .agendas-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .cont-btns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cont-info {
+    flex-direction: column;
+    gap: 0px;
+    overflow-x: auto;
+  }
+
+  // .text-truncate {
+  //   font-size: 10px;
+  //   white-space: nowrap;
+  //   overflow: hidden;
+  //   text-overflow: ellipsis;
+  // }
+}
+
+@media (max-height: 680px) {
+  .content {
+    overflow: auto;
+    height: 300px;
+  }
+}

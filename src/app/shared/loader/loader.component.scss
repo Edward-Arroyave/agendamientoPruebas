@@ -1,0 +1,132 @@
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.63);
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+  gap: 1em;
+}
+
+.porcetaje {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+
+.text_loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+
+  animation: blink 3s infinite;
+  opacity: 1;
+}
+
+@keyframes blink {
+  0%, 50%, 100% {
+    opacity: 1; /* Visible el 75% del tiempo */
+  }
+  25% {
+    opacity: 0; /* Invisible solo el 25% del tiempo */
+  }
+}
+
+@mixin arc($pos, $mg, $tp, $rg, $bt, $lf, $wd, $hg, $br, $btp, $brl, $anim) {
+  position: $pos;
+  margin: $mg;
+  top: $tp;
+  right: $rg;
+  bottom: $bt;
+  left: $lf;
+  aspect-ratio: $wd;
+  height: $hg;
+  border-radius: $br;
+  border-top: $btp;
+  border-left: $brl;
+  border-right: $brl;
+  animation: $anim;
+}
+
+
+
+.arc {
+  @include arc(relative, auto, 0, 0, 0, 0, 1 / 1, 90%, 50%, 10px solid var(--color-01), 8px solid transparent, rt 1.5s infinite linear);
+
+  &::before {
+    @include arc(absolute, auto, 0, 0, 0, 0, 1 / 1, 70%, 50%, 10px solid var(--color-05), 8px solid transparent, rt 11s infinite linear reverse);
+    content: "";
+  }
+
+  &::after {
+    @include arc(absolute, auto, 0, 0, 0, 0, 0, 0, 50%, initial, initial, cw 1s infinite);
+    content: "";
+    background: rgb(255, 250, 250);
+  }
+
+  overflow: hidden
+}
+
+.puntos {
+
+
+
+  color: white;
+  &::after {
+    animation: txt 1.5s infinite;
+    content: "";
+  }
+}
+
+@keyframes rt {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cw {
+  0% {
+    width: 0;
+    height: 0;
+  }
+
+  75% {
+    width: 25%;
+    height: 25%;
+  }
+
+  100% {
+    width: 0;
+    height: 0;
+  }
+}
+
+@keyframes txt {
+  0% {
+    content: "";
+  }
+
+  25% {
+    content: ".";
+  }
+
+  50% {
+    content: "..";
+  }
+
+  100% {
+    content: "...";
+  }
+}

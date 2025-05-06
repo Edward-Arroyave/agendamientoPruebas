@@ -1,0 +1,105 @@
+<div class="container">
+  <span class="titulo">Histórico de citas</span>
+
+  <div class="form-search">
+    <div class="inputs-container">
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'numeral'" [form]="formSearch" [maxlength]="20"
+        [nameControlform]="'documentNumber'" [textLabel]="'Buscar por documento'"></app-basic-input>
+
+      <app-basic-input [typeInput]="'dateDouble'" [rightIcon]="'fecha-mini'" [leftIcon]="'fecha-normal'"
+        [form]="formSearch" [nameControlform]="'initialDate'" [nameControlform2]="'finalDate'"
+        [textLabel]="'Fecha inicio-final'" [ariaRequired]="false"></app-basic-input>
+
+      <app-basic-input [dataSelect]="listAttentionCenter" [valueId]="'idAttentionCenter'"
+        [valueDescription]="'attentionCenterName'" [typeInput]="'select'" [leftIcon]="'sede'"
+        [rightIcon]="'arrow_drop_down'" [form]="formSearch" [nameControlform]="'attentionCenter'" [textLabel]="'Sede'"
+        [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Seleccione una opción'">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formSearch" [maxlength]="30"
+        [nameControlform]="'nameUserAction'" [textLabel]="'Buscar por usuario'"></app-basic-input>
+
+    </div>
+
+    @if(permisosDelModulo.Crear){
+    <div class="buttons-container">
+      <button class="btnIcon-01" (click)=" orderDescending = false; search()">
+        <div><span>Buscar</span></div>
+        <mat-icon>search</mat-icon>
+      </button>
+      <button class="btnIcon-01" (click)="clearFilters()">
+        <div><span>Limpiar</span></div>
+        <mat-icon svgIcon="limpiar"></mat-icon>
+      </button>
+      <!-- <button class="btnIcon-01" [ngClass]="{'disable': listcheck.length == 0 && this.checkall == false}"
+        (click)="relay()">
+        <div><span>Retransmitir</span></div>
+        <mat-icon svgIcon="retrasmitir"></mat-icon>
+      </button> -->
+    </div>
+
+    }
+
+  </div>
+
+
+  <div style="margin-top: 1em;" class="contenedor-tabla">
+    @if(data.length !==0){
+
+    <div>
+      <table class="myTable " style="width: 100%; overflow: auto;">
+        <thead class="commonTable">
+          <tr>
+            <th>Documento</th>
+            <th style="display: flex; gap: 0.2em; justify-content: center; align-items: center;">Fecha y hora de la cita <div (click)="orderDescending = !orderDescending; search(1)" class="arrows">
+                <span>▲</span>
+                <span>▼</span>
+              </div>
+            </th>
+            <th>Usuario que realizó la acción</th>
+            <th>Acción</th>
+            <th>Fecha y hora de la acción</th>
+            <th>Elemento</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of data | paginate: { id:'paginador', itemsPerPage: pageSize, currentPage: currentPage,
+          totalItems: counter }; track item) {
+          <tr class="shadow">
+            <td class="text-truncate" [matTooltip]="item.documentNumber">{{item.documentNumber}}</td>
+            <td class="text-truncate" [matTooltip]="item.appointmentDate">{{formatDate(item.appointmentDate)}}</td>
+            <td class="text-truncate" [matTooltip]="item.username">{{item.nameUserAction}}</td>
+            <td class="text-truncate"
+              [ngClass]="{'green': item.action == 1,'orange': item.action == 2,'red': item.action == 3 }"
+              [matTooltip]="item.action == 1? 'Primer agendamiento' : item.action == 2? 'Reprogramación' : 'Cancelación'">
+              {{item.action == 1? 'Primer agendamiento' : item.action == 2? 'Reprogramación' : 'Cancelación' }}
+            </td>
+            <td class="text-truncate" [matTooltip]="item.createdDate">{{formatDate(item.createdDate)}}</td>
+            <td class="text-truncate" [matTooltip]="item.internalCode_ElementName">{{item.internalCode_ElementName}}
+            </td>
+          </tr>
+          }
+
+
+        </tbody>
+
+      </table>
+    </div>
+
+
+
+
+    <pagination-controls id="paginador" previousLabel="" nextLabel="" [responsive]="true" [autoHide]="true"
+      (pageChange)="handlePageChange($event)"></pagination-controls>
+
+    }@else {
+    <div class="no-data">
+      <img class="no-data__img" src="assets/images/logos/icono_noData.png" alt="icon-no-data" />
+      <span class="no-data__span">Sin datos</span>
+    </div>
+    }
+  </div>
+
+
+</div>

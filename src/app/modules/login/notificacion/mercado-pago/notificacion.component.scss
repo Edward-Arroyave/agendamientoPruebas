@@ -1,0 +1,255 @@
+.contenedor-notify{
+    width: 100%;
+    height: 700px !important;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+.size-icon{
+    width: 40px;
+    height: 40px;
+}
+
+/* Main container */
+.container {
+    width: 600px;
+    max-width: 95%;
+    z-index: 1;
+    margin: 0 auto 0;
+}
+
+/* Success message box */
+.success-box {
+    background-image: linear-gradient(to bottom, var(--exito-light) 0%, white 50%);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.199);
+}
+.pending-box {
+    background-image: linear-gradient(to bottom,var(--yellow-02) 0%, white 50%);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.199);
+}
+.error-box {
+    background-image: linear-gradient(to bottom, var(--error-light)0%, white 50%);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.199);
+}
+
+.success-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #25b899;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.icon-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 10px 0px 10px;;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.199);
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background: white;
+}
+
+.bars {
+    color: #25b899;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.check {
+    color: #25b899;
+    font-size: 22px;
+    margin: 0 5px;
+}
+
+/* Date box */
+.date-box {
+    background-color: #ffffff;
+    padding: 18px 15px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+/* Payment details box */
+.payment-details {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.payment-label {
+    font-size: 14px;
+    color: #555;
+}
+
+.amount {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 10px 0 15px 0;
+    color: #333;
+}
+
+.detail-row {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.detail-title {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+}
+
+.mercado-pago-icon {
+    width: 24px;
+    height: 24px;
+    background-color: #009ee3;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+/* Divider lines */
+.dividers {
+    display: flex;
+    width: 565px;
+    flex-direction: column;
+    gap: 3px;
+    margin: 0 auto 0;
+}
+
+.divider {
+    height: 1px;
+    margin-top: .5em;
+}
+
+.divider-border-success{
+    border:1px solid var(--exito);
+    background-color: var(--exito);
+    border-radius: 10px;
+}
+.divider-border-pending{
+    border:1px solid var(--yellow-01);
+    background-color: var(--yellow-01);
+    border-radius: 10px;
+}
+.divider-border-error{
+    border:1px solid var(--error);
+    background-color: var(--error);
+    border-radius: 10px;
+}
+
+/* Question text */
+.question {
+    text-align: center;
+    margin: 3em 0 3em;
+    font-size: 14px;
+}
+
+// Cuadros 
+
+.cuadros {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(12, 1fr);
+    row-gap: .5em;
+    height: 20px;
+    align-items: center;
+}
+
+.cuadro-1 {
+    background: var(--color-01);
+    margin: auto;
+    // padding: .2em;
+    // margin: .5em;
+}
+
+.cuadro-background-success{
+    background-color: var(--exito-light);
+}
+.cuadro-background-pending{
+    background-color: var(--yellow-02);
+}
+.cuadro-background-error{
+    background-color: var(--error-light);
+}
+
+.colorText1{
+    color: var(--exito);
+}
+.colorText2{
+    color: var(--yellow-01);
+}
+.colorText3{
+    color: var(--error);
+}
+
+.border-success{
+    border:1px solid var(--exito-light);
+}
+.border-pending{
+    border:1px solid var(--yellow-01);
+}
+.border-error{
+    border:1px solid var(--error);
+}
+
+.border-success-light{
+    border:1px solid var(--exito-light);
+}
+.border-pending-light{
+    border:1px solid var(--yellow-02);
+}
+.border-error-light{
+    border:1px solid var(--error-light);
+}
+
+.cont-squares{
+    display: grid;
+    grid-template-columns: auto 600px auto;
+    gap: 1em;
+}
+
+.linea{
+    border-radius: 10px;
+    width: 3px;
+}
+
+.linea1{
+    height: 25%;
+}
+.linea2{
+    height: 50%;
+}
+.linea3{
+    height: 70%;
+}

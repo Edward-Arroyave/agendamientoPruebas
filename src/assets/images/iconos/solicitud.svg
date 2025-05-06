@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+    </style>
+  </defs>
+  <g id="_8e4c6916fca86b778faf9c39a4c7f3ef" data-name=" 8e4c6916fca86b778faf9c39a4c7f3ef">
+    <path id="Trazado_18444" data-name="Trazado 18444" class="cls-1" d="M90.62,7.81H9.38C4.2,7.81,0,12.01,0,17.19v65.62c0,5.18,4.2,9.38,9.38,9.38h81.25c5.18,0,9.38-4.2,9.38-9.38h0V17.19c0-5.18-4.2-9.38-9.38-9.38ZM84.38,17.19h6.25v6.25h-6.25v-6.25ZM75,17.19h6.25v6.25h-6.25v-6.25ZM65.62,17.19h6.25v6.25h-6.25v-6.25ZM93.75,82.81c0,1.73-1.4,3.12-3.12,3.12H9.38c-1.73,0-3.12-1.4-3.12-3.12v-50h87.5v50Z"/>
+    <path id="Trazado_18445" data-name="Trazado 18445" class="cls-1" d="M35.53,39.8l-17.5,17.5c-1.15,1.26-1.12,3.2.07,4.43l17.5,17.5,4.43-4.41-15.33-15.32,15.33-15.28-4.49-4.42ZM64.46,39.8l-4.41,4.42,15.3,15.28-15.3,15.3,4.43,4.41,17.5-17.5c1.15-1.26,1.12-3.2-.07-4.43l-17.45-17.48Z"/>
+    <rect id="Rectángulo_15780" data-name="Rectángulo 15780" class="cls-1" x="30.08" y="57.03" width="39.84" height="6.25" transform="translate(-18.8 97.39) rotate(-78.69)"/>
+  </g>
+</svg>

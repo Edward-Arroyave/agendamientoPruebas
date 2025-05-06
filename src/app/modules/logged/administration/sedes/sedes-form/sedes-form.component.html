@@ -1,0 +1,47 @@
+<div class="container">
+  <h3 class="title-form">{{!isEdit? 'Agregar': 'Editar'}} sede</h3>
+
+
+  <form [formGroup]="formulario" class="form">
+
+
+
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'numeral'" [form]="formulario" [restriction]="'NumbersLetters'"
+      [nameControlform]="'attentionCenterCode'" [textLabel]="'Código'" [maxlength]="3"></app-basic-input>
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'sede'" [form]="formulario"
+      [nameControlform]="'attentionCenterName'" [textLabel]="'Nombre de la sede'"></app-basic-input>
+
+    <app-basic-input [dataSelect]="paises" [valueId]="'idCountry'" [valueDescription]="'country'" [typeInput]="'select'"
+      [leftIcon]="'pais'" [form]="formulario" [nameControlform]="'idCountry'" [textLabel]="'País'" [flagCheck]="false"
+      [searchFlag]="true" [placeholderText]="'Buscar país'">
+    </app-basic-input>
+
+    <app-basic-input [dataSelect]="departamentos" [valueId]="'idDepartment'" [valueDescription]="'department'"
+      [typeInput]="'select'" [leftIcon]="'departamento'" [form]="formulario" [nameControlform]="'idDepartment'"
+      [textLabel]="'Departamento'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar departamento'">
+    </app-basic-input>
+
+    <app-basic-input [dataSelect]="cuidades" [valueId]="'idCity'" [valueDescription]="'city'" [typeInput]="'select'"
+      [leftIcon]="'cuidad'" [form]="formulario" [nameControlform]="'idCity'" [textLabel]="'Ciudad'" [flagCheck]="false"
+      [searchFlag]="true" [placeholderText]="'Buscar cuidad'">
+    </app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'telefono'" [form]="formulario" [restriction]="'Numbers'"
+      [nameControlform]="'telephoneNumber'" [textLabel]="'Teléfono'"></app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'direccion'" [form]="formulario" [nameControlform]="'address'"
+      [textLabel]="'Dirección de residencia'"></app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'localizacion'" [form]="formulario" [nameControlform]="'urlLocation'"
+      [textLabel]="'Url de localización'"></app-basic-input>
+
+  </form>
+
+
+  <div class="controls_two_buttons absolute_boton">
+    <button class="btn-01" (click)="cancelar()">Cancelar</button>
+    <button class="btn-02" (click)="crearSede()">{{!isEdit? 'Guardar': 'Actualizar'}}</button>
+  </div>
+
+</div>

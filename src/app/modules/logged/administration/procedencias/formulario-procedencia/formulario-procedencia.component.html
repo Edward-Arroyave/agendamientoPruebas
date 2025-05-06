@@ -1,0 +1,87 @@
+<div class="contenedor-principal">
+    <h1 class="title">{{!!idProcedencia ? 'Editar' : 'Agregar' }} procedencia y entidad</h1>
+
+    <form [formGroup]="formulario" class="contenedor-formulario">
+        <div class="contenedor-basico">
+            <div>
+                <app-basic-input [typeInput]="'text'" [leftIcon]="'entidad'" [form]="formulario"
+                [nameControlform]="'procedencia'" [textLabel]="'Nombre de la procedencia'"></app-basic-input>
+            </div>
+            <div>
+                <app-basic-input [typeInput]="'text'" [leftIcon]="'departamento'" [form]="formulario"
+                    [nameControlform]="'entidad'" [textLabel]="'Nombre de la entidad'"></app-basic-input>
+            </div>
+            <div>
+                <app-basic-input [typeInput]="'textarea'" [leftIcon]="'Documentos'" [form]="formulario"
+                    [nameControlform]="'descripcion'" [textLabel]="'Descripción'"></app-basic-input>
+            </div>
+        </div>
+
+        <div class="contenedor-mensaje">
+            <p>
+                Por favor indique los documentos que se deben pedir en el proceso de
+                agendada, junto a sus párametros:
+            </p>
+        </div>
+
+        @defer (when cargaCompleta) {
+            <div class="contenedor-documentos">
+                <div class="documento">
+                    <div class="toggle-btn">
+                        <app-toggle [flag]="formulario.value.cargueAutorizacion ?? false"
+                            (onChange)="cambiarEstado('cargueAutorizacion', $event)"></app-toggle>
+                        <span>Solicitar cargue de autorización médica</span>
+                    </div>
+                    <div class="toggle-btn">
+                        <app-toggle [flag]="formulario.value.fechaAutorizacion ?? false"
+                            (onChange)="cambiarEstado('fechaAutorizacion', $event)"></app-toggle>
+                        <span>Solicitar fecha de autorización médica</span>
+                    </div>
+                    <div>
+                        <app-basic-input [typeInput]="'number'" [leftIcon]="'vencimiento'" [form]="formulario"
+                        [nameControlform]="'vencimientoAutorizacion'" [textLabel]="'Vencimiento en días'"></app-basic-input>
+                    </div>
+                </div>
+    
+                <div class="documento">
+                    <div class="toggle-btn">
+                        <app-toggle [flag]="formulario.value.cargueOrden ?? false"
+                            (onChange)="cambiarEstado('cargueOrden', $event)"></app-toggle>
+                        <span>Solicitar cargue de Orden médica</span>
+                    </div>
+                    <div class="toggle-btn">
+                        <app-toggle [flag]="formulario.value.fechaOrden ?? false"
+                            (onChange)="cambiarEstado('fechaOrden', $event)"></app-toggle>
+                        <span>Solicitar fecha de Orden médica</span>
+                    </div>
+                    <div>
+                        <app-basic-input [typeInput]="'number'" [leftIcon]="'vencimiento'" [form]="formulario"
+                        [nameControlform]="'vencimientoOrden'" [textLabel]="'Vencimiento en días'"></app-basic-input>
+                    </div>
+                </div>
+    
+                <div class="documento">
+                    <div class="toggle-btn">
+                        <app-toggle [flag]="formulario.value.cargueHistoria ?? false"
+                            (onChange)="cambiarEstado('cargueHistoria', $event)"></app-toggle>
+                        <span>Solicitar cargue de Historia clínica</span>
+                    </div>
+                    <div class="toggle-btn">
+                        <app-toggle [flag]="formulario.value.fechaHistoria ?? false"
+                            (onChange)="cambiarEstado('fechaHistoria', $event)"></app-toggle>
+                        <span>Solicitar fecha de Historia clínica</span>
+                    </div>
+                    <div>
+                        <app-basic-input [typeInput]="'number'" [leftIcon]="'vencimiento'" [form]="formulario"
+                        [nameControlform]="'vencimientoHistoria'" [textLabel]="'Vencimiento en días'"></app-basic-input>
+                    </div>
+                </div>
+            </div>
+        }
+    </form>
+
+    <div class="controls_two_buttons absolute_boton">
+        <button type="button" class="btn-01" routerLink="../../procedencias">Cancelar</button>
+        <button type="button" class="btn-02" (click)="guardar()">{{!!idProcedencia ? 'Actualizar' : 'Guardar'}}</button>
+    </div>
+</div>

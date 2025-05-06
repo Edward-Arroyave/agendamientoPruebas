@@ -1,0 +1,136 @@
+<div class="container">
+  <h3 class="titulo">{{ idHomologation ? 'Editar' : 'Agregar' }} homologación</h3>
+
+  <div class="form-and-table">
+
+    <div class="cont-form">
+
+      <div class="form-top">
+        <app-basic-input [dataSelect]="listOfIntegrations" [valueId]="'idIntegrations'"
+          [valueDescription]="'integrationsName'" [typeInput]="'select'" [leftIcon]="'Integracion'"
+          [rightIcon]="'arrow_drop_down'" [form]="formHomologation" [nameControlform]="'idIntegrations'"
+          [textLabel]="'Integración'" [flagCheck]="false" [searchFlag]="true"
+          [placeholderText]="'Seleccione una opción'">
+        </app-basic-input>
+
+
+        <app-basic-input [dataSelect]="listOfDictionarys" [valueId]="'idDataDictionary'"
+          [valueDescription]="'dictionaryName'" [typeInput]="'select'" [leftIcon]="'Diccionario'"
+          [rightIcon]="'arrow_drop_down'" [form]="formHomologation" [nameControlform]="'idDataDictionary'"
+          [textLabel]="'Diccionario de datos'" [flagCheck]="false" [searchFlag]="true"
+          [placeholderText]="'Seleccione una opción'">
+        </app-basic-input>
+
+        @if(isListOwnCode){
+        <app-basic-input [dataSelect]="listOfOwnCode" [valueId]="'id'" [valueDescription]="'description'"
+          [typeInput]="'select'" [leftIcon]="'numeral'" [rightIcon]="'arrow_drop_down'" [form]="formHomologation"
+          [nameControlform]="'ownCode'" [textLabel]="'Código propio'" [flagCheck]="false" [searchFlag]="true"
+          [placeholderText]="'Seleccione una opción'"></app-basic-input>
+        }@else {
+        <app-basic-input [typeInput]="'text'" [leftIcon]="'numeral'" [form]="formHomologation" [maxlength]="10"
+          [nameControlform]="'ownCode'" [textLabel]="'Código propio'"></app-basic-input>
+        }
+
+
+        <app-basic-input [typeInput]="'text'" [leftIcon]="'numeral'" [form]="formHomologation" [maxlength]="10"
+          [nameControlform]="'externalCode'" [textLabel]="'Código externo'"></app-basic-input>
+      </div>
+      <div class="form-bottom">
+
+        <app-basic-input [typeInput]="'text'" [leftIcon]="'Documento'" [form]="formHomologation" [maxlength]="250"
+          [nameControlform]="'descriptions'" [textLabel]="'Descripción'"></app-basic-input>
+
+        @if (!(idHomologation && currentStatus == 'c')) {
+        <div class="add-btn" (click)="addHomologationToTable()">
+          @if (currentStatus == 'c') {
+          <mat-icon>add</mat-icon>
+          } @else {
+          <mat-icon>edit</mat-icon>
+          }
+        </div>
+        }
+
+      </div>
+
+
+    </div>
+
+    <span class="subtitle">Homologaciones agregadas</span>
+
+    <div>
+      @if(data.length !==0){
+      <table class="myTable " style="width: 100%; overflow: auto;">
+        <thead class="commonTable">
+          <tr>
+            @for (item of cabeceros; track $index) {
+            <th *ngIf="(item !== 'Eliminar') || (item === 'Eliminar' && !idHomologation)">
+              {{ item }}
+            </th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of data | paginate: { id:'paginador', itemsPerPage: pageSize, currentPage: currentPage,
+          totalItems: counter }; track item) {
+          <tr class="shadow"
+            [ngClass]="{'homologationSelect': currentEditHomologationId != 0 && (currentEditHomologationId == item.idHomologation ||currentEditHomologationId == item.idTemporal)}">
+            <td class="text-truncate" [matTooltip]="item.integrationsName">{{item.integrationsName}}</td>
+            <td class="text-truncate" [matTooltip]="item.dictionaryName">{{item.dictionaryName}}</td>
+            <td class="text-truncate" [matTooltip]="item.ownCode">{{item.ownCode }}</td>
+            <td class="text-truncate" [matTooltip]="item.externalCode">{{item.externalCode}}</td>
+            <td class="text-truncate" style="max-width: 120px;" [matTooltip]="item.descriptions">{{item.descriptions}}</td>
+            <!-- <td>
+              <div>
+                <app-toggle [flag]="item.active" (onChange)="changeStatus($event, item.idHomologation, item.idTemporal)"></app-toggle>
+              </div>
+            </td> -->
+            <td>
+              <div class="iconContainer shadow" (click)="editHomologation(item.idHomologation, item.idTemporal)">
+                <mat-icon class="iconTable editar">edit</mat-icon>
+              </div>
+            </td>
+            @if(!this.idHomologation){
+            <td>
+              <div class="iconContainer shadow">
+                <mat-icon class="iconTable eliminar">close</mat-icon>
+              </div>
+            </td>
+            }
+          </tr>
+          }
+
+
+        </tbody>
+
+      </table>
+
+      <pagination-controls id="paginador" previousLabel="" nextLabel="" [responsive]="false" [autoHide]="true"
+        (pageChange)="handlePageChange($event)"></pagination-controls>
+      }
+      @else {
+      <div class="no-data">
+        <img class="no-data__img" src="assets/images/logos/icono_noData.png" alt="icon-no-data" />
+        <span class="no-data__span">Aquí se veran las homologaciones relacionadas</span>
+      </div>
+      }
+
+    </div>
+
+
+
+
+  </div>
+
+
+
+  <div class="controls_two_buttons absolute_boton">
+    <button type="button" class="btn-01" (click)="openModalConfirmClose(confirm)">Cancelar</button>
+    <button type="button" class="btn-02" (click)="openModalConfirm(confirm)">{{ idHomologation ? 'Actualizar' :
+      'Guardar' }}</button>
+  </div>
+
+
+</div>
+
+
+<ng-template #confirm></ng-template>

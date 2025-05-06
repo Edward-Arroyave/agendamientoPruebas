@@ -1,0 +1,42 @@
+<div class="container">
+  <h3 class="title-form">{{ idCategory ? 'Editar' : 'Agregar' }} Categoría</h3>
+
+  <form [formGroup]="formCategory" class="form">
+
+
+    <!-- Input para Nombre de la Categoría -->
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'categoria'" [form]="formCategory"
+      [nameControlform]="'categoryName'" [textLabel]="'Nombre de la categoría'">
+    </app-basic-input>
+
+    <!-- Input para Descripción -->
+    <app-basic-input [typeInput]="'textarea'" [leftIcon]="'Agenda'" [form]="formCategory"
+      [nameControlform]="'description'" [textLabel]="'Descripción'">
+    </app-basic-input>
+
+    <div class="toggle-cont">
+      <app-toggle style="margin: 0;" [flag]="formCategory.get('requireElements')?.value!"
+        (onChange)="formCategory.get('requireElements')?.setValue($event); formCategory.get('associatedExam')?.setValue(false)">
+      </app-toggle>
+      <div class="text_tool">
+        Requiere elementos
+      </div>
+    </div>
+
+    <div class="toggle-cont exam-toggle">
+      <app-toggle style="margin: 0;" [flag]="formCategory.get('associatedExam')?.value!"
+        (onChange)="formCategory.get('associatedExam')?.setValue($event); formCategory.get('requireElements')?.setValue(false)">
+      </app-toggle>
+      <div class="text_tool">
+        Esta categoría esta asociada a un examen de laboratorio.
+      </div>
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="controls_two_buttons absolute_boton">
+      <button type="button" class="btn-01" (click)="cancelar()">Cancelar</button>
+      <button type="button" class="btn-02" (click)="save()" [disabled]="formCategory.invalid">{{ idCategory ?
+        'Actualizar' : 'Guardar' }}</button>
+    </div>
+  </form>
+</div>

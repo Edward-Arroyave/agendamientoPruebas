@@ -1,0 +1,225 @@
+.container {
+  height: 100%;
+  overflow: hidden;
+}
+
+.title {
+  margin-bottom: 1em !important;
+}
+
+.form-search {
+  display: grid;
+  grid-template-columns: 1.5fr auto;
+  gap: 1em;
+  margin: 0.5 auto;
+}
+.btnIcon-01 {
+  margin-left: 0px !important;
+}
+
+.inputs-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+}
+.btns-form {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 1em;
+}
+
+.users {
+  padding-bottom: 1em;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 60px; /* Define las filas automáticamente */
+  gap: 16px; /* Espacio entre las tarjetas */
+  width: 100%; /* Para asegurarte de que ocupe todo el ancho disponible */
+  justify-items: center; /* Centra horizontalmente cada tarjeta en su celda */
+  justify-content: start; /* Alinea el contenido al principio horizontalmente */
+  align-content: start; /* Alinea las filas al principio verticalmente */
+  margin-top: 1em;
+  box-sizing: border-box; /* Hace que el padding no aumente el tamaño del contenedor */
+}
+
+
+.card-user {
+  width: 100%;
+  display:grid;
+  grid-template-columns: 60px 1fr 150px;
+  height: 60px;
+  background: linear-gradient(
+    180deg,
+    rgba(235, 235, 235, 1) 63%,
+    rgba(255, 255, 255, 1) 92%
+  );
+  border-radius: 10px;
+}
+
+.cont-image-user {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-user {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 10px 0 0 10px;
+  background: linear-gradient(180deg, var(--color-01) 63%, var(--color-02) 99%);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-user img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.image-user mat-icon {
+  width: 80%;
+  height: 80%;
+  color: white;
+  object-fit: cover;
+}
+
+.info-user{
+  padding: 12px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.name {
+  font-size: 14px;
+  text-align: left;
+  display: flex;
+  gap: 5px;
+  width: 100%;
+}
+
+.name :nth-child(1) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 90%;
+}
+
+.document {
+  font-size: 14px;
+  text-align: left;
+  display: flex;
+  gap: 5px;
+
+}
+.document :nth-child(1) {
+  color: #3e3e3e;
+  font-weight: bold;
+}
+.document :nth-child(2) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 90%;
+}
+
+.btns-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 12px;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.btn-user {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  i {
+    font-size: 14px;
+    color: white;
+  }
+  mat-icon {
+    width: 16px !important;
+    height: 16px !important;
+    color: white;
+    font-size: 17px !important;
+  }
+}
+.key-i {
+  background-color: var(--yellow-01);
+  &:hover {
+    background-color: var(--yellow-02);
+  }
+}
+.edit-i {
+  background-color: var(--color-05);
+  &:hover {
+    background-color: var(--color-06);
+  }
+}
+.user-i {
+  background-color: var(--yellow-01);
+  color: white;
+  &:hover {
+    background-color: var(--yellow-02);
+  }
+}
+
+.text-enviar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  margin: 2em auto;
+}
+
+
+@media (max-width: 1490px) {
+  .users {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1300px) {
+  .form-search {
+    grid-template-columns: 1fr;
+  }
+
+  .btns-form {
+    grid-template-columns: repeat(3, 110px);
+    justify-content: center;
+  }
+}
+
+
+
+@media (max-width: 930px) {
+  .users {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media (max-width: 800px) {
+  .form-search {
+    width: 100%;
+    overflow: auto;
+    grid-template-columns: 1000px 400px;
+    height: 68px;
+    align-items: center;
+  }
+}
+

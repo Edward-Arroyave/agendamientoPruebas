@@ -1,0 +1,7 @@
+<div class="contenedor" [ngClass]="{'fondoOk':!flag}" (click)="cambio()">
+    <div style="position: relative;">
+        <mat-icon class="iconoCheck">check</mat-icon>
+        <mat-icon class="iconoClose">close</mat-icon>
+        <div class="mover" [ngClass]="{'moverDerecha':!flag}"></div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+// calendario
+.mat-datepicker-content .mat-calendar{
+    height: 250px !important;
+    width: 366px !important;
+    border-top: none;
+    border-left: 1px solid var(--gray-01);
+    border-right: 1px solid var(--gray-01);
+    border-bottom: 1px solid var(--gray-01);
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+.mat-datepicker-content{
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+}
+
+.mat-calendar-header{
+    padding: 0 !important;
+    border-top: 50px solid var(--color-05);
+    border-top-left-radius: 5px ;
+    border-top-right-radius:5px ;
+    position: relative;
+}
+.mat-calendar-header::before{
+    content: var(--current_date, 'Default Content');
+    position: absolute;
+    top: -33px;
+    left: 20px;
+    color: white;
+}
+
+.mat-calendar-table-header-divider{
+    display: none;
+}
+
+.mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical){
+    border-color:var(--color-05) !important;
+}
+
+.mat-calendar-body-selected{
+    background-color: var(--color-05) !important;
+    border-color: var(--color-05) !important;
+}
+
+.mat-calendar-body-selected.mat-calendar-body-today{
+    box-shadow: none !important;
+}
+
+.mat-calendar-controls{
+    margin: 0 !important;
+}
+
+.mat-calendar-body-label{
+    // display: none;
+    color: white !important;
+}
+
+.mat-calendar-body{
+    border-top: 1px solid var(--color-05);
+    tr{
+        height: 20px !important;
+    }
+}
+
+// calendario

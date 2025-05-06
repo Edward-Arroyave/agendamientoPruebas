@@ -1,0 +1,275 @@
+@if(!agendarEspacio){
+<div class="container">
+  <h1 class="title">Administración de espacios</h1>
+
+  <!-- Espacio para los tabs -->
+
+  <div class="tabs-container">
+    @for (item of tabs; track $index) {
+    <div class="tab ">
+      <div class="tab-number shadow">
+        @if(item.completed){
+        <mat-icon>check</mat-icon>
+        }@else {
+        <span> {{item.number}}</span>
+        }
+
+      </div>
+      <div class="name-tab no-completed" [ngClass]="{'completed': currentTabId == item.id || item.completed}">
+        <span [matTooltip]="item.name"> {{item.name}}</span>
+      </div>
+    </div>
+    }
+    <div class="line-separator"></div>
+  </div>
+
+  <!-- Contenido de los tabs -->
+
+  <!-- Tab 1 -->
+
+  <div class="tabla-responsive">
+    <div class="content-tab">
+      @if(currentTabId == 1){
+
+      <span class="subtitle-tab" style="padding-bottom: 2em;">Por favor diligencie los siguientes datos para buscar los
+        espacios disponibles</span>
+
+
+      <form [formGroup]="formulario" class="form">
+
+        <app-basic-input [dataSelect]="paises" [valueId]="'idCountry'" [valueDescription]="'country'"
+          [typeInput]="'select'" [leftIcon]="'pais'" [form]="formulario" [nameControlform]="'idCountry'"
+          [textLabel]="'País'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar país'">
+        </app-basic-input>
+
+        <app-basic-input [dataSelect]="departamentos" [valueId]="'idDepartment'" [valueDescription]="'department'"
+          [typeInput]="'select'" [leftIcon]="'departamento'" [form]="formulario" [nameControlform]="'idDepartment'"
+          [textLabel]="'Departamento'" [flagCheck]="false" [searchFlag]="true"
+          [placeholderText]="'Buscar departamento'">
+        </app-basic-input>
+
+        <app-basic-input [dataSelect]="cuidades" [valueId]="'idCity'" [valueDescription]="'city'" [typeInput]="'select'"
+          [leftIcon]="'cuidad'" [form]="formulario" [nameControlform]="'idCity'" [textLabel]="'Ciudad'"
+          [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar cuidad'">
+        </app-basic-input>
+
+        <app-basic-input [dataSelect]="tiposAtencion" [valueId]="'id'" [valueDescription]="'name'"
+          [typeInput]="'select'" [leftIcon]="'tipoAtencion'" [form]="formulario" [nameControlform]="'idTypeAttention'"
+          [textLabel]="'Tipo de atención'" [flagCheck]="false" [searchFlag]="true"
+          [placeholderText]="'Tipo de atención'">
+        </app-basic-input>
+
+        <app-basic-input [dataSelect]="sedes" [valueId]="'idAttentionCenter'" [valueDescription]="'attentionCenterName'"
+          [typeInput]="'select'" [leftIcon]="'sede'" [form]="formulario" [nameControlform]="'idAttentionCenter'"
+          [textLabel]="'Sede'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar sede'">
+        </app-basic-input>
+
+        <app-basic-input [dataSelect]="categorias" [valueId]="'idCategory'" [valueDescription]="'categoryName'"
+          [typeInput]="'select'" [leftIcon]="'categoria'" [form]="formulario" [nameControlform]="'idCategory'"
+          [textLabel]="'Categoria'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar categoria'">
+        </app-basic-input>
+
+        <app-basic-input [dataSelect]="especialidades" [valueId]="'idSpecialties'"
+          [valueDescription]="'specialtiesName'" [typeInput]="'select'" [leftIcon]="'especialidad'" [form]="formulario"
+          [nameControlform]="'idSpecialties'" [textLabel]="'Especialidad'" [flagCheck]="false" [searchFlag]="true"
+          [placeholderText]="'Buscar especialidad'">
+        </app-basic-input>
+
+        <app-basic-input [dataSelect]="caracteristicas" [valueId]="'idCharacteristic'"
+          [valueDescription]="'characteristicName'" [typeInput]="'select'" [leftIcon]="'caracteristica'"
+          [form]="formulario" [nameControlform]="'idCharacteristic'" [textLabel]="'Caracteristicas'" [flagCheck]="false"
+          [searchFlag]="true" [placeholderText]="'Buscar caracteristicas'">
+        </app-basic-input>
+
+        <app-basic-input [dataSelect]="listaTipoUsuario" [valueId]="'id'" [valueDescription]="'value'"
+          [typeInput]="'select'" [leftIcon]="'paciente'" [form]="formulario" [nameControlform]="'idTipoPaciente'"
+          [textLabel]="'Tipo de paciente'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar elementos'">
+        </app-basic-input>
+
+        @if(fv.idTipoPaciente == '2'){
+        
+          <app-basic-input [dataSelect]="listaEntidades" [valueId]="'idOriginEntity'" [valueDescription]="'entity'"
+            [typeInput]="'select'" [leftIcon]="'departamento'" [rightIcon]="'tipodocumento'" [form]="formulario"
+            [nameControlform]="'idOriginEntity'" [textLabel]="'Entidad remitente'" [flagCheck]="false"
+            [searchFlag]="true" [placeholderText]="'Buscar documento'">
+          </app-basic-input>
+        
+          <app-basic-input [dataSelect]="listPlan" [valueId]="'contractCode'" [valueDescription]="'contractName'" [typeInput]="'select'"
+            [leftIcon]="'tipoAtencion'" [rightIcon]="'tipodocumento'" [form]="formulario" [nameControlform]="'plan'"
+            [textLabel]="'Plan de empresa'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar plan'">
+          </app-basic-input>
+
+        }
+
+        @if(requiereElementos){
+        <app-basic-input [dataSelect]="elementos" [valueId]="'idElement'" [valueDescription]="'elementName'"
+          [typeInput]="'select'" [leftIcon]="'elemento'" [form]="formulario" [nameControlform]="'idElement'"
+          [textLabel]="'Elementos'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar elementos'">
+        </app-basic-input>
+        }
+        @if( requiereTomaDeMuestras){
+        <app-basic-input style="grid-column: span 2;" [dataSelect]="listaExamenes" [valueId]="'idExam'"
+          [valueDescription]="'examName'" [typeInput]="'select'" [leftIcon]="'categoria'"
+          [rightIcon]="'arrow_drop_down'" [form]="formulario" [nameControlform]="'listIdExamens'"
+          [textLabel]="'Exámenes de laboratorio'" [flagCheck]="true" [searchFlag]="true"
+          [placeholderText]="'Buscar examen'">
+        </app-basic-input>
+        }
+
+        <!-- <app-basic-input [dataSelect]="condicionesEspeciales" [valueId]="'idSpecialCondition'"
+          [valueDescription]="'specialConditionName'" [typeInput]="'select'" [leftIcon]="'condicion-especial'"
+          [form]="formulario" [nameControlform]="'condicion'" [textLabel]="'Condicion especial'" [flagCheck]="false"
+          [searchFlag]="true" [placeholderText]="'Buscar elementos'">
+        </app-basic-input> -->
+
+        <app-basic-input [typeInput]="'date'" [rightIcon]="'fecha-mini'" [leftIcon]="'fecha-normal'" [form]="formulario"
+          [nameControlform]="'desiredDate'" [textLabel]="'Fecha deseada'" [minDate]="minDate"
+          [placeholderText]="'Seleccione una fecha'"></app-basic-input>
+
+
+
+
+
+      </form>
+
+
+
+      }
+
+      @if(currentTabId == 2){
+
+      <div class="encabezado">
+        <span class="subtitle-tab">
+          A continuación se envistan los resultados de la búsqueda de espacios disponibles:
+        </span>
+        <div class="linea"></div>
+        <div>
+          <app-tarjeta-paciente [cabeceros]="headers" [itemsBody]="subHeaders"></app-tarjeta-paciente>
+        </div>
+      </div>
+      <table class="myTable " style="width: 100%;">
+        <thead class="commonTable">
+          <tr>
+            @for (item of cabeceros; track $index) {
+            <th>{{item}}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of pagedData | paginate: { id:'paginador', itemsPerPage: paginadorNumber, currentPage: p,
+          totalItems:
+          espacios.length }; track item; let j = $index) {
+          <tr class="shadow">
+            <td>{{item.sede}}</td>
+            <td>{{item.desiredDate | date:'fullDate':'UTC'}}</td>
+            <td>{{item.startTime | formatTime}}</td>
+            <td>{{item.espacio}} Minutos</td>
+            <td [ngClass]="{'disponible': item.estado , 'limitado': !item.estado}">{{item.estado? 'Espacio Disponible' :
+              'Espacio Limitado'}}</td>
+            <td>
+              <ng-template #pregunta></ng-template>
+              <div class="agendar shadow" [class]="item" (click)="agendar(item, pregunta)">
+                <mat-icon class="" svgIcon="fecha-mini"></mat-icon>
+              </div>
+            </td>
+
+
+          </tr>
+          }
+
+
+        </tbody>
+
+
+      </table>
+      <pagination-controls id="paginador" previousLabel="" nextLabel="" [responsive]="true"
+        (pageChange)="handlePageChange($event)"></pagination-controls>
+      }
+    </div>
+  </div>
+
+  <div class="controls_two_buttons absolute_boton">
+    @if(currentTabId == 1){
+    @if(requiereTomaDeMuestras){
+    <button class="btn-02" (click)="modalExamenesPorElemento(ExamenesPorElemento)">Buscar</button>
+    }@else {
+    <button class="btn-02" (click)="buscar()">Buscar</button>
+    }
+    }
+    @if(currentTabId == 2){
+    <button class="btn-01" (click)="cancelar()">Anterior</button>
+    }
+
+
+  </div>
+</div>
+<ng-template #pregunta></ng-template>
+}
+
+
+@if(agendarEspacio){
+<div class="contenedor-agendar">
+  <app-agendar-espacio [infoConsulta]="formulario" [dataGeneral]="dataGeneral" [itemAgenda]="itemAgenda" [espaciosRemitidoFlag]="remitidoFlag" [contratoRemitido]="contrato"
+    [nephroprotection]="Nephroprotection" [pacienteLlenado]="paciente" [formRemitidoLlenado]="formRemitido" [pacienteParticularFlagLlenada]="remitidoFlag"
+     (cancel)="cancelarAgendamiento()" [listaIdExamenesSelected]="listaIdExamenesSelected"
+    (cancelConPendientes)="cancelarAgendamientoConPendientes($event)"></app-agendar-espacio>
+</div>
+
+}
+
+
+<ng-template #ExamenesPorElemento>
+  <div class="selection-container">
+    <h1 style="margin: 7px 0;">Selección de elementos</h1>
+    <p class="selection-subtitle">Por favor seleccione los exámenes y el elemento necesarios para continuar (solo puede
+      elegir un elemento, si un elemento no contiene todos los examenes debe realizar otra reserva con los exámenes
+      restantes) :</p>
+
+      <div class="selection-content">
+          <div class="selection-column">
+              <form class="checkbox-list">
+                  @for (item of this.listaExamenes2; track $index) {
+                      <label class="checkbox-item">
+                          @if(noContieneExamen(item.idExam)){
+                              <mat-checkbox [id]="item.idExam+'check'" #checkeds [checked]="item.checked"
+                                            (change)="checkExamenesModal($event.checked,item.idExam)">
+                              </mat-checkbox>
+                              <span [style]="listaIdExamenesSelected.includes(item.idExam)?'color: var(--color-05);':''">{{item.examName}}</span>
+                          }@else{
+                              <mat-icon style="color: var(--error);">
+                                  close
+                              </mat-icon>
+                              <span style="color:var(--error);" title="No se encontró el examen en ningún elemento">{{item.examName}}</span>
+                          }
+                      </label>
+                  }
+              </form>
+          </div>
+
+          <div class="selection-column">
+              <div class="element-selector">
+                  <mat-radio-group aria-label="Select an option">
+                      @for (item of listaExamenesPorElementos; track $index) {
+                          <div class="element-group">
+                              <label style="border-bottom: 1px solid var(--color-06);padding: 10px;">
+                                  <mat-radio-button [value]="item.idElement"
+                                                  (change)="listaExamenesPorElementosSelected = item">
+                                      {{item.elementName}} #{{$index+1}} <br>
+                                      @if (item.containAllExam) {
+                                          <span style="color: var(--color-01);">Este elemento tiene todos los examenes seleccionados</span>
+                                      }
+                                  </mat-radio-button>
+                              </label>
+                              <div style="overflow: auto; height: 70px;">
+                                  @for (item2 of item.listExamDetail; track $index) {
+                                      <div [style]="listaIdExamenesSelected.includes(item2.idExam)?'color: var(--color-03);font-weight: bold;':''">- {{item2.examName}}</div>
+                                  }
+                              </div>
+                          </div>
+                      }
+                  </mat-radio-group>
+              </div>
+          </div>
+      </div>
+  </div>
+</ng-template>

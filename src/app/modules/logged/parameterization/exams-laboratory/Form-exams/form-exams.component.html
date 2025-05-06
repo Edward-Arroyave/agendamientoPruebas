@@ -1,0 +1,116 @@
+<div class="container">
+  <h3 class="titulo">{{ idExam ? 'Editar' : 'Agregar' }} examen</h3>
+
+
+  <form [formGroup]="formExam" class="form">
+
+    <div class="cont-form">
+
+      <app-basic-input [dataSelect]="listExamsCups" [valueId]="'code'" [valueDescription]="'codename'" [typeInput]="'select'"
+        [leftIcon]="'numeral'" [rightIcon]="'arrow_drop_down'" [form]="formExam" [nameControlform]="'cups'"
+        [textLabel]="'Código CUPS'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar...'">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'tipoAtencion'" [form]="formExam" [maxlength]="250"
+        [nameControlform]="'examName'" [textLabel]="'Nombre del examen'"></app-basic-input>
+
+        <app-basic-input [dataSelect]="biologicalSex" [valueId]="'id'" [valueDescription]="'name'" [typeInput]="'select'"
+        [leftIcon]="'sexobiologico'" [rightIcon]="'arrow_drop_down'" [form]="formExam" [nameControlform]="'biologicalSex'"
+        [textLabel]="'Sexo biológico'" [flagCheck]="false" [searchFlag]="false" [placeholderText]="'Seleccione una opción...'">
+      </app-basic-input>
+
+
+    </div>
+
+
+    <div class="full-width">
+
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" preserveContent [disableRipple]="true"
+        [selectedIndex]="selectedTabIndex" class="custom-tab-group">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Precondiciones
+            <!-- <mat-icon class="tab-icon" *ngIf="formPre.get('preconditions')?.value">check</mat-icon> -->
+          </ng-template>
+          <div class="container-box">
+            <app-basic-input class="textarea-with" [typeInput]="'textarea'" [form]="formExam" [leftIcon]="'usuario'"
+              [nameControlform]="'preconditions'" [rows]="8" [textLabel]="'Precondiciones'">
+            </app-basic-input>
+          </div>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Indicaciones
+            <!-- <mat-icon class="tab-icon" *ngIf="formPre.get('indications')?.value">check</mat-icon> -->
+          </ng-template>
+          <div class="container-box">
+            <app-basic-input class="textarea-with" [typeInput]="'textarea'" [form]="formExam" [leftIcon]="'usuario'"
+              [nameControlform]="'indications'" [rows]="8" [cols]="40" [textLabel]="'Indicaciones'">
+            </app-basic-input>
+
+          </div>
+        </mat-tab>
+
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Requisitos
+
+          </ng-template>
+          <div class="container-box">
+            <div formArrayName="listRequeriments" class="requisitos-container">
+              <ng-container *ngFor="let requirement of listRequeriments.controls; let i = index">
+                <div [formGroupName]="i" class="requisito" *ngIf="!requirement.get('isHidden')?.value">
+                  <!-- Checkbox para marcar el requisito -->
+                  <div class="checkbox" *ngIf="!requirement.get('isHidden')?.value">
+                    <mat-checkbox [formControlName]="'dataRemoved'">
+                    </mat-checkbox>
+
+                  </div>
+
+                  <!-- Textarea para el requisito -->
+                  <app-basic-input [form]="requirement" [nameControlform]="'requirements'" [typeInput]="'textarea'"
+                    [leftIcon]="'usuario'" [rows]="1" [cols]="40" [textLabel]="'Requisito #' + (i+1)">
+                  </app-basic-input>
+
+
+                  <!-- Toggle para essentialRequirement -->
+                  <div class="text-togle1">
+                    <app-toggle style="padding-left: 1rem;" [flag]="requirement.get('essentialRequirement')?.value"
+                      (onChange)="toggleEssentialRequirement(i, $event)">
+                    </app-toggle>
+                    <h1>Requisito esencial</h1>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+
+            <!-- Botones para agregar y eliminar -->
+            <div class="requisito-buttons">
+              <button class="btnIcon-01" (click)="agregarRequisito()">
+
+                <mat-icon>add</mat-icon>
+              </button>
+              <button class="btnIcon-01" (click)="eliminarRequisitosActivos()">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+
+
+    </div>
+
+  </form>
+
+
+  <div class="controls_two_buttons absolute_boton">
+    <button type="button" class="btn-01" (click)="cancel()">Cancelar</button>
+    <button type="button" class="btn-02" (click)="save()">{{ idExam ? 'Actualizar' : 'Guardar' }}</button>
+  </div>
+
+</div>

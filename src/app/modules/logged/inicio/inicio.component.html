@@ -1,0 +1,82 @@
+<div class="container shadow">
+  <div class="opacador">
+    <div class="lineas"></div>
+    <div class="lineas l1"></div>
+
+
+
+    <div class="content-inicio">
+
+      <div class="principal-square">
+        <div class="imagen-central">
+
+          <img class="image-agenda" [src]="imagen" alt="calendario">
+          <span class="agendamiento-title">
+            {{title}}
+          </span>
+          <span class="agendamiento-subtitle">
+            {{text}}
+          </span>
+
+          <span class="text-menu text-one">
+            Para empezar, seleccione una opción del menú superior o de clic en uno de los siguientes accesos directos:
+          </span>
+          <span class="text-menu text-two">
+            Para empezar, seleccione una opción del menú superior:
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="triangle-right-rounded"></div>
+
+      <div class="cont-squares">
+
+        @for (item of menuAvailable; track $index) {
+
+        <div class="cont-squares-decoration" [routerLink]="item.link">
+        @if(item.i == 0 || item.i == 1 ){
+             <div class="margen-cont" [ngClass]="{'reverse-bg': item.i === 0}" >
+            <div class="icon-item">
+
+              <mat-icon [svgIcon]="item.icon"></mat-icon>
+            </div>
+            <span> {{item.name}} </span>
+        </div>
+        <div class="cuadros">
+          @for (c of cuadros; track $index) {
+          <div [ngStyle]="{'width.px': c.ancho, 'height.px': c.ancho, 'border-radius.px': c.borde }"
+           [ngClass]="{'cuadro-1': item.i == 1, 'cuadro-2': item.i == 0}"></div>
+          }
+        </div>
+
+        }
+        @else{
+        <div class="cuadros" >
+          @for (c of cuadrosInversa; track $index) {
+            <div [ngStyle]="{'width.px': c.ancho, 'height.px': c.ancho, 'border-radius.px': c.borde }"
+            [ngClass]="{'cuadro-1': item.i == 2, 'cuadro-2': item.i == 3}" ></div>
+            }
+        </div>
+        <div class="margen-cont" [ngClass]="{'reverse-bg': $index % 2 !== 0}">
+          <div class="icon-item">
+            <mat-icon [svgIcon]="item.icon"></mat-icon>
+          </div>
+          <span> {{item.name}} </span>
+        </div>
+        }
+      </div>
+      }
+
+    </div>
+
+
+  </div>
+
+  <div class="lineas2"></div>
+  <div class="lineas2 l2"></div>
+</div>
+
+
+</div>

@@ -1,0 +1,152 @@
+<div class="container">
+  <span class="titulo">Monitor y control</span>
+
+  <div class="form-search">
+    <div class="inputs-container">
+      <app-basic-input [typeInput]="'dateDouble'" [rightIcon]="'fecha-mini'" [leftIcon]="'fecha-normal'"
+        [form]="formSearch" [nameControlform]="'initialDate'" [nameControlform2]="'finalDate'"
+        [textLabel]="'Fecha inicio-final'" [ariaRequired]="false"></app-basic-input>
+
+      <app-basic-input [dataSelect]="listProcess" [valueId]="'idProcess'" [valueDescription]="'processName'"
+        [typeInput]="'select'" [leftIcon]="'proceso'" [rightIcon]="'arrow_drop_down'" [form]="formSearch"
+        [nameControlform]="'listIdProcess'" [textLabel]="'Proceso'" [flagCheck]="false" [searchFlag]="true"
+        [placeholderText]="'Seleccione una opción'">
+      </app-basic-input>
+
+      <app-basic-input [dataSelect]="listStatus" [valueId]="'idStatus'" [valueDescription]="'statusName'"
+        [typeInput]="'select'" [leftIcon]="'estado'" [rightIcon]="'arrow_drop_down'" [form]="formSearch"
+        [nameControlform]="'listStatus'" [textLabel]="'Estado'" [flagCheck]="false" [searchFlag]="true"
+        [placeholderText]="'Seleccione una opción'">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'numeral'" [form]="formSearch" [maxlength]="10"
+        [nameControlform]="'internalCodeConsecutive'" [textLabel]="'Consecutivo propio'"></app-basic-input>
+
+    </div>
+
+    @if(permisosDelModulo.Crear){
+    <div class="buttons-container">
+      <button class="btnIcon-01" (click)="search()">
+        <div><span>Buscar</span></div>
+        <mat-icon>search</mat-icon>
+      </button>
+      <button class="btnIcon-01" (click)="clean()">
+        <div><span>Limpiar</span></div>
+        <mat-icon svgIcon="limpiar"></mat-icon>
+      </button>
+      <!-- <button class="btnIcon-01" [ngClass]="{'disable': listcheck.length == 0 && this.checkall == false}"
+        (click)="relay()">
+        <div><span>Retransmitir</span></div>
+        <mat-icon svgIcon="retrasmitir"></mat-icon>
+      </button> -->
+    </div>
+
+    }
+
+  </div>
+
+
+  <div style="margin-top: 1em;" class="contenedor-tabla">
+    @if(data.length !==0){
+
+    <div>
+      <table class="myTable " style="width: 100%; overflow: auto;">
+        <thead class="commonTable">
+          <tr>
+            <!-- <th>
+              <div
+                style="display: flex !important;    height: 20px !important;    justify-content: center !important;    align-items: center !important;">
+                <mat-checkbox [checked]="checkall" (change)="checkAllMonitor($event.checked)">
+                </mat-checkbox>
+              </div>
+
+            </th> -->
+            <th>Consecutivo propio</th>
+            <th>Nombre</th>
+            <th>Fecha de solicitud</th>
+            <th>Fecha de respuesta</th>
+            <th>Proceso</th>
+            <th>Estado</th>
+            <th>Solicitud</th>
+            <th>Respuesta</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of data | paginate: { id:'paginador', itemsPerPage: pageSize, currentPage: currentPage,
+          totalItems: counter }; track item) {
+          <tr class="shadow">
+            <!-- <td>
+              @if(item.statusName == 'Error'){
+              <div
+                style="display: flex !important;    height: 20px !important;    justify-content: center !important;    align-items: center !important;">
+                <mat-checkbox
+                  [checked]="item.statusName == 'Error' && (checkall || listcheck.includes(item.idMonitorAndControl))"
+                  (change)="checkOneMonitor($event.checked, item.idMonitorAndControl)"
+                  [disabled]="item.statusName != 'Error'">
+                </mat-checkbox>
+
+              </div>
+              }
+
+            </td> -->
+            <td class="text-truncate" [matTooltip]="item.idMonitorAndControl">{{item.idMonitorAndControl}}</td>
+            <td class="text-truncate" [matTooltip]="item.b">{{item.patientName}}</td>
+            <td class="text-truncate" [matTooltip]="item.requestDate">{{formatDate(item.requestDate)}}</td>
+            <td class="text-truncate" [matTooltip]="item.requestAnswer">{{formatDate(item.requestAnswer)}}</td>
+            <td class="text-truncate" [matTooltip]="item.processName">{{item.processName}}</td>
+            <td class="text-truncate"
+              [ngClass]="{'pending': item.statusName == 'Pendiente','transmited': item.statusName == 'Transmitido','error': item.statusName == 'Error' }"
+              [matTooltip]="item.e">{{item.statusName}}</td>
+
+            <td>
+              @if(item.request){
+              <div class="iconContainer shadow solicitud" (click)="openModal(solicitud,item,'s')">
+                <mat-icon class="iconTable" svgIcon="solicitud"></mat-icon>
+              </div>
+              }
+            </td>
+            <td>
+              @if(item.answer){
+              <div class="iconContainer shadow respuesta" (click)="openModal(solicitud,item,'r')">
+                <mat-icon class="iconTable" svgIcon="respuesta"></mat-icon>
+              </div>
+              }
+            </td>
+          </tr>
+          }
+
+
+        </tbody>
+
+      </table>
+    </div>
+
+
+
+
+    <pagination-controls id="paginador" previousLabel="" nextLabel="" [responsive]="true" [autoHide]="true"
+      (pageChange)="handlePageChange($event)"></pagination-controls>
+
+    }@else {
+    <div class="no-data">
+      <img class="no-data__img" src="assets/images/logos/icono_noData.png" alt="icon-no-data" />
+      <span class="no-data__span">Sin datos</span>
+    </div>
+    }
+  </div>
+
+
+</div>
+
+
+<ng-template #solicitud>
+  <div class="content-modal">
+    <h1 class="title">{{titleModal}}</h1>
+    <div class="shadow degrade detalle-content">
+      <span style="  white-space: pre-wrap;">
+        {{ currentJson | json }}
+      </span>
+
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,131 @@
+// Estilos inputs
+.continenInputBase{
+    border-radius: 10px;
+    min-height: 40px;
+    display: grid;
+    grid-template-columns: 40px auto 40px;
+    align-items: center;
+    text-align: center;
+    color: var(--color-05);
+    cursor: pointer;
+    transform: .5s line;
+    position: relative;
+}
+
+.hoverInput:hover {
+    color: var(--color-06);
+    .paddingInputBase:nth-child(2){
+        border-right: 1px solid var(--color-06);
+    }
+}
+
+.sinHoverError:hover{
+    color: var(--red-01);
+    .paddingInputBase:nth-child(2){
+        border-right: 1px solid var(--red-01);
+    }
+}
+.sinHoverComplete:hover{
+    color: var(--color-04);
+    .paddingInputBase:nth-child(2){
+        border-right: 1px solid var(--color-04);
+    }
+}
+
+.errorInputBase{
+    color: var(--red-01);
+    .paddingInputBase:nth-child(2){
+        border-right: 1px solid var(--red-01);
+    }
+}
+
+.formComplete{
+    color: var(--color-04);
+    .paddingInputBase:nth-child(2){
+        border-right: 1px solid var(--color-04);
+    }
+}
+
+.paddingInputBase{
+    padding: 2px 7px;
+    white-space: nowrap;
+    // text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.sizeIcon{
+    width: 26px;
+    height: 26px;
+    padding-top: 5px;
+}
+
+.paddingInputBase:nth-child(2){
+    border-right: 1px solid var(--color-05);
+}
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select option{
+    border-radius: 5px !important;
+}
+// Estilos inputs
+
+
+.time-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.suffix {
+    font-size: 14px;
+    margin-left: 10px;
+
+}
+
+.icons-container {
+    display: flex;
+    flex-direction: column;
+    // margin-left: 10px;
+    align-items: center;
+    // border: 1px solid red;
+    position: absolute;
+    right: 10px;
+}
+
+.right-icon1 {
+    color: var(--color-01);
+    cursor: pointer;
+    height: 20px !important;
+    width: 20px !important;
+}
+
+.right-icon2 {
+    color: var(--color-01);
+    cursor: pointer;
+    height: 20px !important;
+    width: 20px !important;
+}
+
+.text-truncate {
+    // max-width: 220px; /* Ajusta este valor según tus necesidades */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    text-align: start;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .disable-tittle-inputs {
+    color: var(--gray-02);
+  }
+  .disable-tittle-inputs:hover {
+    color: var(--gray-02);
+  }
+
+

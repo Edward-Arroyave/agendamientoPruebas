@@ -1,0 +1,47 @@
+@defer(when !!form){
+    <h1 class="titulo-paso-1">Por favor diligencie los siguientes datos asociados al paciente:
+    </h1>
+    <form class="form-paso-1">
+
+        <app-basic-input [dataSelect]="listaDocumentos" [valueId]="'idDocumentType'" [valueDescription]="'documentType'"
+            [typeInput]="'select'" [leftIcon]="'tipodocumento'" [rightIcon]="'tipodocumento'" [form]="form"
+            [nameControlform]="'idIdentificationType'" [textLabel]="'Tipo de documento'" [flagCheck]="false"
+            [searchFlag]="true" [placeholderText]="'Buscar documento'">
+        </app-basic-input>
+
+        <app-basic-input (blurInput)="obtenerDataInput($event)" [typeInput]="'text'" [leftIcon]="'numeral'"  [restriction]="'NumbersLetters'" [maxlength]="20"
+            [form]="form" [nameControlform]="'identificationNumber'" [textLabel]="'Número de identificación'"
+            [ariaRequired]="false">
+        </app-basic-input>
+
+        <app-basic-input [typeInput]="'text'" [rightIcon]="'search'" [leftIcon]="'usuario'" [form]="form"
+            [nameControlform]="'name'" [textLabel]="'Nombres'" [ariaRequired]="false">
+        </app-basic-input>
+
+        <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="form" [nameControlform]="'lastName'"
+            [textLabel]="'Apellidos'" [ariaRequired]="false">
+        </app-basic-input>
+
+        <app-basic-input [typeInput]="'text'" [leftIcon]="'fechanacimiento'" [form]="form"
+            [nameControlform]="'birthDate'" [textLabel]="'Fecha de nacimiento'" [ariaRequired]="false">
+        </app-basic-input>
+
+        <app-basic-input [typeInput]="'text'" [leftIcon]="'email'" [form]="form" [nameControlform]="'email'"
+            [textLabel]="'Correo electrónico'" [ariaRequired]="false">
+        </app-basic-input>
+
+        <app-basic-input [dataSelect]="listaGeneros" [valueId]="'id'" [valueDescription]="'name'" [typeInput]="'select'"
+            [rightIcon]="'tipodocumento'" [leftIcon]="'sexobiologico'" [form]="form"
+            [nameControlform]="'idBiologicalSex'" [textLabel]="'Sexo biologico'" [flagCheck]="false" [searchFlag]="true"
+            [placeholderText]="'Buscar sexo biologico'">
+        </app-basic-input>
+
+        <app-basic-input [typeInput]="'text'" [leftIcon]="'telefono'" [form]="form" [nameControlform]="'phone'"
+            [textLabel]="'Teléfono principal'" [ariaRequired]="false">
+        </app-basic-input>
+
+        <app-basic-input [typeInput]="'text'" [leftIcon]="'telefono'" [form]="form" [nameControlform]="'phone2'"
+            [textLabel]="'Teléfono auxiliar'" [ariaRequired]="false">
+        </app-basic-input>
+    </form>
+}

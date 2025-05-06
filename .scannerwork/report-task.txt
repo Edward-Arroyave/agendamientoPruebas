@@ -1,0 +1,6 @@
+projectKey=AgendamientoFront
+serverUrl=http://localhost:9000
+serverVersion=25.4.0.105899
+dashboardUrl=http://localhost:9000/dashboard?id=AgendamientoFront
+ceTaskId=1d76b04d-e0b3-4abc-9c8c-b71025adf908
+ceTaskUrl=http://localhost:9000/api/ce/task?id=1d76b04d-e0b3-4abc-9c8c-b71025adf908

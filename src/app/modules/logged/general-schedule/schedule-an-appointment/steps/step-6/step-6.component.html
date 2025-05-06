@@ -1,0 +1,86 @@
+<div class="grid-informacion-adicional">
+    <div style="display: flex; align-items: end; height: 100%;">
+        <p style="margin: 0;">
+            Por favor confirme los datos del combo de citas :
+        </p>
+    </div>
+    <div style="border-bottom: 1px solid var(--color-01); height: 100%;margin: 0 1em;"></div>
+    <div class="tapInformacion shadow">
+        <div>Paciente : <strong>{{fullName}}</strong></div>
+        <!-- <div>Entidad remitente : <strong>Compensar </strong> </div> -->
+    </div>
+</div>
+@defer(when listaRequerimientosConfimacion){
+    <div class="contiene-info-paso-06">
+        @for (item of listaAgendaSeleccionada; track $index) {
+            <div class="grid-card-paso-06">
+                <div  class="shadow estilo-top">
+                    <h1 class="titulo-card-paso-06">Datos generales de la cita : {{item.caracteristicaName}}</h1>
+                    <div style="display: flex;">
+                        <div class="border" style="padding: 10px;">
+                            <mat-icon [svgIcon]="infoAdicional.iconName ?infoAdicional.iconName:'condicion-especial'" class="iconPaciente"></mat-icon>
+                        </div>
+                        <div style="overflow: auto; height: 121px;">
+                            <h2 class="color-04">{{item.desiredDate | date :'fullDate':'UTC'}} de {{item.startTime | formatTime}} a {{item.endTime | formatTime}}</h2>
+                            <div class="info-final-cita">
+                                <span><strong class="color-04">Categoría : </strong> {{ infoAdicional.categoryName }} </span>
+                                <span><strong class="color-04">Especialidad : </strong> {{infoAdicional.specialtiesName }} </span>
+                                <span><strong class="color-04">Característica : </strong> {{item.caracteristicaName }} </span>
+                                @if(infoAdicional.elementName){
+                                    <span><strong class="color-04">Elemento : </strong> {{infoAdicional.elementName }} </span>
+                                }
+                                <span><strong class="color-04">Tipo de atención : </strong> {{idTypeAttention == 1 ?'Presencial':'Virtual'}} </span>
+                                <span><strong class="color-04">Condición especial : </strong> {{infoAdicional.specialConditionName ? infoAdicional.specialConditionName:'-'}} </span>
+                                <span><strong class="color-04">Duración : </strong> {{item.duracion }} minutos </span>
+                                <span><strong class="color-04">Sede : </strong> {{item.sede }} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if(preparaciones.length > 0){
+            @for (item of preparaciones; track $index) {
+                <div class="shadow estilo-top-2">
+                    <mat-checkbox #checkIndicaciones
+                                  labelPosition="after"
+                                  [checked]="item.checked"
+                                  (click)="[item.checked = checkIndicaciones.checked,checkAndEmit(this.preparaciones)]"><strong>He leído la preparación</strong> <span style="color: red;">*</span> </mat-checkbox>
+                    <h1 class="color-04" style="margin: 0; text-align: center;">Preparación para el examen : {{item.nombreExamn}} </h1>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1em;">
+                        <div>
+                            <h1 style="margin-left: 0;">Notas</h1>
+                            <p> <strong style="color: var(--color-01);">Indicaciones :</strong> {{item.indications ? item.indications : 'Sin indicaciones'}}</p>
+                            <p> <strong style="color: var(--color-01);">Pre-indicaciones :</strong> {{item.preconditions ? item.preconditions : 'Sin pre-condicones'}}</p>
+                        </div>
+                        <div>
+                            @if(item['arrItems'].length){
+                                <h1 style="margin-left: 0;">Lista de requisitos</h1>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1em; align-items: start;">
+                                        @for (indicaciones of item['arrItems']; track $index) {
+                                            <p style="font-size: 14px;"> <strong style="color: var(--color-01);">-</strong> {{indicaciones}}</p>
+                                        }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }@else {
+            @if(!associatedExam()){
+                <div class="shadow estilo-top-2">
+                    <mat-checkbox #checkIndicaciones  labelPosition="after" style="position: absolute; left: 5px;"
+                                    [checked]="listaRequerimientosConfimacion[0].checked"
+                                    (click)="[listaRequerimientosConfimacion[0].checked = checkIndicaciones.checked,checkAndEmit(this.listaRequerimientosConfimacion)]"><strong>He leído la preparación</strong> <span style="color: red;">*</span> </mat-checkbox>
+                    <h1 class="color-04" style="text-align: center;">Preparación para la cita</h1>
+                    <p style="font-size: 14px;">{{listaRequerimientosConfimacion[0].indications}}</p>
+                    <p style="font-size: 14px;" class="color-04"><strong>Nota</strong> <br> {{listaRequerimientosConfimacion[0].preconditions}}</p>
+                    @if(observaciones){
+                        <p style="font-size: 14px;" class="color-04"><strong>Observaciones</strong> <br> {{observaciones}}</p>
+                    }
+                </div>
+            }
+        }
+
+    </div>
+}

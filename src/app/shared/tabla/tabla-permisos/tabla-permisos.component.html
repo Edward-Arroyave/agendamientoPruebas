@@ -1,0 +1,47 @@
+<div class="table-container">
+  <div style="overflow-x: auto;">
+    <table>
+      <thead class="commonTable">
+        <tr class="shadow headers-table">
+          @for (item of columnsHeader(); track item) {
+          <th>{{item}}</th>
+          }
+        </tr>
+      </thead>
+
+      <tbody>
+
+        @for (item of pagedData; track item; let j = $index) {
+        <tr class="shadow">
+          <td style="padding-left: 5% !important;" (click)="toggleExpand(item)">
+            <i style="font-size: 10px;" class="fa-regular fa-circle-dot"></i> {{ item.name }} <span
+              [ngClass]="{'rotated': item.expanded}" class="expansor">{{ '▶' }}</span>
+          </td>
+          <td> <app-toggle [flag]="item.crear" (onChange)="cambiaPadre(item,$event,'crear')"></app-toggle> </td>
+          <td> <app-toggle [flag]="item.editar" (onChange)="cambiaPadre(item,$event, 'editar')"></app-toggle> </td>
+          <td> <app-toggle [flag]="item.ver" (onChange)="cambiaPadre(item,$event, 'ver')"></app-toggle> </td>
+          <td> <app-toggle [flag]="item.eliminar" (onChange)="cambiaPadre(item,$event, 'eliminar')"></app-toggle> </td>
+        </tr>
+        @if(item.expanded){
+        @for (child of item.children; track $index) {
+        <tr class="shadow td-secundario">
+          <td style="padding-left: 10% !important">
+            - {{ child.name }}
+          </td>
+          <td> <app-toggle [flag]="child.crear" (onChange)="cambiaHijo(child,$event, 'crear')"></app-toggle> </td>
+          <td> <app-toggle [flag]="child.editar" (onChange)="cambiaHijo(child,$event, 'editar')"></app-toggle> </td>
+          <td> <app-toggle [flag]="child.ver" (onChange)="cambiaHijo(child,$event, 'ver')"></app-toggle> </td>
+          <td> <app-toggle [flag]="child.eliminar" (onChange)="cambiaHijo(child,$event, 'eliminar')"></app-toggle> </td>
+        </tr>
+        }
+
+        }
+
+        }
+      </tbody>
+
+    </table>
+  </div>
+
+
+</div>

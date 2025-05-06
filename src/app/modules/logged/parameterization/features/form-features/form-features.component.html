@@ -1,0 +1,32 @@
+<div class="container">
+  <h3 class="title-form">{{ idCharacteristic ? 'Editar' : 'Agregar' }} Caracteristica</h3>
+
+  <form [formGroup]="formCharacter" class="form">
+    <!-- Input para Nombre de la Categoría -->
+    <app-basic-input [dataSelect]="especialidad" [valueId]="'idSpecialties'" [valueDescription]="'specialtiesName'"
+      [typeInput]="'select'" [leftIcon]="'cuidad'" [rightIcon]="'arrow_drop_down'" [form]="formCharacter"
+      [nameControlform]="'idSpecialties'" [textLabel]="'Especialidad'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar especialidad'">
+    </app-basic-input>
+
+
+    <!-- Input para Descripción -->
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formCharacter"
+      [nameControlform]="'characteristicName'" [textLabel]="'Nombre de la caracteristica'">
+    </app-basic-input>
+
+    @if(tiempoObligatorio){
+    <app-basic-input [typeInput]="'time'" [leftIcon]="'tiempo'" [form]="formCharacter"
+      [nameControlform]="'particularTime'" [textLabel]="'Tiempo particular'">
+    </app-basic-input>
+    }
+
+
+    <!-- Botones de Acción -->
+    <div class="controls_two_buttons absolute_boton">
+      <button type="button" class="btn-01" (click)="cancelar()">Cancelar</button>
+      <button type="button" class="btn-02" (click)="save()" [disabled]="formCharacter.invalid">{{ idCharacteristic ?
+        'Actualizar' : 'Guardar' }}</button>
+    </div>
+  </form>
+</div>

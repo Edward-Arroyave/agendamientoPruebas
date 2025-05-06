@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30 30">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+
+      .cls-2 {
+        fill: currentColor;
+      }
+
+      .cls-3 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-1" x="2.95" y="2.5" width="24.09" height="25"/>
+    </clipPath>
+  </defs>
+  <g class="cls-3">
+    <g id="Grupo_35617">
+      <path id="Trazado_19532" class="cls-2" d="M5.23,5.38c-1.26,0-2.27,1.02-2.27,2.27v17.58c0,1.25,1.02,2.27,2.27,2.27h19.55c1.25,0,2.27-1.02,2.27-2.27V7.65c0-1.26-1.02-2.27-2.27-2.27h-.8v1.44c.02.96-.74,1.76-1.7,1.78-.96.02-1.76-.74-1.78-1.7,0-.03,0-.06,0-.08v-1.44h-10.98v1.44c.02.96-.74,1.76-1.7,1.78-.96.02-1.76-.74-1.78-1.7,0-.03,0-.06,0-.08v-1.44h-.79ZM6.67,11.74h16.66c.48-.02.88.35.91.82v11.38c-.02.48-.43.85-.91.82H6.67c-.48.02-.89-.34-.91-.82v-11.38c.02-.48.43-.85.91-.82"/>
+      <path id="Trazado_19533" class="cls-2" d="M6.93,3.33v3.48c0,.46.37.83.83.83s.83-.37.83-.83v-3.48c0-.46-.37-.83-.83-.83s-.83.37-.83.83"/>
+      <path id="Trazado_19534" class="cls-2" d="M21.4,3.33v3.48c0,.46.37.83.83.83s.83-.37.83-.83v-3.48c0-.46-.37-.83-.83-.83s-.83.37-.83.83"/>
+      <rect id="Rectángulo_18895" class="cls-2" x="7.35" y="13.16" width="4.41" height="4.51"/>
+      <rect id="Rectángulo_18896" class="cls-2" x="12.9" y="13.16" width="4.41" height="4.51"/>
+      <rect id="Rectángulo_18897" class="cls-2" x="7.35" y="18.71" width="4.41" height="4.51"/>
+      <rect id="Rectángulo_18898" class="cls-2" x="12.9" y="18.71" width="4.41" height="4.51"/>
+      <rect id="Rectángulo_18899" class="cls-2" x="18.66" y="13.16" width="4.41" height="4.51"/>
+      <rect id="Rectángulo_18900" class="cls-2" x="18.66" y="18.71" width="4.41" height="4.51"/>
+    </g>
+  </g>
+</svg>

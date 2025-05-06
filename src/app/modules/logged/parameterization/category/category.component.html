@@ -1,0 +1,89 @@
+<div class="container">
+  <span class="titulo">Categorias</span>
+  <div class="tabla-responsive">
+    <div class="tabs-container">
+      <div class="contenedor1">
+
+        <form [formGroup]="formSearch" class="form-search form-inline">
+          <div class="input-container">
+
+            <!-- input buscar sede -->
+            <app-basic-input [typeInput]="'text'" [rightIcon]="'search'" [leftIcon]="'buscar-tuerca'"
+              [form]="formSearch" [nameControlform]="'search'" [textLabel]="'Buscar categorías'" [ariaRequired]="false">
+            </app-basic-input>
+          </div>
+
+          @if(permisosDelModulo.Crear){
+          <button class="btnIcon-01" routerLink="create">
+            <div><span>Agregar</span></div>
+            <mat-icon>add</mat-icon>
+          </button>
+          }
+        </form>
+      </div>
+    </div>
+
+    <div class="content-tab">
+    <table class="myTable " style="width: 100%;">
+      <thead class="commonTable">
+        <tr>
+          @for (item of cabeceros; track $index) {
+          <th>{{item}}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of pagedData | paginate: { id:'paginador', itemsPerPage: paginadorNumber, currentPage: p,
+        totalItems:
+        categoriasFiltradas.length }; track item; let j = $index) {
+        <tr class="shadow">
+          <td>{{item.item1}}</td>
+          <td>{{item.item2}}</td>
+          <td>
+            <div class="iconContainer shadow" (click)="abrirModalDetalle(detalle, item)">
+              <mat-icon class="iconTable yellow">library_books</mat-icon>
+            </div>
+          </td>
+          <td>
+            <div class="iconContainer shadow" >
+              <app-toggle [flag]="item.item4.active" (onChange)="cambiarEstadoC(item, $event)"></app-toggle>
+            </div>
+          </td>
+          <td>
+            <div class="iconContainer shadow" (click)="editarCategoria(item.item5)">
+              <mat-icon class="iconTable editar">edit</mat-icon>
+            </div>
+          </td>
+          <td>
+            <div class="iconContainer shadow" (click)="eliminarC(item.item6)">
+              <mat-icon class="iconTable eliminar">close</mat-icon>
+            </div>
+          </td>
+
+        </tr>
+        }
+
+
+      </tbody>
+
+
+    </table>
+    <pagination-controls id="paginador" previousLabel="" nextLabel="" [responsive]="true"
+      (pageChange)="handlePageChange($event)"></pagination-controls>
+    </div>
+  </div>
+
+</div>
+
+<!-- modal detalles -->
+<ng-template #detalle>
+  <div class="cont-modal">
+    <span class="title">Descripción de la categoría</span>
+    <div class="cont-detalle shadow">
+      <div class="valores">
+        <span class="subT">Descripción:</span>
+        <span class="textS">{{ descripcion() }}</span>
+      </div>
+    </div>
+  </div>
+</ng-template>

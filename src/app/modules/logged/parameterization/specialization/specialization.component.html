@@ -1,0 +1,117 @@
+
+<div class="container">
+<span class="titulo">Especialidades</span>
+<div class="tabla-responsive">
+  <div class="tabs-container">
+    <div class="contenedor1">
+
+  <form [formGroup]="formSearch" class="form-search form-inline">
+
+    <div class="input-container">
+      
+     
+
+      <!-- input buscar categoria -->
+      <app-basic-input [dataSelect]="categorias" [valueId]="'idCategory'" [valueDescription]="'categoryName'"
+        [typeInput]="'select'" [leftIcon]="'categoria'" [rightIcon]="'arrow_drop_down'" [form]="formSearch"
+        [nameControlform]="'idCategory'" [textLabel]="'Categoría'" [flagCheck]="false" [searchFlag]="true"
+        [placeholderText]="'Buscar categorías'">
+      </app-basic-input>
+
+      <!-- input buscar especialidad -->
+      <app-basic-input [dataSelect]="especialidad" [valueId]="'idSpecialties'" [valueDescription]="'specialtiesName'"
+        [typeInput]="'select'" [leftIcon]="'buscar-tuerca'" [rightIcon]="'arrow_drop_down'" [form]="formSearch"
+        [nameControlform]="'idSpecialties'" [textLabel]="'Especialidad'" [flagCheck]="false" [searchFlag]="true"
+        [placeholderText]="'Buscar especialidad'">
+      </app-basic-input>
+    </div>
+
+
+    <button class="btnIcon-01" (click)="buscarEspecialidades()">
+      <div><span>Buscar</span></div>
+      <mat-icon>search</mat-icon>
+    </button>
+
+    <button class="btnIcon-01" (click)="limpiarFiltros()">
+      <div><span>Limpiar</span></div>
+      <mat-icon svgIcon="limpiar"></mat-icon>
+    </button>
+
+    @if(permisosDelModulo.Crear){
+    <button class="btnIcon-01" routerLink="create">
+      <div><span>Agregar</span></div>
+      <mat-icon>add</mat-icon>
+    </button>
+    }
+    <!-- <button class="btnIcon-01">
+      <div><span>Cargar archivo</span></div>
+      <mat-icon>upload</mat-icon>
+    </button> -->
+  </form>
+    </div>
+</div>
+
+  <!-- tabla especialidades -->
+
+  <div class="content-tab">
+    <table class="myTable " style="width: 100%;">
+      <thead class="commonTable">
+        <tr>
+          @for (item of cabeceros; track $index) {
+          <th>{{item}}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of pagedData | paginate: { id:'paginador', itemsPerPage: paginadorNumber, currentPage: p,
+        totalItems:
+        SpecialtyFilter.length }; track item; let j = $index) {
+        <tr class="shadow">
+          <td>{{item.item1}}</td>
+          <td>{{item.item2}}</td>
+          
+          <td>
+            <div class="iconContainer shadow" >
+              <app-toggle [flag]="item.item3.active" (onChange)="cambiarEstadoE(item, $event)"></app-toggle>
+            </div>
+          </td>
+          <td>
+            <div class="iconContainer shadow" (click)="editarEspecialidad(item.item4)">
+              <mat-icon class="iconTable editar">edit</mat-icon>
+            </div>
+          </td>
+          <td>
+            <div class="iconContainer shadow" (click)="eliminar(item.item5)">
+              <mat-icon class="iconTable eliminar">close</mat-icon>
+            </div>
+          </td>
+
+        </tr>
+        }
+
+
+      </tbody>
+
+
+    </table>
+    <pagination-controls id="paginador" previousLabel="" nextLabel="" [responsive]="true"
+      (pageChange)="handlePageChange($event)"></pagination-controls>
+    </div>
+
+  
+
+  
+  
+</div>
+</div>
+<!-- @defer (when SpecialtyFilter.length !== 0) {
+  <app-tabla-comun 
+    [cabeceros]="cabeceros" 
+    [info-tabla]="SpecialtyFilter" 
+    (onEdit)="editarEspecialidad($event)"
+    (onChangeStatus)="cambiarEstadoE($event[0], $event[1])"
+    
+    (onDelete)="eliminar($event)"
+    [paginadorNumber]="10">
+  </app-tabla-comun>
+} -->

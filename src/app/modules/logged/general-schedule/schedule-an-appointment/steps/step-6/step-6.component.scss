@@ -1,0 +1,92 @@
+  // Paso 6
+  p{
+    margin: 0 ;
+  }
+
+  .contiene-info-paso-06{
+    padding: 10px;
+    min-height: 200px;
+    height: calc(100% - 11em);
+    margin-bottom: 1em;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  .grid-card-paso-06{
+    margin: 1em 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+
+  .estilo-top{
+    height: 190px;
+    border-radius: 10px; 
+    background: linear-gradient(180deg, var(--color-02) 10%, rgb(255, 255, 255) 20%)
+  }
+  .estilo-top-2{
+    padding: 10px 15px;
+    margin-bottom: 1em;
+    position: relative;
+    box-sizing: border-box;
+    overflow: auto;
+    height: 190px;
+    border-radius: 10px; 
+    background: linear-gradient(180deg, var(--color-06) 10%, rgb(255, 255, 255) 20%)
+  }
+  
+  .titulo-card-paso-06{
+    text-align: center;
+    color: var(--color-04);
+  }
+
+  .color-04{
+    color: var(--color-04);
+  }
+
+  .info-final-cita{
+    font-size: 14px;
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    padding-left: 20px;
+  }
+
+  .icon-flecha{
+    left: -3px;
+    position: absolute;
+    width: auto;
+    height: auto;
+    font-size: 40px;
+    color: var(--color-01);
+  }
+
+  .grid-informacion-adicional{
+    display: grid;
+    grid-template-columns: auto 1fr 300px;
+    align-items: center;
+    font-size: 14px;
+    margin: 2em 0;
+  }
+
+  .tapInformacion{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: linear-gradient(180deg, rgb(235, 235, 235) 63%, rgb(255, 255, 255) 92%);
+    border-radius: 10px;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .iconPaciente{
+    width: 100px !important;
+    height: 100px !important;
+}
+
+  // Paso 6

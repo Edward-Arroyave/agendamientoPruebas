@@ -1,0 +1,70 @@
+.contenedor{
+    width: 41px !important;
+    height: 20px !important;
+    background: var(--estado);
+    border-radius: 5px;
+    /* position: relative; */
+    transition: .5s all ease-in-out;
+    z-index: 97;
+    cursor: pointer;
+    margin: 0 auto;
+    
+}
+
+.contenedor:hover{
+    background: var(--estado-2);
+    mat-icon{
+        color: var(--estado);
+    }
+}
+
+.fondoOk{
+    background: #A3A2A2;
+    transition: .5s linear;
+}
+
+.fondoOk:hover{
+    background: #A3A2A2;
+    mat-icon{
+        color: #093C45;
+    }
+}
+
+.iconoClose{
+    font-size: 16px !important;
+    color: #ffffff;
+    position: absolute !important;
+    top: 2px !important; 
+    right: 2px !important;
+    width: 16px;
+    height: 16px;
+}
+.iconoCheck{
+    font-size: 16px !important;
+    color: #ffffff;
+    position: absolute !important; 
+    top: 2px !important; 
+    left: 2.8px !important;
+    width: 16px;
+    height: 16px;
+}
+.mover{
+    position: absolute !important;
+    right: 3px !important;
+    top: 2px !important;
+    transition: .2s linear;
+    background: white;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+.moverDerecha{
+    transform: translateX(-19px);
+}
+.botonMover{
+    margin-top: 0px;
+    color: #f3f4f7;
+    font-size: 22px !important;
+    width: 22px !important;
+    height: 22px !important;
+}

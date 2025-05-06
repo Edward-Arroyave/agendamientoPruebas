@@ -1,0 +1,112 @@
+<form class="shadow continenInputBase hoverInput"
+  [ngClass]="{'errorInputBase sinHoverError':form.get(nameControlform)?.invalid && (form.get(nameControlform)?.dirty || form.get(nameControlform)?.touched),
+                    'formComplete sinHoverComplete':form.get(nameControlform)?.valid && form.get(nameControlform)?.value, 'disable-tittle-inputs':form.get(nameControlform)?.disabled}" [formGroup]="form" (click)="onInput()">
+
+  <div style="display: flex; position: absolute; top: -13px;left: 46px; font-weight: bold;">
+    <p class="text-truncate" style="margin: 0;font-size: 14px;">{{textLabel}}
+    </p>
+    @if(form.get(nameControlform)?.hasValidator(validator)){ <span style="color:red !important;">*</span> }
+  </div>
+
+
+  <!-- ICONO - Lado izquierdo -->
+  <div class="paddingInputBase">
+    @if(isLeftIconRegistered){
+    <mat-icon class="sizeIcon" [svgIcon]="leftIcon"></mat-icon>
+    }@else {
+    @if( typeInput === 'password' || eyeVisibility() === 'visibility_off'){
+    <mat-icon class="sizeIcon">lock</mat-icon>
+    }@else if(!!leftIcon){
+    <!-- Icono por default -->
+    <mat-icon class="sizeIcon">{{leftIcon}}</mat-icon>
+    }
+    }
+  </div>
+
+  <div class="paddingInputBase" style="text-align: start;">
+    @if(typeInput === 'date'){
+    <input class="inputBase" [id]="'inputBase'+nameControlform" [formControlName]="nameControlform"
+      (click)="openPicker(picker)" matInput [matDatepicker]="picker" [min]="minDate" [matDatepickerFilter]="dateFilter"
+      [max]="maxDate" #inputBase [disabled]="disabled">
+    <mat-datepicker #picker></mat-datepicker>
+    }
+    @else if(typeInput === 'dateDouble'){
+    <mat-date-range-input [rangePicker]="picker2" (click)="openPicker(picker2)">
+      <input class="inputBase inputDouble" [formControlName]="nameControlform" matStartDate
+        [formControlName]="nameControlform">
+      <input class="inputBase inputDouble" matEndDate [formControlName]="nameControlform2">
+    </mat-date-range-input>
+    <mat-date-range-picker #picker2></mat-date-range-picker>
+
+
+    }@else if (typeInput === 'time') {
+    <div class="time-input-container">
+      <input type="hidden" [id]="'inputBase' + nameControlform" [formControlName]="nameControlform">
+      <span class="suffix" *ngIf="formattedTime">{{ formattedTime }}</span>
+      <div class="icons-container">
+        <mat-icon class="right-icon1" (click)="increaseTime()">arrow_drop_up</mat-icon>
+        <mat-icon class="right-icon2" (click)="decreaseTime()">arrow_drop_down</mat-icon>
+      </div>
+    </div>
+    }@else if (typeInput === 'hour') {
+    <div class="time-input-container">
+      <input type="hidden" [id]="'inputBase' + nameControlform" [formControlName]="nameControlform"
+        [disabled]="disabled">
+      <span class="suffix" *ngIf="formattedTimeInHours">{{ formattedTimeInHours }}</span>
+      <div class="icons-container">
+        <mat-icon class="right-icon1" (mousedown)="!disabled && increaseHour()" (mouseup)="!disabled && stopInterval()"
+          (mouseleave)="!disabled && stopInterval()">
+          arrow_drop_up
+        </mat-icon>
+
+        <mat-icon class="right-icon2" (mousedown)=" !disabled && decreaseHour()"
+          (mouseup)=" !disabled && stopInterval()" (mouseleave)="!disabled && stopInterval()">
+          arrow_drop_down
+        </mat-icon>
+      </div>
+    </div>
+
+    }@else if(typeInput === 'select') {
+    <app-select-input [isOpen]="isOpen" (onIsOpen)="isOpen = $event" [id]="'inputBase'+nameControlform" [form]="form"
+      [nameControlform]="nameControlform" [data]="dataSelect" [valueId]="valueId" [valueDescription]="valueDescription"
+      [flagCheck]="flagCheck" [searchFlag]="searchFlag" [placeholderText]="placeholderText">
+    </app-select-input>
+    }@else if(typeInput === 'file') {
+    <p style="margin: 0;">{{nameFile()}}</p>
+    <input (change)="onChageFile($event)" type="file" [id]="'inputBase'+nameControlform" style="display: none;"
+      #inputBase />
+    }@else if(typeInput === 'textarea') {
+    <textarea class="inputBase inputTextarea" [id]="'inputBase' + nameControlform + index"
+      [formControlName]="nameControlform" [rows]="rows" [cols]="cols" style="resize: vertical;">
+            </textarea>
+    }@else {
+    <input (blur)="blurInput.emit($event)" class="inputBase" [appOnly]="restriction" [id]="'inputBase'+nameControlform"
+      [maxlength]="maxlength" [formControlName]="nameControlform" [type]="typeInput" autocomplete="nope" #inputBase>
+    }
+  </div>
+
+  <!-- ICONO - Lado derecho -->
+  <div class="paddingInputBase">
+    @if(isRightIconRegistered){
+    @if(typeInput === 'select'){
+    <mat-icon style="padding: 0; margin-bottom: 6px;" class="sizeIcon" svgIcon="icon-down"></mat-icon>
+    }@else{
+    <mat-icon class="sizeIcon" [svgIcon]="rightIcon"></mat-icon>
+    }
+    }@else {
+    @if( typeInput === 'password' || eyeVisibility() === 'visibility_off'){
+    <mat-icon (click)="changePassToText()" class="sizeIcon">{{eyeVisibility()}}</mat-icon>
+    }@else if(!!rightIcon){
+    <!-- Icono por default -->
+    <mat-icon class="sizeIcon">{{rightIcon}}</mat-icon>
+    }
+    }
+  </div>
+
+  @if(form.get(nameControlform)?.invalid && (form.get(nameControlform)?.dirty || form.get(nameControlform)?.touched)){
+  <div style="position: absolute; bottom: -20px;left: 40px;">
+    <p style="margin: 0;font-size: 14px; color: --var(--red-01);">
+      {{fieldError.getFormFieldError({ form, formControlName: nameControlform })}}</p>
+  </div>
+  }
+</form>

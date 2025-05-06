@@ -1,0 +1,104 @@
+<div class="container">
+  <header class="header">
+    <div class="header-left">
+      <h1 class="title">HealthBook</h1>
+    </div>
+  </header>
+
+  <section class="card-register shadow">
+    <h3 class="title-form">Registro de paciente</h3>
+    <form [formGroup]="formRegistro" class="form-registro">
+
+      <!-- <app-basic-input [typeInput]="'email'" [leftIcon]="'email'" [form]="formRegistro"
+        [nameControlform]="''" [textLabel]="''"></app-basic-input> -->
+
+      <app-basic-input [dataSelect]="documentsTypes" [valueId]="'idDocumentType'"
+        [valueDescription]="'documentType'" [typeInput]="'select'"
+        [leftIcon]="'tipodocumento'" [form]="formRegistro" [nameControlform]="'documentType'"
+        [textLabel]="'Tipo de documento'" [flagCheck]="false" [searchFlag]="true"
+        [placeholderText]="'Buscar documento'">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'numeral'" [form]="formRegistro" [restriction]="'NumbersLetters'"
+        [nameControlform]="'documentNumber'" [textLabel]="'Número de documento'" [maxlength]="20"></app-basic-input>
+
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegistro" [nameControlform]="'firstname'"
+        [textLabel]="'Primer nombre'"></app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegistro" [nameControlform]="'secondname'"
+        [textLabel]="'Segundo nombre'"></app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegistro" [nameControlform]="'firtsLastName'"
+        [textLabel]="'Primer apellido'"></app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegistro" [nameControlform]="'secondLastName'"
+        [textLabel]="'segundo apellido'"></app-basic-input>
+
+        <app-basic-input [dataSelect]="paises" [valueId]="'idCountry'" [valueDescription]="'country'" [typeInput]="'select'"
+        [leftIcon]="'pais'" [form]="formRegistro" [nameControlform]="'idCountry'" [textLabel]="'País'" [flagCheck]="false"
+        [searchFlag]="true" [placeholderText]="'Buscar país'">
+      </app-basic-input>
+
+
+      <app-basic-input [dataSelect]="departamentos" [valueId]="'idDepartment'" [valueDescription]="'department'"
+        [typeInput]="'select'" [leftIcon]="'departamento'" [form]="formRegistro" [nameControlform]="'idDepartment'"
+        [textLabel]="'Departamento'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar departamento'">
+      </app-basic-input>
+
+      <!-- Input para seleccionar Ciudad -->
+      <app-basic-input [dataSelect]="cuidades" [valueId]="'idCity'" [valueDescription]="'city'" [typeInput]="'select'"
+        [leftIcon]="'cuidad'" [rightIcon]="'arrow_drop_down'" [form]="formRegistro" [nameControlform]="'idCity'"
+        [textLabel]="'Ciudad'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar cuidad'">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'date'" [leftIcon]="'fechanacimiento'" [maxDate]="maxDate"
+        [form]="formRegistro" [nameControlform]="'birthday'" [textLabel]="'Fecha de nacimiento'"></app-basic-input>
+
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'direccion'" [form]="formRegistro" [nameControlform]="'adress'"
+        [textLabel]="'Dirección de residencia'"></app-basic-input>
+
+      <app-basic-input [typeInput]="'email'" [leftIcon]="'correoelectronico'" [form]="formRegistro" [nameControlform]="'email'"
+        [textLabel]="'Correo electrónico'"></app-basic-input>
+
+
+      <app-basic-input [typeInput]="'email'" [leftIcon]="'correoelectronico'" [form]="formRegistro"
+        [nameControlform]="'confirmEmail'" [textLabel]="'Confirmación de correo electrónico'"></app-basic-input>
+
+
+
+      <app-basic-input [dataSelect]="biologicalSexList" [valueId]="'id'"
+        [valueDescription]="'name'" [typeInput]="'select'" [rightIcon]="'camera_enhance'"
+        [leftIcon]="'sexobiologico'" [form]="formRegistro" [nameControlform]="'biologicalSex'"
+        [textLabel]="'Sexo biologico'" [flagCheck]="false" [searchFlag]="true"
+        [placeholderText]="'Buscar sexo biologico'">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'telefono'" [form]="formRegistro"
+        [nameControlform]="'telephone'" [textLabel]="'Telefono principal'" [maxlength]="20"></app-basic-input>
+
+      <app-basic-input [typeInput]="'text'" [leftIcon]="'telefono'" [form]="formRegistro" [nameControlform]="'telephone2'" [maxlength]="20"
+        [textLabel]="'Telefono auxiliar'"></app-basic-input>
+    </form>
+
+    <div class="controls_two_buttons absolute_boton">
+      <button class="btn-01" (click)="cancelar()">Cancelar</button>
+      <button class="btn-02" (click)="createPatient()">Guardar</button>
+    </div>
+
+  </section>
+
+  <footer class=" ">
+    <div class="footer shadow">
+      <img src="assets/images/logos/logoithelath1.png" alt="Logo">
+    </div>
+    <div class="footer2 shadow">
+      <span>2025 HealthBook. Todos los derechos reservados. V 1.0</span>
+    </div>
+  </footer>
+
+
+
+
+</div>

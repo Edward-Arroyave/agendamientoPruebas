@@ -1,0 +1,115 @@
+  // Paso 3
+  .textNext{
+    color: var(--color-05);
+    cursor: pointer;
+  }
+  .textNext:hover{
+    text-decoration: underline;
+  }
+  .text-truncate {
+    max-width: 160px; /* Ajusta este valor según tus necesidades */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 auto;
+  }
+
+  td{
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  .infoPaciente{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    margin: 2em 0;
+    font-size: 14px;
+  }
+  .grid-form-paso-3{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2em;
+  }
+  .tapInformacion{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: linear-gradient(180deg, rgb(235, 235, 235) 63%, rgb(255, 255, 255) 92%);
+    border-radius: 10px;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .radio-companion{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    grid-column: span 2;
+  }
+    // Paso 3
+
+
+    @media( max-width :1200px){
+      .grid-form-paso-3{
+        grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+      }
+    }
+
+  //Modal
+
+
+  .content-modal {
+    width: 95%;
+    margin: auto;
+    border-left: var(--color-04) 2px solid;
+    border-right: var(--color-04) 2px solid;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .degrade {
+    background: linear-gradient(180deg,
+        rgba(235, 235, 235, 1) 63%,
+        rgba(255, 255, 255, 1) 92%);
+    border-radius: 10px;
+    padding: 1em;
+    box-sizing: border-box;
+  }
+
+  .form-companion{
+    display: grid;
+    grid-template-columns: repeat(3 , 1fr);
+    gap: 1em;
+    padding: 1em;
+    box-sizing: border-box;
+    row-gap: 2em;
+  }
+
+
+  @media screen and (max-width : 1000px) {
+    .form-companion{
+      grid-template-columns: repeat(2 , 1fr);
+    }
+
+  }
+  @media screen and (max-width : 700px) {
+    .form-companion{
+      grid-template-columns: repeat(1 , 1fr);
+      height: 300px;
+      overflow: auto;
+    }
+
+  }
+  @media screen and (max-height : 500px) {
+    .form-companion{
+      grid-template-columns: repeat(1 , 1fr);
+
+    }
+
+  }

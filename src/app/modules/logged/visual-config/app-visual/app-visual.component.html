@@ -1,0 +1,70 @@
+<h1 style="margin: 0;">Aplicativo de HealthBook</h1>
+<p>A continuación, encontrará las opciónes para cambiar o personalizar la apariencia del aplicativo de HealthBook.</p>
+
+<form class="formContainer">
+
+    <div class="border shadow" style="padding-top: 2em;">
+        <h2 class="marginMb">Configuración de pagina de inicio</h2>
+        <div class="grid-03" style="align-items: center;">
+            <app-basic-input [form]="form" [nameControlform]="'titleEntry'" [maxlength]="25" [textLabel]="'Titulo de entrada'" [leftIcon]="'engranajeBtn'" ></app-basic-input>
+            <app-basic-input [form]="form" [nameControlform]="'textEntry'" [maxlength]="80"  [textLabel]="'Texto de entrada'" [leftIcon]="'textoEntrada'" ></app-basic-input>
+            <div class="grid-input-file">
+                <app-file-input [fileSize]="500" [flagData]="form.get('fileLoad')?.valid!" [tipo]="'button'" (onEmitBase64)="obtenerBase64('fileLoad',$event!)" [extensionesPermitidas]="['png']" [tipo]="'button'"></app-file-input>
+                <app-file-input [fileSize]="500" [mensaje]="'se recomienda imagenes de 500px - 500px'" [tipo]="'file'" (onEmitBase64)="obtenerBase64('fileLoad',$event!)" [extensionesPermitidas]="['png']" [tipo]="'load'"></app-file-input>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-02">
+        <div class="border shadow" style="padding: 2em;">
+            <h2>Opaciones de apariencia</h2>
+            <div class="grid-border-01">
+                <app-basic-input  [dataSelect]="colores" [valueId]="'nomPaleta'" [valueDescription]="'nomPaleta'"
+                                  [typeInput]="'select'" [leftIcon]="'departamento'"
+                                  [form]="form" [nameControlform]="'colorPalette'" [textLabel]="'Paleta de colores'" >
+                </app-basic-input>
+                <app-basic-input  [dataSelect]="tipoGrafia" [valueId]="'idTipografia'" [valueDescription]="'nomTipoGrafia'"
+                                  [typeInput]="'select'" [leftIcon]="'tipografia'"
+                                  [form]="form" [nameControlform]="'idTypography'" [textLabel]="'Tipografía'" >
+                </app-basic-input>
+            </div>
+        </div>
+        <div class="border shadow" style="padding: 2em;">
+            <h2>Politica de tratamiento de datos</h2>
+            <div class="grid-border-02">
+                <app-basic-input [nameFileExist]="form.get('dataProcessing')?.value" [typeInput]="'file'" [rightIcon]="'cloud_upload'" [leftIcon]="'cargarDocumento'"
+                                 [form]="form"  [nameControlform]="'dataProcessing'" [extensionesPermitidas]="['pdf']" [textLabel]="'Doc. tratamiento de datos'"></app-basic-input>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-03 border shadow" style="padding-top: 2em;">
+        <div>
+            <h2>Logo principal (header)</h2>
+            <div class="grid-input-file">
+                <app-file-input [fileSize]="200" [flagData]="form.get('mainLogo')?.valid!"  (onEmitBase64)="obtenerBase64('mainLogo',$event!)" [extensionesPermitidas]="['png']" [tipo]="'button'"></app-file-input>
+                <app-file-input [fileSize]="200" [mensaje]="'se recomienda imagenes de 200px - 200px'" (onEmitBase64)="obtenerBase64('mainLogo',$event!)" [extensionesPermitidas]="['png']" [tipo]="'load'"></app-file-input>
+            </div>
+        </div>
+        <div>
+            <h2>Logo favicon</h2>
+            <div  class="grid-input-file">
+                <app-file-input [fileSize]="120" [flagData]="form.get('logoFavicon')?.valid!"  (onEmitBase64)="obtenerBase64('logoFavicon',$event!)" [extensionesPermitidas]="['png']" [tipo]="'button'"></app-file-input>
+                <app-file-input [fileSize]="120" [mensaje]="'se recomienda imagenes de 120px - 120px'" (onEmitBase64)="obtenerBase64('logoFavicon',$event!)" [extensionesPermitidas]="['png']" [tipo]="'load'"></app-file-input>
+            </div>
+        </div>
+        <div>
+            <h2>Logo footer</h2>
+            <div  class="grid-input-file">
+                <app-file-input [fileSize]="200" [flagData]="form.get('logoFooter')?.valid!"  (onEmitBase64)="obtenerBase64('logoFooter',$event!)" [extensionesPermitidas]="['png']" [tipo]="'button'"></app-file-input>
+                <app-file-input [fileSize]="200" [mensaje]="'se recomienda imagenes de 200px - 200px'" (onEmitBase64)="obtenerBase64('logoFooter',$event!)" [extensionesPermitidas]="['png']" [tipo]="'load'"></app-file-input>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: center;align-items: center;gap: 1em;">
+        <!-- <button class="btn-01">Cancelar</button> -->
+        <button class="btn-02" type="button" (click)="guardarEditar()">{{dataConfigVisual?'Actualizar':'Guardar'}}</button>
+    </div>
+
+</form>

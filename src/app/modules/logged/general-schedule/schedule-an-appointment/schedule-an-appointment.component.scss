@@ -1,0 +1,252 @@
+.container-btn-pay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.2em;
+  margin: 1em 0;
+}
+
+.container-btn-pay > span {
+  margin-bottom: .3em;
+}
+
+.btn-pay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+  background-color: #1a1a1a !important;
+  color: white !important;
+  min-height: 28px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px 16px;
+  width: 100%;
+  max-width: 410PX;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 22px;
+  font-weight: 600;
+  position: relative;
+}
+
+
+p {
+  margin: 0;
+}
+
+
+.tabs-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  gap: 3.5em;
+}
+
+.content-tab {
+  box-sizing: border-box;
+  padding: 1em;
+  overflow: auto;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  z-index: 2;
+}
+
+.tab-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  color: white;
+  font-weight: bold;
+  background: linear-gradient(180deg, var(--color-04) 11%, var(--color-01) 92%);
+  border-radius: 8px;
+}
+
+.no-completed {
+  color: var(--color-01);
+  padding-bottom: 1em;
+}
+
+.completed {
+  color: var(--color-04);
+}
+
+.name-tab {
+  width: 100%;
+  position: relative;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.line-separator {
+  width: 500px;
+  height: 1px;
+  background-color: var(--color-04);
+  position: absolute;
+  left: 6px;
+  top: 22px;
+}
+
+.subtitle-tab {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 2em;
+  font-size: 14px;
+}
+
+.iconPaciente {
+  width: 100px !important;
+  height: 100px !important;
+}
+
+.tapInformacion {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: linear-gradient(180deg, rgb(235, 235, 235) 63%, rgb(255, 255, 255) 92%);
+  border-radius: 10px;
+  height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+// contenedor secction
+.contiene-agenda {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100%;
+}
+
+.contien-botones {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin: 1em 0;
+  align-items: center;
+  height: 100%;
+}
+
+// contenedor secction
+
+
+// Paso 4
+.grid-informacion-adicional {
+  display: grid;
+  grid-template-columns: auto 1fr 500px;
+  align-items: center;
+  margin: 2em 0;
+}
+
+.grid-form-paso-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  width: 98%;
+}
+
+.grid-agendas {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+}
+
+.contiene-reservas {
+  box-sizing: content-box;
+  padding-right: 5px;
+  border: 1.5px solid var(--color-01);
+  position: relative;
+  // margin-bottom: 3em;
+}
+
+.titulo-caracteristica {
+  box-sizing: content-box;
+  padding: .5em 1em;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translate(-50%);
+  background: white;
+  border: 2.5px solid var(--color-01);
+  color: var(--color-04);
+  border-radius: 10px;
+}
+
+.reserva {
+  overflow: auto;
+  max-height: 270px;
+  display: grid;
+  justify-content: center;
+  gap: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  height: 100%;
+  padding: 2em 1em;
+}
+
+.reserva-grid {
+  border-radius: 10px;
+  padding: 1em 0;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1em;
+  padding: 0.5em 0.5em 0.5em 1em;
+}
+
+.contien-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1.5px solid var(--color-01);
+}
+
+// Paso 4
+// Paso 5
+.contiene-cita {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-left: 3px solid var(--color-05);
+  border-right: 3px solid var(--color-05);
+  padding: 0.5em;
+  box-sizing: border-box;
+
+}
+
+//FIN Paso 5
+
+
+@media screen and (max-width: 1340px) {
+
+  .grid-form-paso-4 {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5em;
+
+  }
+
+}
+
+@media screen and (max-width: 740px) {
+
+  .grid-form-paso-4 {
+    grid-template-columns: repeat(1, 1fr);
+
+  }
+
+}

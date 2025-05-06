@@ -1,0 +1,117 @@
+.container {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.cont-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  margin-top: 1em;
+}
+
+.form-top{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  width: 100%;
+}
+.form-bottom{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+}
+
+
+.add-btn {
+  background-color: var(--color-05);
+  color: black;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 1s ease;
+}
+
+.add-btn :hover {
+
+  color: white;
+}
+
+.form-and-table{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  overflow: auto;
+  position: relative;
+}
+
+.subtitle{
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-01);
+  margin-top: 1em;
+}
+
+:host ::ng-deep .ngx-pagination {
+  position: static !important;
+  bottom: 22px !important;
+  right: 5px !important;
+  margin: 0px !important;
+}
+
+
+/* No data */
+.no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.8em;
+  width: 100%;
+  height: 14em;
+}
+
+.no-data__img {
+  width: 4em;
+  filter: grayscale(1);
+}
+
+.no-data__span {
+  text-align: center;
+  color: #a3a2a2;
+}
+
+.homologationSelect {
+  background-color: var(--color-06);
+  transition: background-color 0.3s ease-in-out;
+}
+
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1100px) {
+  .form-top{
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2em;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-top{
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 2em;
+  }
+}
+

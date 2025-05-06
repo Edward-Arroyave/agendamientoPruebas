@@ -1,0 +1,45 @@
+.content-card {
+  width: 100%;
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: transparent linear-gradient(180deg, #EBEBEB 0%, #FFFFFF 100%) 0% 0% no-repeat padding-box;
+  border-radius: 10px;
+  height: 65px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.text-card {
+  display: flex;
+  height: 15px;
+  align-items: center;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.title-card {
+  color: #3e3e3e;
+  font-weight: 900;
+  font-size: 12px;
+  margin-right: 5px;
+  white-space: nowrap;
+}
+
+.subtitle-card {
+  display: inline-block;
+  color: #3e3e3e;
+  font-size: 12px;
+  font-weight: 600;
+  max-width: 190px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

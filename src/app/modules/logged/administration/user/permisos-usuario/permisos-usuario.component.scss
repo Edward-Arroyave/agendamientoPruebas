@@ -1,0 +1,21 @@
+.container {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.title {
+  margin-bottom: 1em !important;
+}
+
+.form-search {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1em;
+  margin: 2em auto;
+}
+
+.tabla-permisos{
+  width: 100%;
+  overflow: auto;
+}

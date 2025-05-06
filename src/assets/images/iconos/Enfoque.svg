@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+    </style>
+  </defs>
+  <path id="Trazado_19639" class="cls-1" d="M18.04,3.61v3.59h4.75v4.75h3.59V3.61h-8.34Z"/>
+  <path id="Trazado_19640" class="cls-1" d="M22.8,18.04v4.75h-4.75v3.59h8.34v-8.34h-3.59Z"/>
+  <path id="Trazado_19641" class="cls-1" d="M3.61,18.04v8.34h8.34v-3.59h-4.75v-4.75h-3.59Z"/>
+  <path id="Trazado_19642" class="cls-1" d="M3.61,3.61v8.34h3.59v-4.75h4.75v-3.59H3.61Z"/>
+</svg>

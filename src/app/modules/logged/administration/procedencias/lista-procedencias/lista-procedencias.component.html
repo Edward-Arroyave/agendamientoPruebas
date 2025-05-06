@@ -1,0 +1,54 @@
+<div class="container">
+
+  <span class="titulo">Procedencias y entidades</span>
+  <div class="tabla-responsive">
+    <div class="contenedor1">
+      <form [formGroup]="formularioBusqueda" (ngSubmit)="buscar()" class="form-search form-inline">
+        <div class="input-container">
+          <app-basic-input [typeInput]="'text'" [rightIcon]="'search'" [leftIcon]="'buscar-tuerca'"
+            [form]="formularioBusqueda" [nameControlform]="'procedencia'"
+            [textLabel]="'Buscar procedencias'"></app-basic-input>
+
+          <app-basic-input [typeInput]="'text'" [rightIcon]="'search'" [leftIcon]="'buscar-tuerca'"
+            [form]="formularioBusqueda" [nameControlform]="'entidades'"
+            [textLabel]="'Buscar entidades'"></app-basic-input>
+        </div>
+
+        <button type="submit" class="btnIcon-01">
+          <div><span>Buscar</span></div>
+          <mat-icon>search</mat-icon>
+        </button>
+        <button type="button" class="btnIcon-01" (click)="limpiarFiltro()">
+          <div><span>Limpiar</span></div>
+          <mat-icon svgIcon="limpiar"></mat-icon>
+        </button>
+        @if(this.permisosDelModulo.Crear){
+        <button type="button" class=" btnIcon-01" (click)="agregar()">
+          <div><span>Agregar</span></div>
+          <mat-icon>add</mat-icon>
+        </button>
+        }
+      </form>
+    </div>
+
+    <div>
+      @defer (when registros.length !==0) {
+      <app-tabla-comun [cabeceros]="cabeceros" [info-tabla]="registrosTabla()" [paginadorNumber]="paginadorNumber"
+        (onChangeStatus)="cambiarEstado($event)" (onEdit)="editar($event)" (onDelete)="eliminar($event)"
+        (onButton)="abrirDescripcion(Descripcion, $event)"></app-tabla-comun>
+      }
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal detalle descripción -->
+<ng-template #Descripcion>
+  <div class="contenedor-modal">
+    <h1>Descripción de la procedencia y la entidad</h1>
+    <div class="contenedor-descripcion">
+      <span class="titulo">Descripción:</span>
+      <p>{{ descripcionEntidad() }}</p>
+    </div>
+  </div>
+</ng-template>

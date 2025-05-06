@@ -1,0 +1,134 @@
+
+.shadow{
+    box-shadow: 0px 3px 6px #00000029;
+}
+.cont-modal{
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-left: 1px solid var(--color-03);
+  border-right: 1px solid var(--color-03);
+  margin: 2em auto;
+}
+  
+  .cont-modal .form-search{
+    width: 98%;
+    margin: auto;
+  }
+  .cont-modal .title{
+    margin-bottom: 1em !important;
+    padding: 0px 30px;
+    font-size: 16px;
+    color: var(--color-04);
+    font-weight: 800;
+  }
+  
+  .contPre{
+    overflow: auto;
+    max-height: 20em;
+  }
+  .cont-detalle {
+    // width: 98%;
+    margin: 20px 30px;
+    padding: 1em;
+    background: linear-gradient(#EBEBEB, #FFFFFF);
+    border-radius: 10px;
+  }
+  
+  .valores{
+    display: grid;
+  }
+  
+  .valores .subT{
+    font-size: 14px;
+    color: var(--color-01);
+    margin: 10px;
+    font-weight: bold;
+  }
+  
+  .valores .textS {
+    font-size: 14px;
+    color: #3E3E3E;
+    margin-left: 10px;
+    
+  }
+  .numero {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .grid-container {
+    display: flex;
+    grid-column-gap: 20px;
+    grid-row-gap: 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+  }
+  .container{
+    display: grid;
+    grid-row-gap: 6px;
+  }
+  .elemento {
+    display: flex;
+    align-items: center; 
+  }
+
+  .elemento.cont4 {
+    grid-column: span 3; 
+  }
+  
+  .title1 {
+    width: 28px;
+    height: 28px;
+    margin-right: 15px;
+    color: var(--color-01); 
+   
+  }
+  
+  .subT1 {
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--color-01);
+  }
+  
+  .textS1 {
+    font-size: 14px;
+    color: #404040; 
+  }
+  .separator {
+    color: var(--color-01); 
+    font-weight: bold; 
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .tabs-container {
+    flex-shrink: 0;
+  }
+  
+  .content-tab {
+    flex-grow: 1;
+    overflow: auto; 
+    margin-top: 1rem;
+  }
+  
+/* Móviles grandes */
+@media screen and (max-width: 1060px) {
+  .grid-container {
+    grid-row-gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  
+}
+
+  

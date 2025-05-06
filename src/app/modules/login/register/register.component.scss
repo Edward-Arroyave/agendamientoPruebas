@@ -1,0 +1,97 @@
+.container{
+  height: 100vh;
+  overflow: hidden;
+  background-color: #FFF9F4;
+}
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #28BA9E;
+  color: white;
+  padding: 0 20px;
+  height: 80px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.title{
+  font-family: "Condensed" !important;
+  font-size: 40px !important;
+  color: white;
+
+}
+
+.title-form{
+  color: var(--color-04);
+  padding: 1em 0 1em 60px;
+  font-weight: bold;
+}
+
+//Formulario
+.form-registro{
+  width: 94%;
+  margin: 0 auto 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 60px;
+  gap: 1em;
+  overflow: auto;
+  padding-top: 1em;
+}
+
+.card-register{
+  height: calc(100vh - 200px);
+  background-color: white;
+  position: relative;
+}
+
+.footer {
+  width: 40px;
+  margin-top: 1em;
+  background-color: white;
+  border: none;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer2 {
+  margin-top: 1em;
+  background-color: white;
+  border: none;
+  width: 100%;
+  height: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: #A3A2A2;
+}
+
+
+.absolute_boton{
+ bottom: 7px !important;
+}
+
+
+
+@media(max-width: 1100px) {
+  .form-registro{
+    grid-template-columns: repeat(3 , 1fr);
+  }
+}
+@media(max-width: 900px) {
+  .form-registro{
+    grid-template-columns: repeat(2 , 1fr);
+    padding-top: 1em;
+  }
+}
+@media(max-width: 600px) {
+  .form-registro{
+    grid-template-columns: repeat(1 , 1fr);
+    height: 90%;
+
+  }
+}

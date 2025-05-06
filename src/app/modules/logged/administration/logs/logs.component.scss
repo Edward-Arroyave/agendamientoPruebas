@@ -1,0 +1,136 @@
+
+.btnIcon-01 {
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+  height: 40px;
+}
+
+
+.cont-modal {
+  width: 95%;
+  margin: auto;
+  padding-bottom: 1em;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  flex-direction: column;
+  border-left: 1px solid var(--color-04);
+  border-right: 1px solid var(--color-04);
+}
+
+.cont-modal .form-search {
+  width: 98%;
+  margin: auto;
+}
+.cont-modal .title {
+  margin-bottom: 1em !important;
+}
+
+.cont-detalle {
+  // width: 98%;
+  margin: 1em;
+  padding: 1em;
+  background: linear-gradient(#ebebeb, #ffffff);
+}
+
+.title-detail{
+color: var(--color-04);
+}
+
+.grid-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  overflow: auto;
+  padding: 1em;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  padding: 1em;
+  border-radius: 8px
+}
+
+.valores {
+  width: 100%;
+  max-height: 200px;
+  padding: 1em;
+  box-sizing: border-box;
+  border-radius: 8px
+
+}
+
+.valores-title {
+  font-size: 14px;
+  color: var(--color-01);
+  margin: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.valores-title-delete{
+  font-size: 14px;
+  color: var(--error);
+  margin: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.cont-value{
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.cont-info{
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.diferentAnterior {
+  font-weight: bold;
+  color: var(--error);
+}
+.diferent {
+  font-weight: bold;
+  color: var(--exito);
+}
+
+.text-truncate {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.table-traza-detail{
+  width: 98%;
+  margin: auto;
+  height: 200px;
+  overflow: auto;
+}
+.max-100{
+  max-width: 100px;
+  overflow: hidden;
+}
+
+.text-truncate {
+  max-width: 160px; /* Ajusta este valor según tus necesidades */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+@media (max-width: 1400px) {
+  .contenedor-form {
+    grid-template-columns: 1fr;
+  }
+  .botones-form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 1em;
+  }
+}

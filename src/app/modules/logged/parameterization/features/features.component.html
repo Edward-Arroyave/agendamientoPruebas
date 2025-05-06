@@ -1,0 +1,98 @@
+
+
+<div class="container">
+    <span class="titulo">Características</span>
+<div class="tabla-responsive">
+    <div class="tabs-container">
+<div class="contenedor1">
+
+    <form [formGroup]="formSearch" class="form-search form-inline">
+
+        <div class="input-container">
+         
+
+            <!-- input buscar especialidad -->
+            <app-basic-input [dataSelect]="especialidad" [valueId]="'specialtiesName'"
+                [valueDescription]="'specialtiesName'" [typeInput]="'select'" [leftIcon]="'buscar-tuerca'"
+                [rightIcon]="'arrow_drop_down'" [form]="formSearch" [nameControlform]="'idSpecialties'"
+                [textLabel]="'Especialidad'" [flagCheck]="false" [searchFlag]="true"
+                [placeholderText]="'Buscar especialidad'">
+            </app-basic-input>
+
+            <!-- input buscar caracteristica -->
+            <app-basic-input [dataSelect]="listCaracteristicas" [valueId]="'characteristicName'" [valueDescription]="'characteristicName'" [typeInput]="'select'"
+            [leftIcon]="'categoria'" [rightIcon]="'arrow_drop_down'"[form]="formSearch" [nameControlform]="'idCharacteristic'" [textLabel]="'Característica'"
+            [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar caracteristica'">
+            </app-basic-input>
+        </div>
+
+        <button class="btnIcon-01" (click)="buscarCharacter()">
+            <div><span>Buscar</span></div>
+            <mat-icon>search</mat-icon>
+        </button>
+
+        <button class="btnIcon-01" (click)="limpiarFiltros()">
+            <div><span>Limpiar</span></div>
+            <mat-icon svgIcon="limpiar"></mat-icon>
+        </button>
+
+        @if(permisosDelModulo.Crear){
+        <button class="btnIcon-01" routerLink="create">
+            <div><span>Agregar</span></div>
+            <mat-icon>add</mat-icon>
+        </button>
+        }
+        <!-- <button class="btnIcon-01">
+            <div><span>Cargar archivo</span></div>
+            <mat-icon>upload</mat-icon>
+        </button> -->
+    </form>
+</div>
+</div>
+
+<div class="content-tab">
+    <table class="myTable " style="width: 100%;">
+      <thead class="commonTable">
+        <tr>
+          @for (item of cabeceros; track $index) {
+          <th>{{item}}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of pagedData | paginate: { id:'paginador', itemsPerPage: paginadorNumber, currentPage: p,
+        totalItems:
+        caracteristicasFiltradas.length }; track item; let j = $index) {
+        <tr class="shadow">
+          <td>{{item.item1}}</td>
+          <td>{{item.item2}}</td>
+          <td>
+            <div class="iconContainer shadow" >
+              <app-toggle [flag]="item.item3.active" (onChange)="cambiarEstadoCaracteristica(item, $event)"></app-toggle>
+            </div>
+          </td>
+          <td>
+            <div class="iconContainer shadow" (click)="editarCaracteristicas(item.item4)">
+              <mat-icon class="iconTable editar">edit</mat-icon>
+            </div>
+          </td>
+         
+          <td>
+            <div class="iconContainer shadow" (click)="eliminar(item.item5)">
+              <mat-icon class="iconTable eliminar">close</mat-icon>
+            </div>
+          </td>
+
+        </tr>
+        }
+
+
+      </tbody>
+
+
+    </table>
+    <pagination-controls id="paginador" previousLabel="" nextLabel="" [responsive]="true"
+      (pageChange)="handlePageChange($event)"></pagination-controls>
+    </div>
+</div>
+</div>

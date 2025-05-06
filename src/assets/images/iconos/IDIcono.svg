@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+    </style>
+  </defs>
+  <path id="Trazado_19647" data-name="Trazado 19647" class="cls-1" d="M0,6.66v13.3h8.2v60.07H0v13.29h27.99v-13.29h-8.2V19.96h8.2V6.66H0Z"/>
+  <path id="Trazado_19648" data-name="Trazado 19648" class="cls-1" d="M35.6,80.04h7.69V19.96h-7.69V6.66h25.53c24.41,0,38.87,16.34,38.87,42.55s-13.65,44.13-40.1,44.13h-24.29v-13.3ZM61.55,80.04c17.44,0,26.46-12.12,26.46-30.69s-10.46-29.38-27.28-29.38h-5.84v60.07h6.66Z"/>
+</svg>

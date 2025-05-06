@@ -1,0 +1,74 @@
+<div #myDiv class="contieneSelect"  (click)="toggleDropdown()" [title]="selectedName" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+    <div style="width: 100%; line-height: 38px; display: grid; grid-template-columns: 150px 1fr; font-size: 14px;"
+        [style]="selected === '' ? '' : form.get(nameControlform)?.disabled ? 'color: light-dark(rgb(84, 84, 84), rgb(170, 170, 170)) ;':'color:black;'">
+        {{ selected === '' ? '-- Seleccione --' : selectedName }}
+        @if (data[0]?.colores) {
+            <div [class]="data[0]?.valueDescription+'-theme'"
+                style="border-radius: 5px; height: 22px; margin-top: 8px; width: 100%; display: grid; grid-template-columns: repeat(6,1fr);">
+                <div style="border-radius: 5px 0px 0px 5px; width: 100%; height: 100%; background: var(--color-02);"></div>
+                <div style="width: 100%; height: 100%; background: var(--color-01);"></div>
+                <div style="width: 100%; height: 100%; background: var(--color-03);"></div>
+                <div style="width: 100%; height: 100%; background: var(--color-04);"></div>
+                <div style="width: 100%; height: 100%; background: var(--color-05);"></div>
+                <div style="border-radius: 0px 5px 5px 0px; width: 100%; height: 100%; background: var(--color-06);"></div>
+            </div>
+        }
+    </div>
+</div>
+
+<ng-template cdkConnectedOverlay
+            [cdkConnectedOverlayScrollStrategy]="strategiablock"
+             [cdkConnectedOverlayOrigin]="trigger"
+             [cdkConnectedOverlayOpen]="openSingal()"
+             [cdkConnectedOverlayWidth]="calculateWidth()+52">
+    <div #myDiv2 class="contiene-opciones"  style="width: 100%;">
+        @if(searchFlag){
+            <li class="itemSelect grid-2-selectCheck noHover" style="position: sticky;">
+                <input class="inputBase" [placeholder]="placeholderText" #filterInput (input)="filterItems(filterInput.value)" type="text" name="" id="">
+                <mat-icon (click)="limipiar()" svgIcon="limpiar" style="position: absolute; right: 1em;color: var(--color-05);"></mat-icon>
+            </li>
+        }
+        <ul class=" contieneItems" style="width: 100%;" [style]="this.flagCheck ?'max-height:215px;':'max-height:165px;'">
+            @if(flagCheck && data.length ){
+                <li class="itemSelect grid-2-selectCheck">
+                    <div>Seleccionar todo</div>
+                    <mat-checkbox #checkedAll [checked]="allChecked" (click)="[checkAll(checkedAll.checked)]"> </mat-checkbox>
+                </li>
+            }
+            <cdk-virtual-scroll-viewport [itemSize]="34"  #viewport [style.height.px]="viewportHeight" >
+                <div *cdkVirtualFor="let item of data">
+                    @if(flagCheck){
+                        <li class="itemSelect grid-2-selectCheck" [matTooltip]="item[valueDescription]" [matTooltipPosition]="'left'">
+                            <div class="text-truncate" >
+                                {{item[valueDescription]}}
+                            </div>
+                            <div>
+                                <mat-checkbox #checked [checked]="item.checked" [disabled]="item.disabled || false"
+                                    (click)="[selectItem(item[valueId],item[valueDescription],checked.checked)]">
+                                </mat-checkbox>
+                            </div>
+
+                        </li>
+                    }@else {
+                        <li class="itemSelect" (click)="selectItem(item[valueId],item[valueDescription])" [matTooltip]="item[valueDescription]" [matTooltipPosition]="'left'">
+                            <div class="text-truncate" style="display: grid; grid-template-columns: 150px 1fr;" >
+                                {{item[valueDescription]}}
+                                @if (item?.colores) {
+                                    <div [class]="item[valueDescription]+'-theme'"
+                                        style="border-radius: 5px; width: 100%; display: grid; grid-template-columns: repeat(6,1fr);">
+                                        <div style="border-radius: 5px 0px 0px 5px; width: 100%; height: 100%; background: var(--color-02);"></div>
+                                        <div style="width: 100%; height: 100%; background: var(--color-01);"></div>
+                                        <div style="width: 100%; height: 100%; background: var(--color-03);"></div>
+                                        <div style="width: 100%; height: 100%; background: var(--color-04);"></div>
+                                        <div style="width: 100%; height: 100%; background: var(--color-05);"></div>
+                                        <div style="border-radius: 0px 5px 5px 0px; width: 100%; height: 100%; background: var(--color-06);"></div>
+                                    </div>
+                                }
+                            </div>
+                        </li>
+                    }
+                </div>
+            </cdk-virtual-scroll-viewport>
+        </ul>
+    </div>
+</ng-template>

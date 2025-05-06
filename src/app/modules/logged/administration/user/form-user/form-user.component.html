@@ -1,0 +1,156 @@
+<div class="container">
+  <span class="titulo">{{!isEdit? 'Agregar': 'Editar'}} usuario</span>
+
+
+  <form [formGroup]="formRegistro" class="form">
+    <app-basic-input [dataSelect]="documentsTypes" [valueId]="'idDocumentType'"
+      [valueDescription]="'documentType'" [typeInput]="'select'" [leftIcon]="'tipodocumento'"
+      [form]="formRegistro" [nameControlform]="'idIdentificationType'" [textLabel]="'Tipo de documento'" [flagCheck]="false"
+      [searchFlag]="true" [placeholderText]="'Buscar documento'">
+    </app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'numeral'" [form]="formRegistro" [restriction]="'Numbers'"
+      [nameControlform]="'identificationNumber'" [textLabel]="'Número de documento'"></app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegistro" [nameControlform]="'name'"
+      [textLabel]="'Nombre'"></app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegistro" [nameControlform]="'lastName'"
+      [textLabel]="'Apellido'"></app-basic-input>
+
+
+    <app-basic-input [dataSelect]="paises" [valueId]="'idCountry'" [valueDescription]="'country'"
+      [typeInput]="'select'" [leftIcon]="'pais'" [form]="formRegistro" [nameControlform]="'idCountry'"
+      [textLabel]="'País'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar país'">
+    </app-basic-input>
+
+
+    <app-basic-input [dataSelect]="departamentos" [valueId]="'idDepartment'" [valueDescription]="'department'"
+      [typeInput]="'select'" [leftIcon]="'departamento'" [form]="formRegistro" [nameControlform]="'idDepartment'"
+      [textLabel]="'Departamento'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar departamento'">
+    </app-basic-input>
+
+    <app-basic-input [dataSelect]="cuidades" [valueId]="'idCity'" [valueDescription]="'city'" [typeInput]="'select'"
+      [leftIcon]="'cuidad'" [form]="formRegistro" [nameControlform]="'idCity'" [textLabel]="'Ciudad'"
+      [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar cuidad'">
+    </app-basic-input>
+
+
+    <app-basic-input [typeInput]="'date'" [leftIcon]="'fechanacimiento'" [form]="formRegistro" [maxDate]="fechaActual"
+      [nameControlform]="'birthday'" [textLabel]="'Fecha de nacimiento'"></app-basic-input>
+
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'usuario'" [form]="formRegistro" [nameControlform]="'userName'"
+      [textLabel]="'Nombre de usuario'"></app-basic-input>
+
+
+    <app-basic-input [dataSelect]="biologicalSexList" [valueId]="'id'" [valueDescription]="'name'"
+      [typeInput]="'select'" [leftIcon]="'sexobiologico'" [form]="formRegistro"
+      [nameControlform]="'biologicalSex'" [textLabel]="'Sexo biologico'" [flagCheck]="false" [searchFlag]="true"
+      [placeholderText]="'Buscar sexo biologico'">
+    </app-basic-input>
+
+    <app-basic-input [typeInput]="'text'" [leftIcon]="'telefono'" [form]="formRegistro"
+      [nameControlform]="'phonePrincipal'" [textLabel]="'Teléfono principal'" [restriction]="'Numbers'"></app-basic-input>
+
+    <app-basic-input [typeInput]="'email'" [leftIcon]="'correoelectronico'" [form]="formRegistro"
+      [nameControlform]="'email'" [textLabel]="'Correo electrónico'"></app-basic-input>
+
+
+    <app-basic-input [dataSelect]="roles" [valueId]="'idRole'" [valueDescription]="'roleName'"
+      [typeInput]="'select'" [leftIcon]="'roles'" [form]="formRegistro" [nameControlform]="'idRole'"
+      [textLabel]="'Rol'" [flagCheck]="false" [searchFlag]="false" [placeholderText]="'Buscar...'">
+    </app-basic-input>
+
+    <div class="inputyToggle" [ngClass]="{'desaparecer-input': !flatExpiracion}">
+
+      <div class="text_float" [ngClass]="{'active': !flatExpiracion}">
+        Expiración de cuenta
+      </div>
+      <app-toggle style=" margin: 11px;" [flag]="flatExpiracion" (onChange)="setExpiracionCuenta($event)"></app-toggle>
+      <app-basic-input [typeInput]="'date'" [leftIcon]="'fecha-normal'" [form]="formRegistro" [minDate]="fechaActual"
+        [nameControlform]="'expirationDate'" [textLabel]="'Expiración de cuenta'"></app-basic-input>
+
+    </div>
+
+    <div class="inputyToggle" [ngClass]="{'desaparecer-input': !flatRenovacionContrasena}">
+      <div class="text_float" [ngClass]="{'active': !flatRenovacionContrasena}">
+        Renovación de contraseña
+      </div>
+      <app-toggle style=" margin: 11px;" [flag]="flatRenovacionContrasena"
+        (onChange)="setRenovacionContrasena($event)"></app-toggle>
+
+      <app-basic-input [dataSelect]="renovacionesPeriodicas" [valueId]="'idPasswdRenewalPeriod'"
+        [valueDescription]="'passwdRenewalPeriod'" [typeInput]="'select'" [leftIcon]="'candado'"
+        [form]="formRegistro" [nameControlform]="'idPasswdRenewalPeriod'" [textLabel]="'Renovación de contraseña'"
+        [flagCheck]="false" [searchFlag]="false" [placeholderText]="'Buscar..'">
+      </app-basic-input>
+    </div>
+    @if(isEdit){
+      <app-basic-input [typeInput]="'password'" [form]="formRegistro" [nameControlform]="'password'"
+      [textLabel]="'Cambio de contraseña'"></app-basic-input>
+
+    }
+
+    <div class="shadow photo-input">
+      <div class="input-camera" (click)="openPhotoSelector()">
+        <mat-icon>photo_camera</mat-icon>
+      </div>
+      <span (click)="openPhotoSelector()">Subir fotografia</span>
+
+      <div class="estado-foto"
+        [ngClass]="{'subida' : fotoSubida, 'sinSubir' : !fotoSubida , 'eliminar': eliminarActive}">
+        @if(!fotoSubida){
+        <mat-icon (click)="openPhotoSelector()">{{iconoActual}}</mat-icon>
+        }
+        @if(fotoSubida){
+        <mat-icon (mouseenter)="onMouseEnter()" (click)="eliminarFoto()" (mouseleave)="onMouseLeave()">
+          {{ iconoActual }}
+        </mat-icon>
+        }
+      </div>
+
+      <div class="photo-container-desplegable shadow" [ngClass]="{'abrirTomarFoto': abrirTomarFoto}">
+
+        <div class="left-photo">
+          <div class="icon-left" (click)="openDownloader('inputCargadorSeguimiento')">
+            <mat-icon [svgIcon]="'cargarImagen'"></mat-icon>
+            <div class="btn icon_add btn_file" (change)="loadFileSeguimiento($event)" style="display: none;">
+              <input type="file" class="btn_carga" id="inputCargadorSeguimiento"
+                accept=".jpg,.JPG,.jpeg,.JPEG,.png,.PNG,.gif,.GIF,.bmp,.BMP,.webp,.WEBP,.tiff,.TIFF">
+            </div>
+          </div>
+          <div class="icon-left" (click)="openCamera()">
+
+            <mat-icon [svgIcon]="'tomar-foto'"></mat-icon>
+          </div>
+        </div>
+        <div class="right-photo">
+          <div class="boder-ext">
+
+            <div class="border-int">
+              @if(fotoSubida){
+              <img [src]="imageSrc" alt="imagen usuario">
+              } @if(!fotoSubida){
+              <mat-icon [svgIcon]="'usuario'"></mat-icon>
+              }
+
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </form>
+
+
+  <div class="controls_two_buttons absolute_boton">
+    <button class="btn-01" (click)="cancelar()">Cancelar</button>
+    <button class="btn-02" (click)="createUser()">{{!isEdit? 'Guardar': 'Actualizar'}}</button>
+  </div>
+
+</div>

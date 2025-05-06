@@ -1,0 +1,103 @@
+<div class="margenItems">
+    @if(columnsHeader()){
+    <div style="overflow-x: auto;">
+        <table class="myTable " style="width: 100%;">
+            <thead class="commonTable">
+                <tr>
+                    @for (item of columnsHeader(); track item) {
+                        <th>{{item}}</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of pagedData |  paginate: { id:'paginador', itemsPerPage: paginadorNumber(), currentPage: p, totalItems: columnsBody().length }; track item; let j = $index) {
+                    <tr class="shadow">
+                        @for (header of columnsHeader(); track header; let i = $index) {
+                            @if(header !== 'Estado' && header !== 'Editar' && header !== 'Eliminar' && header !== 'Detalle' && header !== 'Permisos' && header !== 'Archivos' &&
+                                header !== 'Confirmar' && header !== 'Reprogramar' && header !== 'Descripcion' && header !== 'Descripción' && header !== 'Requisitos' && header !== 'Niveles' && header !== 'Persona'){
+                                <td class="text-truncate" matTooltip="{{ item['item' + (i + 1)] }}" appTooltipIfTruncated="{{ item['item' + (i + 1)] }}">{{ item['item' + (i + 1)] }}</td>
+                            }
+                            @else if(header === 'Niveles'){
+                                <td>
+                                    <div class="iconContainer shadow" (click)="emitConfirm(item)">
+                                        <mat-icon class="iconTable confirmar" >layers</mat-icon>
+                                    </div>
+                                </td>
+                            }
+                            @else if(header === 'Detalle' || header === 'Descripcion' || header === 'Descripción'  || header === 'Requisitos'|| header === 'Permisos'){
+                                <td>
+                                    <div class="iconContainer shadow" [class]="item" (click)="emitButtonGeneral(item)">
+                                        @if(item === 'Permisos'){
+                                            <mat-icon class="iconTable yellow">account_circle</mat-icon>
+                                        }@else{
+                                            <mat-icon class="iconTable yellow">library_books</mat-icon>
+                                        }
+                                    </div>
+                                </td>
+                            } 
+                            @else if (header === 'Persona') {
+                                <td>
+                                    <div class="iconContainer shadow" [class]="item" (click)="emitButtonGeneral(item)">
+                                        <mat-icon class="iconTable yellow">person</mat-icon>
+                                    </div>
+                                </td>
+                            }
+                            @else if(header === 'Confirmar'){
+                                <td>
+                                    <div class="iconContainer shadow" (click)="emitConfirm(item['item' + (i)])">
+                                        <mat-icon class="iconTable confirmar" >check</mat-icon>
+                                    </div>
+                                </td>
+                            }
+                            @else if(header === 'Reprogramar'){
+                                <td>
+                                    <div class="iconContainer shadow" (click)="emitReProfram(item['item' + (i)])">
+                                        <mat-icon class="iconTable yellow" >assignment</mat-icon>
+                                    </div>
+                                </td>
+                            }
+                            @else if(header === 'Archivos'){
+                                <td>
+                                    <div class="iconContainer shadow" (click)="emitFiles(item['item' + (i)])">
+                                        <mat-icon class="iconTable editar" >insert_drive_file</mat-icon>
+                                    </div>
+                                </td>
+                            }
+                            @else if(header === 'Estado'){
+                                <td>
+                                     <div>
+                                         <app-toggle [flag]="item['item' + (i + 1)].active" (onChange)="emitStatus(item,$event)"></app-toggle>
+                                     </div>
+                                </td>
+                            }
+                            @else if(header === 'Editar'){
+                                <td>                                    
+                                    <div class="iconContainer shadow" (click)="emitEdit(item['item' + (i + 1)])">
+                                        <mat-icon class="iconTable editar">edit</mat-icon>
+                                    </div>
+                                </td>
+                            }
+                            @else if(header === 'Eliminar'){
+                                <td>
+                                    <div class="iconContainer shadow" (click)="emitDelete(item['item' + (i)])">
+                                        <mat-icon class="iconTable eliminar">close</mat-icon>
+                                    </div>
+                                </td>
+                            }
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        <pagination-controls
+            id="paginador"
+            previousLabel=""
+            nextLabel=""
+            [responsive]="true"
+            (pageChange)="handlePageChange($event)"
+        ></pagination-controls>
+    </div>
+    }
+</div>

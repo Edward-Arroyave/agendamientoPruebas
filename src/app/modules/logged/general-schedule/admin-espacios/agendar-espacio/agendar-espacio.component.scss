@@ -1,0 +1,122 @@
+.container-btn-pay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.2em;
+  margin: 1em 0;
+}
+
+.container-btn-pay > span {
+  margin-bottom: .3em;
+}
+
+.btn-pay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+  background-color: #1a1a1a !important;
+  color: white !important;
+  min-height: 28px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px 16px;
+  width: 100%;
+  max-width: 410PX;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 22px;
+  font-weight: 600;
+  position: relative;
+}
+
+//Contenedor general
+.container-agendamiento{
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+ // contenedor secction
+ .contiene-agenda{
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100%;
+}
+
+.tabs-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  gap: 3em;
+}
+.contenido-tab {
+  box-sizing: border-box;
+  padding: 1em;
+  overflow: auto;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  z-index: 2;
+}
+.tab-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  color: white;
+  font-weight: bold;
+  background: linear-gradient(180deg, var(--color-04) 11%, var(--color-01) 92%);
+  border-radius: 8px;
+}
+
+.no-completed {
+  color: var(--color-01);
+  padding-bottom: 1em;
+}
+.completed {
+  color: var(--color-04);
+}
+
+.name-tab {
+  max-width: 50px;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  // white-space: nowrap;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.line-separator {
+  width: 320px;
+  height: 1px;
+  background-color: var(--color-04);
+  position: absolute;
+  left: 6px;
+  top: 22px;
+}
+
+.subtitle-tab {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 2em;
+  font-size: 14px;
+}
+
+.contien-botones{
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin : 1em 0;
+  align-items: center; height:100%;
+}

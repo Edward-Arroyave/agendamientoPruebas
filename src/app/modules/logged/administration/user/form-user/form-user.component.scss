@@ -1,0 +1,217 @@
+.container {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.title-form {
+  color: var(--color-04);
+  font-weight: bold;
+}
+
+//Formulario
+.form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 60px;
+  gap: 1em;
+  overflow: auto;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.inputyToggle {
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  gap: 5px;
+  position: relative;
+}
+
+.text_float {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-05);
+  position: absolute;
+  top: -13px;
+  left: 89px;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+.active {
+  opacity: 1;
+  left: 0px;
+}
+.desaparecer-input :nth-child(3) {
+  opacity: 0;
+}
+
+.photo-input {
+  border-radius: 10px;
+  height: 40px;
+  display: grid;
+  grid-template-columns: 40px auto 40px;
+  align-items: center;
+  text-align: center;
+  color: var(--color-03);
+  cursor: pointer;
+  transform: 0.5s line;
+  position: relative;
+  width: 200px;
+}
+
+.photo-input:hover .input-camera  {
+  color: var(--color-06);
+}
+.input-camera {
+  color: var(--color-03);
+  border-right: 1px solid var(--color-03);
+}
+.photo-input span {
+  color: var(--color-03);
+  font-size: 12px;
+  text-align: center;
+  text-align: center;
+  font-weight: 800;
+}
+.photo-input:hover span {
+  color: var(--color-06);
+}
+
+.photo-container-desplegable {
+  border-radius: 10px;
+  overflow: hidden;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  text-align: center;
+  color: var(--color-05);
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 36px;
+  background-color: white;
+  height: 0;
+  opacity: 0;
+  border-top: var(--color-03) 1px solid;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+  display: grid;
+}
+
+.abrirTomarFoto {
+  height: 150px;
+  opacity: 1;
+}
+
+.estado-foto {
+
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.estado-foto mat-icon {
+  width: 80%;
+  height: 80%;
+  font-size: 16px;
+  color: white;
+}
+
+.subida {
+  background: #28ba9e;
+}
+.sinSubir {
+  background: #a3a2a2;
+}
+.eliminar {
+  background: #D12B2B;
+  color: white;
+}
+
+.left-photo {
+  border-right: 1px solid var(--color-03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  height: 100%;
+  width: 39px;
+  justify-content: flex-start;
+  padding-top: 1em;
+}
+
+.icon-left {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-01);
+  color: white;
+  border-radius: 4px;
+}
+.icon-left mat-icon {
+  width: 15px !important;
+}
+.right-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.boder-ext {
+  width: 90%;
+  height: 90%;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--color-01) 63%, var(--color-06) 92%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border-int {
+  width: 80%;
+  height: 80%;
+  border-radius: 10px;
+  background: white;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.border-int mat-icon {
+  width: 80% !important;
+  height: 80% !important;
+}
+.border-int img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1100px) {
+  .form {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .form {
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 1em;
+  }
+}
+@media (max-width: 600px) {
+  .form {
+    grid-template-columns: repeat(1, 1fr);
+    height: 90%;
+  }
+}

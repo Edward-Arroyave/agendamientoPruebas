@@ -1,0 +1,110 @@
+<div class="container">
+  <span class="titulo">Citas</span>
+
+  <div class="form-search">
+    <div class="inputs-container">
+
+      <app-basic-input [typeInput]="'date'" [rightIcon]="'fecha-mini'" [leftIcon]="'fecha-normal'" [form]="formSearch"
+        [nameControlform]="'date'" [textLabel]="'Fecha'" [ariaRequired]="false"></app-basic-input>
+
+      <app-basic-input [dataSelect]="listAttentionCenter" [valueId]="'idAttentionCenter'"
+        [valueDescription]="'attentionCenterName'" [typeInput]="'select'" [leftIcon]="'sede'"
+        [rightIcon]="'arrow_drop_down'" [form]="formSearch" [nameControlform]="'attentionCenter'" [textLabel]="'Sede'"
+        [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Seleccione una opción'">
+      </app-basic-input>
+
+      <app-basic-input [dataSelect]="categorias" [valueId]="'idCategory'" [valueDescription]="'categoryName'"
+        [typeInput]="'select'" [leftIcon]="'categoria'" [form]="formSearch" [nameControlform]="'idCategory'"
+        [textLabel]="'Categoria'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar categoria'">
+      </app-basic-input>
+
+      <app-basic-input [dataSelect]="espacialidades" [valueId]="'idSpecialties'" [valueDescription]="'specialtiesName'"
+        [typeInput]="'select'" [leftIcon]="'especialidad'" [form]="formSearch" [nameControlform]="'idSpecialties'"
+        [textLabel]="'Especialidad'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar especialidad'">
+      </app-basic-input>
+
+      <app-basic-input [dataSelect]="caracteristicas" [valueId]="'idCharacteristic'"
+        [valueDescription]="'characteristicName'" [typeInput]="'select'" [leftIcon]="'caracteristica'"
+        [form]="formSearch" [nameControlform]="'idCharacteristic'" [textLabel]="'Caracteristicas'" [flagCheck]="false"
+        [searchFlag]="true" [placeholderText]="'Buscar caracteristicas'">
+      </app-basic-input>
+    </div>
+
+    @if(permisosDelModulo.Crear){
+    <div class="buttons-container">
+      <button class="btnIcon-01" (click)="search()">
+        <div><span>Buscar</span></div>
+        <mat-icon>search</mat-icon>
+      </button>
+      <button class="btnIcon-01" (click)="clearFilters()">
+        <div><span>Limpiar</span></div>
+        <mat-icon svgIcon="limpiar"></mat-icon>
+      </button>
+      <button class="btnIcon-01" [ngClass]="{'disable': data.length == 0}"
+        (click)="downloadExcel()">
+        <div><span>Generar excel</span></div>
+        <mat-icon svgIcon="retrasmitir"></mat-icon>
+      </button>
+    </div>
+
+    }
+
+  </div>
+
+
+  <div style="margin-top: 1em;" class="contenedor-tabla">
+    @if(data.length !==0){
+
+    <div>
+      <table class="myTable " style="width: 100%; overflow: auto;">
+        <thead class="commonTable">
+          <tr>
+            <th>Fecha y hora de la cita</th>
+            <th>Documento del paciente</th>
+            <th>Duración de la cita</th>
+            <th>Código interno - elemento</th>
+            <th>Condición especial</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of data | paginate: { id:'paginador', itemsPerPage: pageSize, currentPage: currentPage,
+          totalItems: counter }; track item) {
+          <tr class="shadow">
+            <td class="text-truncate" [matTooltip]="item.appointmentDate">{{formatDate(item.appointmentDate)}}</td>
+            <td class="text-truncate" [matTooltip]="item.documentNumber">{{item.documentNumber}}</td>
+            <td class="text-truncate" [matTooltip]="item.duration">{{item.duration}}</td>
+            <td class="text-truncate" [matTooltip]="item.internalCode_ElementName">{{item.internalCode_ElementName}}</td>
+            <td class="text-truncate" [matTooltip]="item.specialCondition">{{item.specialCondition}}</td>
+
+              <td class="text-truncate"
+              [ngClass]="{'green': item.status == 1,'orange': item.status == 2,'red': item.status == 3 }"
+              [matTooltip]="item.status == 1? 'Primer agendamiento' : item.status == 2? 'Reprogramación' : 'Cancelación'">
+              {{item.status == 1? 'Primer agendamiento' : item.status == 2? 'Reprogramación' : 'Cancelación' }}
+            </td>
+
+          </tr>
+          }
+
+
+        </tbody>
+
+      </table>
+    </div>
+
+
+
+
+    <pagination-controls id="paginador" previousLabel="" nextLabel="" [responsive]="true" [autoHide]="true"
+      (pageChange)="handlePageChange($event)"></pagination-controls>
+
+    }@else {
+    <div class="no-data">
+      <img class="no-data__img" src="assets/images/logos/icono_noData.png" alt="icon-no-data" />
+      <span class="no-data__span">Sin datos</span>
+    </div>
+    }
+  </div>
+
+
+</div>

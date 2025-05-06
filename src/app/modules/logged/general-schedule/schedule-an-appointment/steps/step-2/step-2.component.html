@@ -1,0 +1,122 @@
+<!-- paso 2 -->
+ @if (espaciosRemitidoFlag) {
+
+  <div class="shadow contiene-formulario-archivos" style="width: 80%; margin: 0 auto 0;">
+   
+    <p>Por favor ingrese el nombre de la entidad remitente, junto con la información
+      requerida.
+    </p>
+
+    <form class="form-archivos">
+      <app-basic-input [typeInput]="'date'" [leftIcon]="'Calendario'" [form]="formRemitido" [maxDate]="maxDate"
+        [nameControlform]="'dateAuthorization'" [textLabel]="'Fecha de autorización'" [ariaRequired]="false">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'file'" [leftIcon]="'cargarDocumento'" [rightIcon]="'cloud_upload'"
+        [form]="formRemitido" [nameControlform]="'medicalAuthorization'" [textLabel]="'Autorización medica'"
+        [ariaRequired]="false" [extensionesPermitidas]="['pdf','png','jpg','jpeg']">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'date'" [leftIcon]="'Calendario'" [form]="formRemitido" [maxDate]="maxDate"
+        [nameControlform]="'dateOrder'" [textLabel]="'Fecha de orden'" [ariaRequired]="false">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'file'" [leftIcon]="'cargarDocumento'" [rightIcon]="'cloud_upload'"
+        [form]="formRemitido" [nameControlform]="'medicalOrder'" [textLabel]="'Orden medica'" [ariaRequired]="false"
+        [extensionesPermitidas]="['pdf','png','jpg','jpeg']">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'date'" [leftIcon]="'Calendario'" [form]="formRemitido" [maxDate]="maxDate"
+        [nameControlform]="'dateHistory'" [textLabel]="'Fecha de historia'" [ariaRequired]="false">
+      </app-basic-input>
+
+      <app-basic-input [typeInput]="'file'" [leftIcon]="'cargarDocumento'" [rightIcon]="'cloud_upload'"
+        [form]="formRemitido" [nameControlform]="'clinicHistory'" [textLabel]="'Historia clínica'"
+        [ariaRequired]="false" [extensionesPermitidas]="['pdf','png','jpg','jpeg']">
+      </app-basic-input>
+    </form>
+  </div>
+
+ }@else {
+   <div class="contiene-tipo-paciente">
+     <div class="containerTapsPaciente">
+       <div class="border-selected-remitido"
+         (click)="[onVerParticular.emit(false), verPacienteParticular = false, onParticularFlag.emit(false)]">
+         <div class="pacienteRemitido shadow" [style]="!verPacienteParticular?'width:250px;':''">
+           <div class="border">
+             <mat-icon svgIcon="paciente" class="iconPaciente"></mat-icon>
+           </div>
+           <div style="display: flex;padding:0 1em;">
+             <span style="font-size: 20px;font-weight: bold; text-align: center;">
+               Soy un paciente remitido
+             </span>
+           </div>
+         </div>
+       </div>
+       @if(verPacienteParticular){
+       <div class="border-selected-paticular" (click)="pacienteParticular(true)">
+         <div class="pacienteParticular shadow">
+           <div class="border">
+             <mat-icon svgIcon="paciente" class="iconPaciente"></mat-icon>
+           </div>
+           <div style="padding:0 1em;">
+             <span style="font-size: 20px;font-weight: bold; text-align: center;">
+               Soy un paciente particular
+             </span>
+           </div>
+         </div>
+       </div>
+       }@else{
+       <div class="shadow contiene-formulario-archivos">
+   
+         <p>Por favor ingrese el nombre de la entidad remitente, junto con la información
+           requerida.
+         </p>
+   
+         <form class="form-archivos">
+           <div class="entidad-style">
+             <app-basic-input [dataSelect]="listaEntidades" [valueId]="'idOriginEntity'" [valueDescription]="'entity'"
+               [typeInput]="'select'" [leftIcon]="'departamento'" [rightIcon]="'tipodocumento'" [form]="formRemitido"
+               [nameControlform]="'idOriginEntity'" [textLabel]="'Entidad remitente'" [flagCheck]="false"
+               [searchFlag]="true" [placeholderText]="'Buscar documento'">
+             </app-basic-input>
+   
+             <app-basic-input [dataSelect]="listPlan" [valueId]="'contractCode'" [valueDescription]="'contractName'" [typeInput]="'select'"
+               [leftIcon]="'tipoAtencion'" [rightIcon]="'tipodocumento'" [form]="formRemitido" [nameControlform]="'plan'"
+               [textLabel]="'Plan de empresa'" [flagCheck]="false" [searchFlag]="true" [placeholderText]="'Buscar plan'">
+             </app-basic-input>
+           </div>
+   
+   
+           <app-basic-input [typeInput]="'date'" [leftIcon]="'Calendario'" [form]="formRemitido" [maxDate]="maxDate"
+             [nameControlform]="'dateAuthorization'" [textLabel]="'Fecha de autorización'" [ariaRequired]="false">
+           </app-basic-input>
+   
+           <app-basic-input [typeInput]="'file'" [leftIcon]="'cargarDocumento'" [rightIcon]="'cloud_upload'"
+             [form]="formRemitido" [nameControlform]="'medicalAuthorization'" [textLabel]="'Autorización medica'"
+             [ariaRequired]="false" [extensionesPermitidas]="['pdf','png','jpg','jpeg']">
+           </app-basic-input>
+   
+           <app-basic-input [typeInput]="'date'" [leftIcon]="'Calendario'" [form]="formRemitido" [maxDate]="maxDate"
+             [nameControlform]="'dateOrder'" [textLabel]="'Fecha de orden'" [ariaRequired]="false">
+           </app-basic-input>
+   
+           <app-basic-input [typeInput]="'file'" [leftIcon]="'cargarDocumento'" [rightIcon]="'cloud_upload'"
+             [form]="formRemitido" [nameControlform]="'medicalOrder'" [textLabel]="'Orden medica'" [ariaRequired]="false"
+             [extensionesPermitidas]="['pdf','png','jpg','jpeg']">
+           </app-basic-input>
+   
+           <app-basic-input [typeInput]="'date'" [leftIcon]="'Calendario'" [form]="formRemitido" [maxDate]="maxDate"
+             [nameControlform]="'dateHistory'" [textLabel]="'Fecha de historia'" [ariaRequired]="false">
+           </app-basic-input>
+   
+           <app-basic-input [typeInput]="'file'" [leftIcon]="'cargarDocumento'" [rightIcon]="'cloud_upload'"
+             [form]="formRemitido" [nameControlform]="'clinicHistory'" [textLabel]="'Historia clínica'"
+             [ariaRequired]="false" [extensionesPermitidas]="['pdf','png','jpg','jpeg']">
+           </app-basic-input>
+         </form>
+       </div>
+       }
+     </div>
+   </div>
+ }

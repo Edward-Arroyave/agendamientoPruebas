@@ -1,0 +1,101 @@
+.container {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+
+.cont-form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 1em;
+  margin-top: 2em;
+}
+
+
+.form{
+  overflow: auto;
+}
+
+/* Aplicar estilos al primer hijo */
+.cont-form> :nth-child(1) {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+/* Aplicar estilos al segundo hijo */
+.cont-form> :nth-child(2) {
+  grid-area: 1 / 2 / 2 / 4;
+}
+
+
+
+
+.full-width {
+  margin-top: 2em;
+  grid-column: span 4;
+}
+
+.full-width1 {
+  grid-column: span 4;
+}
+
+.requisitos-container {
+  display: grid;
+  grid-row-gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+}
+
+
+.requisito {
+  display: flex;
+  align-items: center;
+
+
+}
+
+.text-togle1 {
+  display: flex;
+  align-items: center;
+}
+
+.requisito-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 auto;
+  align-self: center;
+}
+
+.btnIcon-01 {
+  display: flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  margin: 0 auto;
+  width: 40px;
+  height: 40px;
+  padding: 0px 4px 0px 0px;
+}
+
+.textarea-with {
+  width: 100%;
+}
+
+
+@media (max-width: 1100px) {
+  .cont-form {
+    display: flex;
+    gap: 1em;
+  }
+}
+@media (max-width: 700px) {
+  .cont-form {
+    display: flex;
+    gap: 3em;
+    flex-direction: column;
+  }
+}
+

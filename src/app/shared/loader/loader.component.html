@@ -1,0 +1,30 @@
+@if(stateLoad ){
+<div class="overlay">
+
+  <div style="overflow: hidden; height: 40%;">
+    <div class="arc"></div>
+  </div>
+
+
+  <span class="porcetaje">{{percent}} &nbsp;%</span>
+
+  @if(dataText.text){
+  <div class="text_loader">
+    {{dataText.text}} <span class="puntos"></span>
+  </div>
+  }
+  @if(percent>3 && percent<100){ <div class="text_loader">
+    {{dataText.text1}}
+</div>
+}
+
+@if(percent>7){
+<div class="text_loader">
+  {{dataText.text2}}
+</div>
+}
+
+
+</div>
+
+}

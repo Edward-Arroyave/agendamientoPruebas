@@ -1,0 +1,162 @@
+<div class="container">
+  <span class="titulo">Exámenes de laboratorio </span>
+
+
+  <div class="form-search form-inline">
+    <div class="input-container">
+      <app-basic-input [typeInput]="'text'" [rightIcon]="'search'" [leftIcon]="'buscar-tuerca'" [form]="formSearch"
+        [nameControlform]="'search'" [textLabel]="'Buscar por examen de laboratorio'"
+        [ariaRequired]="false"></app-basic-input>
+    </div>
+
+    @if(permisosDelModulo.Crear){
+    <button class="btnIcon-01" routerLink="add">
+      <div><span>Agregar</span></div>
+      <mat-icon>add</mat-icon>
+    </button>
+    }
+    @if(permisosDelModulo.Crear){
+    <button class="btnIcon-01" (click)="fileInput.click()">
+      <div><span>Cargar archivo</span></div>
+      <mat-icon>upload</mat-icon>
+    </button>
+    <input type="file" accept=".xlsx, .xls" #fileInput style="display: none;" (change)="onFileSelected($event, fileInput)">
+    }
+    @if(permisosDelModulo.Crear){
+    <button class="btnIcon-01" (click)="downloadExcelModel()">
+      <div><span>Descargar formato plantilla</span></div>
+      <mat-icon>download</mat-icon>
+    </button>
+    }
+  </div>
+
+
+  <div style="margin-top: 1em;" class="contenedor-tabla">
+    @if(data.length !==0){
+
+      <div >
+        <table class="myTable " style="width: 100%; overflow: auto;">
+          <thead class="commonTable">
+            <tr>
+              @for (item of cabeceros; track $index) {
+              <th>{{item}}</th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of data | paginate: { id:'paginador', itemsPerPage: pageSize, currentPage: currentPage,
+            totalItems: counter }; track item) {
+            <tr class="shadow">
+              <td class="text-truncate" [matTooltip]="item.cups">{{item.cups}}</td>
+              <td class="text-truncate" [matTooltip]="item.examName">{{item.examName}}</td>
+
+              <td>
+                <div class="iconContainer shadow" (click)="openModalRequirements(requirements,item.idExam)">
+                  <mat-icon class="iconTable yellow">library_books</mat-icon>
+                </div>
+              </td>
+
+
+              <td>
+                <div>
+                  <app-toggle [flag]="item.active" (onChange)="changeStatus($event, item.idExam)"></app-toggle>
+                </div>
+              </td>
+              <td>
+                <div class="iconContainer shadow" (click)="editExam(item.idExam)">
+                  <mat-icon class="iconTable editar">edit</mat-icon>
+                </div>
+              </td>
+              <td>
+                <div class="iconContainer shadow" (click)="openModalDelete(delete, item)">
+                  <mat-icon class="iconTable eliminar">close</mat-icon>
+                </div>
+              </td>
+
+
+
+            </tr>
+            }
+
+
+          </tbody>
+
+        </table>
+      </div>
+
+
+
+
+    <pagination-controls id="paginador" previousLabel="" nextLabel="" [responsive]="true" [autoHide]="true"
+      (pageChange)="handlePageChange($event)"></pagination-controls>
+
+    }@else {
+    <div class="no-data">
+      <img class="no-data__img" src="assets/images/logos/icono_noData.png" alt="icon-no-data" />
+      <span class="no-data__span">Sin exámenes para mostrar</span>
+    </div>
+    }
+  </div>
+
+
+</div>
+
+
+
+
+<ng-template #delete></ng-template>
+<ng-template #requirements>
+
+  <div class="content-requirements">
+
+    <span class="titulo">Detalle de la preparación </span>
+
+
+    <div class="requeriments">
+
+      <div class="requirement">
+
+        <div class="title-requirement">
+          Preindicaciones:
+        </div>
+
+        <div class="text-requirement">
+          {{requirementsText.preconditions}}
+        </div>
+
+      </div>
+      <div class="requirement">
+        <div class="title-requirement">
+          Indicaciones:
+        </div>
+        <div class="text-requirement">
+          {{requirementsText.indications}}
+        </div>
+
+      </div>
+      <div class="requirement">
+        <div class="title-requirement">
+          Requisitos:
+        </div>
+        <div class="list-requirements">
+          @for (item of requirementsText.requirements; track $index) {
+
+          <div class="item-requirement">
+            <span class="text-requirement">{{$index + 1}}. {{item.requirements}}</span>
+
+          </div>
+          }
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+
+
+</ng-template>
